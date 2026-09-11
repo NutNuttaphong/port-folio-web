@@ -1,0 +1,347 @@
+
+@import "tailwindcss";
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --social-bg: rgba(244, 243, 236, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+
+  #social .button-icon {
+    filter: invert(1) brightness(2);
+  }
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  /* width: 1126px; */
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.root {
+  width: 1126px;
+  max-width: 100%;
+  margin: 100px auto;
+  text-align: center;
+  min-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.root-bar {
+  width: 1126px;
+  max-width: 100%;
+  margin: 0px auto;
+  text-align: center;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: rgb(88, 88, 88);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+
+
+/* CSS TABLE */
+/* =========================================================
+   GLOBAL TABLE STYLES
+   ========================================================= */
+
+/* คอนเทนเนอร์ครอบตาราง (จัดการขอบมนและ Scroll ในมือถือ) */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 16px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  margin: 1.5rem 0;
+}
+
+/* โครงสร้างตารางหลัก */
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+  color: #475569;
+}
+
+/* ส่วนหัวตาราง (Thead) */
+.custom-table thead {
+  background-color: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.custom-table th {
+  padding: 1rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+/* ส่วนเนื้อหาตาราง (Tbody) */
+.custom-table tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.custom-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.custom-table td {
+  padding: 1rem 1.5rem;
+  vertical-align: middle;
+}
+
+/* คอลัมน์ตัวเลขลำดับ (No.) */
+.custom-table td.col-no {
+  font-weight: 500;
+  color: #94a3b8;
+  width: 60px;
+}
+
+/* คอลัมน์ชื่อโปรเจกต์ */
+.custom-table td.col-title {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* คอลัมน์คำอธิบาย (ตัดคำถ้ายาวเกิน) */
+.custom-table td.col-desc {
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #64748b;
+}
+
+/* คอลัมน์วันที่ */
+.custom-table td.col-date {
+  color: #64748b;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+/* คอลัมน์ตั้งค่า (ชิดขวา) */
+.custom-table th.text-right,
+.custom-table td.col-actions {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   STATUS BADGES
+   ========================================================= */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.badge-success {
+  background-color: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.badge-progress {
+  background-color: #f0fdfa;
+  color: #0d9488;
+  border: 1px solid #99f6e4;
+}
+
+.badge-warning {
+  background-color: #fffbeb;
+  color: #d97706;
+  border: 1px solid #fde68a;
+}
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+.table-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  color: #64748b;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 0.25rem;
+}
+
+.table-btn:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.table-btn-danger:hover {
+  background-color: #fef2f2;
+  color: #ef4444;
+  border-color: #fecaca;
+}
+
+.table-btn-add {
+  background-color: #FFFFFF;
+  border-color: #00bda6;
+  color: #00bda6;
+}
+
+.table-btn-add:hover {
+  background-color: #00a890;
+  border-color: #00a890;
+  color: #ffffff;
+}
+
+/* =========================================================
+   DARK THEME (ทางเลือก: ครอบ class="table-container dark" ได้)
+   ========================================================= */
+.table-container.dark {
+  background-color: rgba(15, 23, 42, 0.75);
+  border-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.table-container.dark .custom-table {
+  color: #cbd5e1;
+}
+
+.table-container.dark thead {
+  background-color: rgba(2, 6, 23, 0.5);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.table-container.dark th {
+  color: #94a3b8;
+}
+
+.table-container.dark tbody tr {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+.table-container.dark tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.table-container.dark td.col-title {
+  color: #ffffff;
+}
+
+.table-container.dark .table-btn {
+  background-color: rgba(30, 41, 59, 0.8);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+}
+
+.table-container.dark .table-btn:hover {
+  background-color: #00bda6;
+  border-color: #00bda6;
+  color: #ffffff;
+}
