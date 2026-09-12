@@ -73,7 +73,7 @@ export default function EventCarousel() {
           // 💡 ถ้าข้อมูลมีน้อยกว่า 5 ชิ้น ให้คูณเพิ่มเข้าไป เพื่อให้ Swiper ทำงาน Loop 3D Coverflow ได้เนียนๆ
           const slidesToDisplay =
             response.length <= 5
-              ? [...response, ...response, ...response,...response]
+              ? [...response, ...response, ...response, ...response]
               : response; // เพิ่มข้อมูลซ้ำเพื่อให้ Swiper ทำงานได้ดีขึ้น
 
           setSlides(slidesToDisplay);
@@ -98,6 +98,18 @@ export default function EventCarousel() {
       </div>
     );
   }
+
+const handleCardClick = (item) => {
+    const itemId = item._id || item.id;
+    // กำหนดลิงก์ YouTube ที่ต้องการเปิดในแท็บใหม่ตามที่ระบุ
+    const targetUrl = item.externalUrl || "https://www.youtube.com/watch?v=mlWyM0K8eIY";
+
+    if (targetUrl) {
+      window.open(targetUrl, "_blank", "noopener,noreferrer");
+    } else {
+      navigate(`/event/${itemId}`);
+    }
+  };
 
   return (
     <div className="relative flex min-h-[calc(100vh-73px)] items-center justify-center bg-gradient-to-b from-[#0e1a42] via-[#09112d] to-[#040714] px-4 py-8 overflow-hidden text-white">
@@ -151,6 +163,7 @@ export default function EventCarousel() {
         >
           {slides.map((item) => (
             <SwiperSlide
+              onClick={() => handleCardClick(item)}
               key={item.uniqueId}
               style={{ width: "520px", height: "600px" }}
               className="group relative rounded-3xl my-10 overflow-hidden select-none transition-all duration-500 [&.swiper-slide-active]:ring-2 [&.swiper-slide-active]:ring-teal-400 [&.swiper-slide-active]:shadow-[0_0_40px_rgba(45,212,191,0.25)]"
