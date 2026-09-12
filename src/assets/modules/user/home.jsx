@@ -74,7 +74,7 @@ export default function EventCarousel() {
           const slidesToDisplay =
             response.length <= 5
               ? [...response, ...response, ...response, ...response]
-              : response; // เพิ่มข้อมูลซ้ำเพื่อให้ Swiper ทำงานได้ดีขึ้น
+              : [...response, ...response]; // เพิ่มข้อมูลซ้ำเพื่อให้ Swiper ทำงานได้ดีขึ้น
 
           setSlides(slidesToDisplay);
         } else {
@@ -99,10 +99,10 @@ export default function EventCarousel() {
     );
   }
 
-const handleCardClick = (item) => {
+  const handleCardClick = (item) => {
     const itemId = item._id || item.id;
     // กำหนดลิงก์ YouTube ที่ต้องการเปิดในแท็บใหม่ตามที่ระบุ
-    const targetUrl = item.externalUrl || "https://www.youtube.com/watch?v=mlWyM0K8eIY";
+    const targetUrl = item.urlProject || "https://www.youtube.com/watch?v=vxmDu5HlXZo";
 
     if (targetUrl) {
       window.open(targetUrl, "_blank", "noopener,noreferrer");
@@ -188,10 +188,7 @@ const handleCardClick = (item) => {
 
               {/* ไอคอน Smile ตรงกลาง */}
               <div className="absolute inset-0 flex items-center justify-center z-10">
-                <div
-                  onClick={() => navigate(`/event/${item.id}`)}
-                  className="flex h-14 w-14 items-center justify-center rounded-full bg-slate-900/50 backdrop-blur-md border border-white/20 text-white transition-all duration-300 group-[.swiper-slide-active]:scale-110 hover:scale-125 hover:border-teal-400 hover:text-teal-300 cursor-pointer shadow-lg active:scale-95"
-                >
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-slate-900/50 backdrop-blur-md border border-white/20 text-white transition-all duration-300 group-[.swiper-slide-active]:scale-110 hover:scale-125 hover:border-teal-400 hover:text-teal-300 cursor-pointer shadow-lg active:scale-95">
                   <Smile size={26} />
                 </div>
               </div>
