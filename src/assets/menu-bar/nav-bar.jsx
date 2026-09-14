@@ -31,7 +31,7 @@ function NavBar() {
         >
           ABOUT US
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="/inspiration"
           className={({ isActive }) =>
             `transition hover:text-emerald-400 ${isActive ? "text-emerald-400 font-bold" : "text-white/80"}`
@@ -46,7 +46,7 @@ function NavBar() {
           }
         >
           SERVICES
-        </NavLink>
+        </NavLink> */}
         <NavLink
           to="/event/contacts"
           className={({ isActive }) =>

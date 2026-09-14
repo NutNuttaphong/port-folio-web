@@ -7,6 +7,8 @@ import {
 const AddProjectDialog = ({ isOpen, onClose, onProjectSaved, project }) => {
 const [title, setTitle] = useState(project ? project.title : "");
   const [description, setDescription] = useState(project ? project.description : "");
+  const [url, setUrl] = useState(project ? project.url : "");
+  const [tag, setTag] = useState(project ? project.tag : "");
   const [image, setImage] = useState(null);
 
   const [preview, setPreview] = useState(project ? project.imageUrl : null);
@@ -20,7 +22,8 @@ const [title, setTitle] = useState(project ? project.title : "");
       const formData = new FormData();
       formData.append("title", title);
       formData.append("description", description);
-
+      formData.append("tag", tag);
+      formData.append("url", url);
       if (image) {
         formData.append("image", image);
       }
@@ -73,6 +76,24 @@ const [title, setTitle] = useState(project ? project.title : "");
             <input
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              className="border p-1 w-full"
+            />
+          </div>
+          <div className="mb-4">
+            <label>Tag</label>
+            <br />
+            <input
+              value={tag}
+              onChange={(e) => setTag(e.target.value)}
+              className="border p-1 w-full"
+            />
+          </div>
+           <div className="mb-4">
+            <label>Url Project</label>
+            <br />
+            <input
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
               className="border p-1 w-full"
             />
           </div>

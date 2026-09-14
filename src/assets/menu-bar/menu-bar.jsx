@@ -41,7 +41,7 @@ function MenuBar({ isDark, setIsDark }) {
           >
             ABOUT US
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to="/inspiration"
             className={({ isActive }) =>
               `transition hover:text-emerald-400 ${isActive ? "text-emerald-400 font-bold" : "text-gray/80"}`
@@ -56,7 +56,7 @@ function MenuBar({ isDark, setIsDark }) {
             }
           >
             SERVICES
-          </NavLink>
+          </NavLink> */}
           <NavLink
             to="/event/contacts"
             className={({ isActive }) =>
