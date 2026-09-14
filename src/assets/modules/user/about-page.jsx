@@ -195,15 +195,15 @@ function AboutPage() {
               <div key={item.id} className="flex flex-col items-center gap-4">
                 <div
                   key={item.id}
-                  className="group relative h-[240px] w-[240px] rounded-full overflow-hidden cursor-pointer shadow-lg transition-transform duration-300"
+                  className="group relative h-[240px] w-[auto] overflow-hidden cursor-pointer shadow-lg transition-transform duration-300"
                 >
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="rounded-full w-full h-full"
+                    className=" w-full h-full"
                   />
                 </div>
-                <div className="text-center">{item.title}</div>
+                <div className="text-center font-semibold">{item.title}</div>
               </div>
             ))}
           </div>
