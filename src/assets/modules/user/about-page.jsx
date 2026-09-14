@@ -1,29 +1,22 @@
-import slideImage1 from "../../images/ahmetyuksek-autumn-bend-10069119_1920.jpg";
+import slideImage1 from "../../images/image/ai1.png";
+import slideImage2 from "../../images/image/ai2.png";
+import slideImage3 from "../../images/image/ai3.png";
+import slideImage4 from "../../images/image/ai4.png";
+import slideImage5 from "../../images/image/ai5.png";
+import slideImage6 from "../../images/image/ai6.png";
+import slideImage7 from "../../images/image/react.png";
 
 const timelineData = [
   {
-    year: "2018",
-    title: "Company Founded",
+    year: "2018 - 2023",
+    title: "Mea FahLaung Univercity",
     description:
-      "EventCo was established with a vision to create extraordinary experiences.",
+      "University education level Educatation Bachelor of Engineering Major in Computer Engineering Mea Fah Laung Univercity",
   },
   {
-    year: "2019",
-    title: "First Major Contract",
-    description:
-      "Secured our first corporate client and organized a 500-person conference.",
-  },
-  {
-    year: "2020",
-    title: "Digital Innovation",
-    description:
-      "Adapted to virtual events during the pandemic, pioneering hybrid event solutions.",
-  },
-  {
-    year: "2022",
-    title: "Global Expansion",
-    description:
-      "Expanded our operations internationally, delivering flagship hybrid experiences worldwide.",
+    year: "2023 - 2026",
+    title: "Be1 Digital Company Limited.",
+    description: "Position: Developer/Front End Developer",
   },
 ];
 
@@ -31,41 +24,101 @@ const baseSlides = [
   {
     id: 1,
     tag: "LAUNCH",
-    title: "PRODUCT LAUNCHES",
+    title: "BASIC TO INTERMEDIATE AI: PRACTICAL AI SKILLS FOR LEARNING, WORKING, AND EARNING",
     image: slideImage1, // 2. นำตัวแปรมาใส่ที่นี่
   },
   {
     id: 2,
     tag: "LAUNCH",
-    title: "PRODUCT LAUNCHES",
-    image: slideImage1, // 2. นำตัวแปรมาใส่ที่นี่
+    title: "ReactJS for Beginners",
+    image: slideImage7, // 2. นำตัวแปรมาใส่ที่นี่
   },
   {
     id: 3,
     tag: "LAUNCH",
-    title: "PRODUCT LAUNCHES",
-    image: slideImage1, // 2. นำตัวแปรมาใส่ที่นี่
+    title: "Fundamental Principles of Artificial Intelligence",
+    image: slideImage3, // 2. นำตัวแปรมาใส่ที่นี่
   },
   {
     id: 4,
     tag: "LAUNCH",
-    title: "PRODUCT LAUNCHES",
-    image: slideImage1, // 2. นำตัวแปรมาใส่ที่นี่
+    title: " Al for Lifelong Learning and Self-Development",
+    image: slideImage4, // 2. นำตัวแปรมาใส่ที่นี่
+  },
+    {
+    id: 4,
+    tag: "LAUNCH",
+    title: "Data and Database Fundamentals for AlSystems",
+    image: slideImage5, // 2. นำตัวแปรมาใส่ที่นี่
+  },
+    {
+    id: 4,
+    tag: "LAUNCH",
+    title: "Al-Driven Workflow and Process Optimization",
+    image: slideImage6, // 2. นำตัวแปรมาใส่ที่นี่
+  },
+    {
+    id: 4,
+    tag: "LAUNCH",
+    title: "Ethics, Security, and the Future of Al",
+    image: slideImage2, // 2. นำตัวแปรมาใส่ที่นี่
   },
 ];
 
 function AboutPage() {
   return (
-    <div className="root">
-      <div className="flex flex-col items-center gap-4 text-center">
+    <div className="root px-5">
+      <div className="flex flex-col items-center gap-4 text-start">
         <div className="text-3xl sm:text-4xl font-serif font-bold  tracking-tight">
           About EventCo
         </div>
         <p>
-          We are passionate event creators dedicated to transforming your vision
-          into unforgettable experiences. With years of expertise and a
-          commitment to excellence, we make every moment extraordinary.
+          Frontend Developer with 3+ years of experience building and
+          maintaining Web Applications using Angular, TypeScript, and
+          JavaScript. Experienced in developing data-driven systems, reusable
+          components, REST API integration, responsive interfaces, and
+          performance optimization. Comfortable collaborating with UX/UI,
+          Backend, QA, and Business teams throughout the development lifecycle.
+          Strong focus on clean, maintainable, and scalable code, while
+          continuously expanding expertise in React.js and modern frontend
+          development.
         </p>
+        <div className="grid grid-cols-2 gap-5 border p-4 rounded-2xl">
+          <div>
+            <p className="font-medium text-lg">Personalskills</p>
+            <div className="grid grid-cols-2 gap-5">
+              <ui>
+                <ul>Angular</ul>
+                <ul>Vue.js</ul>
+                <ul>React / Vite</ul>
+                <ul>Nuxt</ul>
+              </ui>
+              <ui>
+                <ul>TypeScript</ul>
+                <ul>JavaScrip</ul>
+                <ul>CSS</ul>
+                <ul>Tailwind</ul>
+              </ui>
+            </div>
+          </div>
+          <div>
+            <p className="font-medium text-lg">Tools</p>
+            <div className="grid grid-cols-2 gap-5">
+              <ui>
+                <ul>Github</ul>
+                <ul>Gitlap</ul>
+                <ul>Post Man</ul>
+                <ul>Sourcetree</ul>
+              </ui>
+              <ui>
+                <ul>Bitbucket</ul>
+                <ul>VSCode</ul>
+                <ul>Antigravity</ul>
+                <ul>Gemini</ul>
+              </ui>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="w-full my-5">
@@ -73,7 +126,7 @@ function AboutPage() {
           {/* Section Title */}
           <div className="text-center mb-16">
             <div className="text-3xl sm:text-4xl font-serif font-bold tracking-tight">
-              Our Journey
+              Time line
             </div>
           </div>
 
@@ -132,7 +185,7 @@ function AboutPage() {
       <div className="w-full my-16">
         <div className="flex gap-2 justify-center mb-6 w-full">
           <div className="text-3xl sm:text-4xl font-serif font-bold tracking-tight">
-            Meet Our Teamas
+            Certifigcate
           </div>
         </div>
 
@@ -147,35 +200,7 @@ function AboutPage() {
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="rounded-full"
-                  />
-                </div>
-                <div className="text-center">{item.title}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full my-5">
-        <div className="flex gap-2 justify-center mb-6 w-full">
-          <div className="text-3xl sm:text-4xl font-serif font-bold tracking-tight">
-            Our Partners
-          </div>
-        </div>
-
-        <div>
-          <div className="p-4 grid grid-cols-1 md:grid-cols-2  xl:grid-cols-4 gap-10 justify-items-center gap-4">
-            {baseSlides.map((item) => (
-              <div key={item.id} className="flex flex-col items-center gap-4">
-                <div
-                  key={item.id}
-                  className="group relative h-[240px] w-[240px] rounded-full overflow-hidden cursor-pointer shadow-lg transition-transform duration-300"
-                >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="rounded-full"
+                    className="rounded-full w-full h-full"
                   />
                 </div>
                 <div className="text-center">{item.title}</div>
