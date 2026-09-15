@@ -6,6 +6,21 @@ import slideImage5 from "../../images/image/ai5.png";
 import slideImage6 from "../../images/image/ai6.png";
 import slideImage7 from "../../images/image/react.png";
 
+import angIcon from "../../images/icon/angular.svg";
+import vueIcon from "../../images/icon/vue.svg";
+import reactIcon from "../../images/icon/react.svg";
+import nuxtIcon from "../../images/icon/nuxt.svg";
+import tsIcon from "../../images/icon/ts.svg";
+import javascriptIcon from "../../images/icon/javascript.svg";
+import cssIcon from "../../images/icon/css.svg";
+import tailwindIcon from "../../images/icon/tailwind.svg";
+
+import githubIcon from "../../images/icon/github.svg";
+import bitbucketIcon from "../../images/icon/bitbucket.svg";
+import postmanIcon from "../../images/icon/postman.svg";
+import sourcetreetIcon from "../../images/icon/sourcetree.svg";
+import vscodeIcon from "../../images/icon/vscode.svg";
+
 const timelineData = [
   {
     year: "2018 - 2023",
@@ -24,7 +39,8 @@ const baseSlides = [
   {
     id: 1,
     tag: "LAUNCH",
-    title: "BASIC TO INTERMEDIATE AI: PRACTICAL AI SKILLS FOR LEARNING, WORKING, AND EARNING",
+    title:
+      "BASIC TO INTERMEDIATE AI: PRACTICAL AI SKILLS FOR LEARNING, WORKING, AND EARNING",
     image: slideImage1, // 2. นำตัวแปรมาใส่ที่นี่
   },
   {
@@ -45,19 +61,19 @@ const baseSlides = [
     title: " Al for Lifelong Learning and Self-Development",
     image: slideImage4, // 2. นำตัวแปรมาใส่ที่นี่
   },
-    {
+  {
     id: 4,
     tag: "LAUNCH",
     title: "Data and Database Fundamentals for AlSystems",
     image: slideImage5, // 2. นำตัวแปรมาใส่ที่นี่
   },
-    {
+  {
     id: 4,
     tag: "LAUNCH",
     title: "Al-Driven Workflow and Process Optimization",
     image: slideImage6, // 2. นำตัวแปรมาใส่ที่นี่
   },
-    {
+  {
     id: 4,
     tag: "LAUNCH",
     title: "Ethics, Security, and the Future of Al",
@@ -72,7 +88,7 @@ function AboutPage() {
         <div className="text-3xl sm:text-4xl font-serif font-bold  tracking-tight">
           About EventCo
         </div>
-        <p>
+        <p className="pb-5">
           Frontend Developer with 3+ years of experience building and
           maintaining Web Applications using Angular, TypeScript, and
           JavaScript. Experienced in developing data-driven systems, reusable
@@ -83,39 +99,89 @@ function AboutPage() {
           continuously expanding expertise in React.js and modern frontend
           development.
         </p>
-        <div className="grid grid-cols-2 gap-5 border p-4 rounded-2xl">
+        <div className="grid grid-cols-2 gap-10 border p-4 rounded-2xl">
           <div>
-            <p className="font-medium text-lg">Personalskills</p>
+            <p className="font-medium text-lg pb-4">Personalskills</p>
             <div className="grid grid-cols-2 gap-5">
-              <ui>
-                <ul>Angular</ul>
-                <ul>Vue.js</ul>
-                <ul>React / Vite</ul>
-                <ul>Nuxt</ul>
-              </ui>
-              <ui>
-                <ul>TypeScript</ul>
-                <ul>JavaScrip</ul>
-                <ul>CSS</ul>
-                <ul>Tailwind</ul>
-              </ui>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2">
+                  <img className="w-6 h-6" src={angIcon} alt="" />
+                  <span>Angular</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <img className="w-6 h-6" src={vueIcon} alt="" />
+                  <span>Vue.js</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <img className="w-6 h-6" src={reactIcon} alt="" />
+                  <span>React / Vite</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <img className="w-6 h-6" src={nuxtIcon} alt="" />
+                  <span>Nuxt</span>
+                </li>
+              </ul>
+
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2">
+                  <img className="w-6 h-6" src={tsIcon} alt="" />
+                  <span>TypeScript</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <img className="w-6 h-6" src={javascriptIcon} alt="" />
+                  <span>JavaScript</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <img className="w-6 h-6" src={cssIcon} alt="" />
+                  <span>CSS</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <img className="w-6 h-6" src={tailwindIcon} alt="" />
+                  <span>Tailwind</span>
+                </li>
+              </ul>
             </div>
           </div>
           <div>
-            <p className="font-medium text-lg">Tools</p>
+            <p className="font-medium text-lg pb-4">Tools</p>
             <div className="grid grid-cols-2 gap-5">
-              <ui>
-                <ul>Github</ul>
-                <ul>Gitlap</ul>
-                <ul>Post Man</ul>
-                <ul>Sourcetree</ul>
-              </ui>
-              <ui>
-                <ul>Bitbucket</ul>
-                <ul>VSCode</ul>
-                <ul>Antigravity</ul>
-                <ul>Gemini</ul>
-              </ui>
+              <ul>
+                <li className="flex items-center gap-2">
+                  <img className="w-6 h-6" src={tailwindIcon} alt="" />
+                  <span></span>
+                  Github
+                </li>
+                <li className="flex items-center gap-2">
+                  <img className="w-6 h-6" src={githubIcon} alt="" />
+                  <span>Gitlap</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <img className="w-6 h-6" src={postmanIcon} alt="" />
+                  <span>PostMan</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <img className="w-6 h-6" src={sourcetreetIcon} alt="" />
+                  <span>Sourcetree</span>
+                </li>
+              </ul>
+              <ul>
+                <li className="flex items-center gap-2">
+                  <img className="w-6 h-6" src={bitbucketIcon} alt="" />
+                  <span>Bitbucket</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <img className="w-6 h-6" src={vscodeIcon} alt="" />
+                  <span>VSCode</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <img className="w-6 h-6" src={tailwindIcon} alt="" />
+                  <span>Antigravity</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <img className="w-6 h-6" src={tailwindIcon} alt="" />
+                  <span>Gemini</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
