@@ -20,6 +20,9 @@ import bitbucketIcon from "../../images/icon/bitbucket.svg";
 import postmanIcon from "../../images/icon/postman.svg";
 import sourcetreetIcon from "../../images/icon/sourcetree.svg";
 import vscodeIcon from "../../images/icon/vscode.svg";
+import AntigravityIcon from "../../images/icon/Antigravity.svg";
+import GeminiIcon from "../../images/icon/Gemini.svg";
+import gitlabIcon from "../../images/icon/gitlab.svg";
 
 const timelineData = [
   {
@@ -147,13 +150,13 @@ function AboutPage() {
             <div className="grid grid-cols-2 gap-5">
               <ul>
                 <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={tailwindIcon} alt="" />
+                  <img className="w-6 h-6" src={githubIcon} alt="" />
                   <span></span>
                   Github
                 </li>
                 <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={githubIcon} alt="" />
-                  <span>Gitlap</span>
+                  <img className="w-6 h-6" src={gitlabIcon} alt="" />
+                  <span>Gitlab</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <img className="w-6 h-6" src={postmanIcon} alt="" />
@@ -174,11 +177,11 @@ function AboutPage() {
                   <span>VSCode</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={tailwindIcon} alt="" />
+                  <img className="w-6 h-6" src={AntigravityIcon} alt="" />
                   <span>Antigravity</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={tailwindIcon} alt="" />
+                  <img className="w-6 h-6" src={GeminiIcon} alt="" />
                   <span>Gemini</span>
                 </li>
               </ul>
