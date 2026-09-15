@@ -40,44 +40,44 @@ const timelineData = [
 
 const baseSlides = [
   {
-    id: 1,
+    _id: 1,
     tag: "LAUNCH",
     title:
       "BASIC TO INTERMEDIATE AI: PRACTICAL AI SKILLS FOR LEARNING, WORKING, AND EARNING",
     image: slideImage1, // 2. นำตัวแปรมาใส่ที่นี่
   },
   {
-    id: 2,
+    _id: 2,
     tag: "LAUNCH",
     title: "ReactJS for Beginners",
     image: slideImage7, // 2. นำตัวแปรมาใส่ที่นี่
   },
   {
-    id: 3,
+    _id: 3,
     tag: "LAUNCH",
     title: "Fundamental Principles of Artificial Intelligence",
     image: slideImage3, // 2. นำตัวแปรมาใส่ที่นี่
   },
   {
-    id: 4,
+    _id: 4,
     tag: "LAUNCH",
     title: " Al for Lifelong Learning and Self-Development",
     image: slideImage4, // 2. นำตัวแปรมาใส่ที่นี่
   },
   {
-    id: 4,
+    _id: 5,
     tag: "LAUNCH",
     title: "Data and Database Fundamentals for AlSystems",
     image: slideImage5, // 2. นำตัวแปรมาใส่ที่นี่
   },
   {
-    id: 4,
+    _id: 6,
     tag: "LAUNCH",
     title: "Al-Driven Workflow and Process Optimization",
     image: slideImage6, // 2. นำตัวแปรมาใส่ที่นี่
   },
   {
-    id: 4,
+    _id: 7,
     tag: "LAUNCH",
     title: "Ethics, Security, and the Future of Al",
     image: slideImage2, // 2. นำตัวแปรมาใส่ที่นี่
@@ -261,9 +261,9 @@ function AboutPage() {
         <div>
           <div className="p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 justify-items-center">
             {baseSlides.map((item) => (
-              <div key={item.id} className="flex flex-col items-center gap-4">
+              <div key={item._id} className="flex flex-col items-center gap-4">
                 <div
-                  key={item.id}
+                  key={item._id}
                   className="group relative h-[240px] w-[auto] overflow-hidden cursor-pointer shadow-lg transition-transform duration-300"
                 >
                   <img
