@@ -148,7 +148,7 @@ function AboutPage() {
           <div>
             <p className="font-medium text-lg pb-4">Tools</p>
             <div className="grid grid-cols-2 gap-5">
-              <ul>
+              <ul className="space-y-2">
                 <li className="flex items-center gap-2">
                   <img className="w-6 h-6" src={githubIcon} alt="" />
                   <span></span>
@@ -167,7 +167,7 @@ function AboutPage() {
                   <span>Sourcetree</span>
                 </li>
               </ul>
-              <ul>
+              <ul className="space-y-2">
                 <li className="flex items-center gap-2">
                   <img className="w-6 h-6" src={bitbucketIcon} alt="" />
                   <span>Bitbucket</span>
