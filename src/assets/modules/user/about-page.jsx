@@ -91,8 +91,8 @@ function AboutPage() {
         <div className="text-3xl sm:text-4xl font-serif font-bold  tracking-tight">
           About EventCo
         </div>
-        <p className="pb-5">
-          Frontend Developer with 3+ years of experience building and
+        <p className="pb-2">
+                   <span className="pl-10">Frontend Developer </span>with 3+ years of experience building and
           maintaining Web Applications using Angular, TypeScript, and
           JavaScript. Experienced in developing data-driven systems, reusable
           components, REST API integration, responsive interfaces, and
@@ -101,6 +101,19 @@ function AboutPage() {
           Strong focus on clean, maintainable, and scalable code, while
           continuously expanding expertise in React.js and modern frontend
           development.
+        </p>
+
+        <p className="pb-10">
+          <span className="pl-10">Experienced</span> in developing both product-based applications and projects
+          for government organizations, including the Royal Thai Police,
+          Ministry of Finance, and Bank for Agriculture and Agricultural
+          Cooperatives (BAAC). Responsible for developing responsive Web
+          Applications, integrating RESTful APIs, implementing UI based on Figma
+          designs, preparing systems for UAT, and deploying applications using
+          Docker. Experienced in working with teams following Scrum/Agile
+          methodologies, with a strong focus on writing clean, maintainable, and
+          scalable code. Continuously developing expertise in React.js and
+          modern frontend development.
         </p>
         <div className="grid grid-cols-2 gap-10 border p-4 rounded-2xl">
           <div>
@@ -259,7 +272,7 @@ function AboutPage() {
         </div>
 
         <div>
-          <div className="p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 justify-items-center">
+          <div className="p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 justify-items-center">
             {baseSlides.map((item) => (
               <div key={item._id} className="flex flex-col items-center gap-4">
                 <div

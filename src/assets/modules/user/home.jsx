@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Navigation, Autoplay } from "swiper/modules";
-import { ChevronLeft, ChevronRight, Smile, Loader2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -180,18 +180,18 @@ export default function EventCarousel() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#050917]/95 via-[#050917]/45 to-transparent" />
 
               {/* Tag ด้านบนซ้าย */}
-              <div className="absolute top-5 left-5 z-10">
+              {/* <div className="absolute top-5 left-5 z-10">
                 <span className="rounded-full bg-slate-900/60 px-3.5 py-1 text-xs font-semibold tracking-wider text-slate-200 backdrop-blur-md border border-white/10 uppercase">
                   {item.tag}
                 </span>
-              </div>
+              </div> */}
 
               {/* ไอคอน Smile ตรงกลาง */}
-              <div className="absolute inset-0 flex items-center justify-center z-10">
+              {/* <div className="absolute inset-0 flex items-center justify-center z-10">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-slate-900/50 backdrop-blur-md border border-white/20 text-white transition-all duration-300 group-[.swiper-slide-active]:scale-110 hover:scale-125 hover:border-teal-400 hover:text-teal-300 cursor-pointer shadow-lg active:scale-95">
                   <Smile size={26} />
                 </div>
-              </div>
+              </div> */}
 
               {/* เนื้อหาด้านล่าง */}
               <div className="absolute bottom-6 inset-x-0 px-6 text-left z-10 flex flex-col items-start gap-1.5">
