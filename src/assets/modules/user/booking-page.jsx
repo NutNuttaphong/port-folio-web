@@ -26,7 +26,9 @@ function BookingPage() {
 
     try {
       // ส่ง Request แบบ POST ไปยัง NestJS Backend
-      const response = await fetch("http://localhost:3000/user/login", {
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
+      const response = await fetch(`${API_URL}/user/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -44,10 +46,11 @@ function BookingPage() {
       // ล็อกอินสำเร็จ -> บันทึก Token หรือข้อมูลผู้ใช้ถ้าจำเป็น แล้วเปลี่ยนหน้าไปที่ /table-home
       // เช่น localStorage.setItem("user", JSON.stringify(data));
       navigate("/table-home");
-
     } catch (error) {
       // แสดงข้อความ Error ที่ได้รับจาก Backend
-      setErrorMessage(error.message || "เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์");
+      setErrorMessage(
+        error.message || "เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์",
+      );
     } finally {
       setIsLoading(false);
     }
@@ -57,7 +60,6 @@ function BookingPage() {
     <div className="flex min-h-[calc(100vh-73px)] w-full items-center justify-center px-4 py-12">
       {/* กล่องการ์ด Login */}
       <div className="w-full max-w-md rounded-3xl bg-slate-900/80 p-8 sm:p-10 shadow-2xl backdrop-blur-xl border border-white/10 text-white">
-        
         {/* หัวข้อ */}
         <div className="mb-8 text-center">
           <h2 className="text-3xl font-serif font-bold tracking-tight text-white">
@@ -70,7 +72,6 @@ function BookingPage() {
 
         {/* ฟอร์มเข้าสู่ระบบ */}
         <form onSubmit={handleLogin} className="flex flex-col gap-5">
-          
           {/* แจ้งเตือนเมื่อเกิด Error */}
           {errorMessage && (
             <div className="flex items-center gap-2 rounded-xl bg-red-500/10 border border-red-500/30 p-3 text-xs text-red-400">
@@ -129,7 +130,6 @@ function BookingPage() {
         <div className="mt-6 text-center text-xs text-slate-500">
           Connected to NestJS Backend API
         </div>
-
       </div>
     </div>
   );
