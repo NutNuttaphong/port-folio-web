@@ -3,6 +3,7 @@ import slideImage1 from "../../images/ahmetyuksek-autumn-bend-10069119_1920.jpg"
 import servService from "../../services/serv.service";
 import { useState, useEffect } from "react";
 import { Loader2 } from "lucide-react";
+import { getImageUrl } from "../../../utils/imageUrl";
 
 const baseSlides = [
   {
@@ -92,7 +93,7 @@ export default function EventCarousel() {
                 className="group relative bg-white h-[250px] sm:h-[280px] w-full rounded-t-2xl overflow-hidden cursor-pointer shadow-lg transition-transform duration-300"
               >
                 <img
-                  src={item.imageUrl}
+                  src={getImageUrl(item.imageUrl)}
                   alt={item.title}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                 />

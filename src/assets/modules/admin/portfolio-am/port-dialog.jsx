@@ -3,6 +3,7 @@ import {
   createPort,
   updatePort,
 } from "../../../services/port.service";
+import { getImageUrl } from "../../../../utils/imageUrl";
 
 const AddProjectDialog = ({ isOpen, onClose, onProjectSaved, project }) => {
 const [title, setTitle] = useState(project ? project.title : "");
@@ -11,7 +12,7 @@ const [title, setTitle] = useState(project ? project.title : "");
   const [tag, setTag] = useState(project ? project.tag : "");
   const [image, setImage] = useState(null);
 
-  const [preview, setPreview] = useState(project ? project.imageUrl : null);
+  const [preview, setPreview] = useState(project ? getImageUrl(project.imageUrl) : null);
 
   if (!isOpen) return null;
 

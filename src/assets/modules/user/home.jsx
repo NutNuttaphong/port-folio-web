@@ -13,6 +13,7 @@ import "swiper/css/autoplay";
 import StarField from "./start-field";
 import HomeService from "../../services/project.service";
 import slideImage1 from "../../images/ahmetyuksek-autumn-bend-10069119_1920.jpg";
+import { getImageUrl } from "../../../utils/imageUrl";
 
 const baseSlides = [
   {
@@ -170,7 +171,7 @@ export default function EventCarousel() {
             >
               {/* ภาพพื้นหลังการ์ด */}
               <img
-                src={item.imageUrl}
+                src={getImageUrl(item.imageUrl || item.image)}
                 alt={item.title}
                 draggable="false"
                 className="absolute inset-0 h-full w-full object-cover select-none pointer-events-none transition-transform duration-700 group-hover:scale-105"

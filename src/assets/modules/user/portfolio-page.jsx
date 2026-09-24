@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import PortService from "../../services/port.service";
 import { Loader2 } from "lucide-react";
+import { getImageUrl } from "../../../utils/imageUrl";
 
 const baseSlides = [
   {
@@ -161,7 +162,7 @@ export default function EventCarousel() {
             className="group relative h-[380px] sm:h-[460px] w-full rounded-3xl overflow-hidden cursor-pointer shadow-lg bg-slate-900"
           >
             <img
-              src={item.imageUrl || item.image}
+              src={getImageUrl(item.imageUrl) || item.image}
               alt={item.title}
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               loading="lazy"

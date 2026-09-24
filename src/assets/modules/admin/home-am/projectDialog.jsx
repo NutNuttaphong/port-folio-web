@@ -3,6 +3,7 @@ import {
   createProject,
   updateProject,
 } from "../../../services/project.service";
+import { getImageUrl } from "../../../../utils/imageUrl";
 
 const AddProjectDialog = ({ isOpen, onClose, onProjectSaved, project }) => {
 const [title, setTitle] = useState(project ? project.title : "");
@@ -10,7 +11,7 @@ const [title, setTitle] = useState(project ? project.title : "");
   const [urlProject, setUrlProject] = useState(project ? project.urlProject : "");
   const [image, setImage] = useState(null);
 
-  const [preview, setPreview] = useState(project ? project.imageUrl : null);
+  const [preview, setPreview] = useState(project ? getImageUrl(project.imageUrl) : null);
 
   if (!isOpen) return null;
 
