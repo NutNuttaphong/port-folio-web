@@ -1,6 +1,9 @@
 // src/assets/services/port.service.js
 
-const API_URL = 'http://localhost:3000/portfolio';
+// const API_URL = 'http://localhost:3000/portfolio';
+
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const API_URL = `${BASE_URL}/project`;
 
 // 1. ฟังก์ชันดึงข้อมูล (Get)
 export const getPort = async () => {

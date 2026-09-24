@@ -1,6 +1,9 @@
 // src/services/project.service.js
 
-const API_URL = 'http://localhost:3000/project';
+// const API_URL = 'http://localhost:3000/project';
+
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const API_URL = `${BASE_URL}/project`;
 
 // ฟังก์ชันสำหรับดึงข้อมูลทั้งหมด (ใช้ในหน้า Table)
 export const getProjects = async () => {
