@@ -23,6 +23,7 @@ import TableInspiration from "./assets/modules/admin/inspiration-am/table-inspir
 import TablePort from "./assets/modules/admin/portfolio-am/table-port";
 import TableService from "./assets/modules/admin/services-am/table-service";
 import TableUser from "./assets/modules/admin/user-am/table-user";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function getBackgroundStyle(pathname) {
   // 1. หน้าแรก (Home): ธีมน้ำเงินเข้มอวกาศ
@@ -120,13 +121,17 @@ const router = createBrowserRouter([
       { path: "/inspiration", element: <Inspiration /> },
       { path: "/event/contacts", element: <ContactsPage /> },
       { path: "/booking", element: <BookingPage /> },
-
-      { path: "/table-home", element: <TableHome /> },
-      { path: "/table-about", element: <TableAbout /> },
-      { path: "/table-inspiration", element: <TableInspiration /> },
-      { path: "/table-port", element: <TablePort /> },
-      { path: "/table-service", element: <TableService /> },
-      { path: "/table-user", element: <TableUser /> },
+      {
+        element: <ProtectedRoute />,
+        children: [
+          { path: "/table-home", element: <TableHome /> },
+          { path: "/table-about", element: <TableAbout /> },
+          { path: "/table-inspiration", element: <TableInspiration /> },
+          { path: "/table-port", element: <TablePort /> },
+          { path: "/table-service", element: <TableService /> },
+          { path: "/table-user", element: <TableUser /> },
+        ],
+      },
     ],
   },
 ]);

@@ -43,8 +43,8 @@ function BookingPage() {
         throw new Error(data.message || "ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง");
       }
 
-      // ล็อกอินสำเร็จ -> บันทึก Token หรือข้อมูลผู้ใช้ถ้าจำเป็น แล้วเปลี่ยนหน้าไปที่ /table-home
-      // เช่น localStorage.setItem("user", JSON.stringify(data));
+      // ล็อกอินสำเร็จ -> บันทึกข้อมูลผู้ใช้ลงใน localStorage เพื่อใช้ตรวจสอบสิทธิ์
+      localStorage.setItem("currentUser", JSON.stringify(data));
       navigate("/table-home");
     } catch (error) {
       // แสดงข้อความ Error ที่ได้รับจาก Backend
