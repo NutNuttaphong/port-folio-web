@@ -57,7 +57,7 @@ const categories = [
   { id: "all", label: "All Types" },
   { id: "webmargeting", label: "WebMargeting" },
   { id: "wedai", label: "WedAI" },
-  { id: "social", label: "Social Events" },
+  { id: "web", label: "web Events" },
 ];
 
 export default function EventCarousel() {
