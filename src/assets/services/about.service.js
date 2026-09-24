@@ -3,7 +3,7 @@
 // const API_URL = 'http://localhost:3000/about';
 
 const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
-const API_URL = `${BASE_URL}/project`;
+const API_URL = `${BASE_URL}/about`;
 
 // 1. ฟังก์ชันดึงข้อมูล (Get)
 export const getAbout = async () => {

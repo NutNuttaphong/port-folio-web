@@ -1,7 +1,7 @@
 // const API_URL = 'http://localhost:3000/serv';
 
 const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
-const API_URL = `${BASE_URL}/project`;
+const API_URL = `${BASE_URL}/serv`;
 
 export const getServ = async () => {
     const response = await fetch(API_URL);
