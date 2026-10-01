@@ -78,11 +78,11 @@ export default function Footer() {
             </li>
             <li className="flex items-center gap-3">
               <Phone size={18} className="text-emerald-400 shrink-0" />
-              <span>+66 (0) 2 123 4567</span>
+              <span>+66 (0) 61 267 9518</span>
             </li>
             <li className="flex items-center gap-3">
               <Mail size={18} className="text-emerald-400 shrink-0" />
-              <span>contact@eventco.com</span>
+              <span>nuttphong.sp@gmail.com</span>
             </li>
           </ul>
         </div>

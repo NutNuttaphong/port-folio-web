@@ -115,11 +115,11 @@ function AboutPage() {
           scalable code. Continuously developing expertise in React.js and
           modern frontend development.
         </p>
-        <div className="grid grid-cols-2 gap-10 border p-4 rounded-2xl">
+        <div className="grid grid-cols-2 gap-10 border p-5 rounded-2xl">
           <div>
             <p className="font-medium text-lg pb-4">Personalskills</p>
             <div className="grid grid-cols-2 gap-5">
-              <ul className="space-y-2">
+              <ul className="space-y-4">
                 <li className="flex items-center gap-2">
                   <img className="w-6 h-6" src={angIcon} alt="" />
                   <span>Angular</span>
@@ -138,7 +138,7 @@ function AboutPage() {
                 </li>
               </ul>
 
-              <ul className="space-y-2">
+              <ul className="space-y-4">
                 <li className="flex items-center gap-2">
                   <img className="w-6 h-6" src={tsIcon} alt="" />
                   <span>TypeScript</span>
@@ -161,7 +161,7 @@ function AboutPage() {
           <div>
             <p className="font-medium text-lg pb-4">Tools</p>
             <div className="grid grid-cols-2 gap-5">
-              <ul className="space-y-2">
+              <ul className="space-y-4">
                 <li className="flex items-center gap-2">
                   <img className="w-6 h-6" src={githubIcon} alt="" />
                   <span></span>
@@ -180,7 +180,7 @@ function AboutPage() {
                   <span>Sourcetree</span>
                 </li>
               </ul>
-              <ul className="space-y-2">
+              <ul className="space-y-4">
                 <li className="flex items-center gap-2">
                   <img className="w-6 h-6" src={bitbucketIcon} alt="" />
                   <span>Bitbucket</span>

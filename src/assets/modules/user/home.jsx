@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Navigation, Autoplay } from "swiper/modules";
-import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Loader2, ExternalLink } from "lucide-react";
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -13,49 +13,69 @@ import "swiper/css/autoplay";
 import StarField from "./start-field";
 import HomeService from "../../services/project.service";
 import slideImage1 from "../../images/ahmetyuksek-autumn-bend-10069119_1920.jpg";
+import githubIcon from "../../images/icon/github.svg";
 import { getImageUrl } from "../../../utils/imageUrl";
 
 const baseSlides = [
   {
     id: 1,
-    tag: "PARTY",
-    title: "EXCLUSIVE PARTIES",
-    subtitle: "UNFORGETTABLE CELEBRATIONS",
-    description: "Create memories that will be talked about for years",
+    tag: "FULL-STACK • CMS",
+    status: "LIVE 🚀",
+    title: "PORTFOLIO & HEADLESS CMS",
+    subtitle: "REACT • NESTJS • MONGODB • TAILWIND",
+    description:
+      "Modern full-stack web application with role-based CMS Admin Dashboard, image uploads, security hardened APIs, and multi-cloud deployment.",
     image: slideImage1,
+    urlProject: "https://port-folio-web-phi.vercel.app",
+    githubUrl: "https://github.com/NutNuttaphong/port-folio-web",
   },
   {
     id: 2,
-    tag: "LAUNCH",
-    title: "PRODUCT LAUNCHES",
-    subtitle: "INNOVATION SHOWCASE",
-    description: "Launch your products with impact and style",
+    tag: "FRONTEND ARCHITECTURE",
+    status: "EXPERIENCE",
+    title: "ENTERPRISE WEB PLATFORM",
+    subtitle: "ANGULAR • TYPESCRIPT • REST API",
+    description:
+      "Scalable data-driven dashboard with reusable component libraries, responsive UI/UX, and high-performance RESTful API integration.",
     image: slideImage1,
+    urlProject: "https://github.com/NutNuttaphong",
+    githubUrl: "https://github.com/NutNuttaphong",
   },
   {
     id: 3,
-    tag: "CORPORATE",
-    title: "CORPORATE EVENTS",
-    subtitle: "PROFESSIONAL EXCELLENCE",
+    tag: "AI & WORKFLOW",
+    status: "CERTIFIED",
+    title: "AI-POWERED WORKFLOW SYSTEM",
+    subtitle: "AI INTEGRATION • AUTOMATION • REACT",
     description:
-      "Transform your corporate vision into unforgettable experiences",
+      "Data-driven automation and intelligent workflows optimizing user experience, business processes, and modern engineering practices.",
     image: slideImage1,
+    urlProject: "https://github.com/NutNuttaphong",
+    githubUrl: "https://github.com/NutNuttaphong",
   },
   {
     id: 4,
-    tag: "WEDDING",
-    title: "WEDDING CELEBRATION",
-    subtitle: "ROMANTIC MOMENTS",
-    description: "Create magical memories on your special day",
+    tag: "MODERN WEB DEV",
+    status: "FEATURED",
+    title: "RESPONSIVE WEB APPLICATIONS",
+    subtitle: "VUE • REACT • TAILWIND CSS",
+    description:
+      "High-speed, cross-device interfaces focused on accessibility, micro-interactions, clean architecture, and modern web standards.",
     image: slideImage1,
+    urlProject: "https://github.com/NutNuttaphong",
+    githubUrl: "https://github.com/NutNuttaphong",
   },
   {
     id: 5,
-    tag: "FESTIVAL",
-    title: "MUSIC & LIGHTS",
-    subtitle: "EXTRAVAGANZA",
-    description: "High energy audio-visual experiences for all audiences",
+    tag: "CLOUD & SECURITY",
+    status: "PRODUCTION",
+    title: "SECURE BACKEND ARCHITECTURE",
+    subtitle: "NESTJS • MONGODB • VERCEL & RAILWAY",
+    description:
+      "Backend microservices featuring CORS restrictions, file-upload MIME validation, encrypted authentication, and automated CI/CD pipelines.",
     image: slideImage1,
+    urlProject: "https://github.com/NutNuttaphong/port-folio-api",
+    githubUrl: "https://github.com/NutNuttaphong/port-folio-api",
   },
 ];
 
@@ -181,18 +201,16 @@ export default function EventCarousel() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#050917]/95 via-[#050917]/45 to-transparent" />
 
               {/* Tag ด้านบนซ้าย */}
-              {/* <div className="absolute top-5 left-5 z-10">
-                <span className="rounded-full bg-slate-900/60 px-3.5 py-1 text-xs font-semibold tracking-wider text-slate-200 backdrop-blur-md border border-white/10 uppercase">
-                  {item.tag}
+              <div className="absolute top-5 left-5 z-10 flex items-center gap-2">
+                <span className="rounded-full bg-slate-900/80 px-3.5 py-1 text-xs font-semibold tracking-wider text-teal-300 backdrop-blur-md border border-teal-500/30 uppercase">
+                  {item.tag || "DEVELOPER"}
                 </span>
-              </div> */}
-
-              {/* ไอคอน Smile ตรงกลาง */}
-              {/* <div className="absolute inset-0 flex items-center justify-center z-10">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-slate-900/50 backdrop-blur-md border border-white/20 text-white transition-all duration-300 group-[.swiper-slide-active]:scale-110 hover:scale-125 hover:border-teal-400 hover:text-teal-300 cursor-pointer shadow-lg active:scale-95">
-                  <Smile size={26} />
-                </div>
-              </div> */}
+                {item.status && (
+                  <span className="rounded-full bg-emerald-950/80 px-3 py-1 text-[11px] font-semibold tracking-wider text-emerald-300 backdrop-blur-md border border-emerald-500/30 uppercase">
+                    {item.status}
+                  </span>
+                )}
+              </div>
 
               {/* เนื้อหาด้านล่าง */}
               <div className="absolute bottom-6 inset-x-0 px-6 text-left z-10 flex flex-col items-start gap-1.5">
@@ -212,13 +230,54 @@ export default function EventCarousel() {
                   </p>
                 )}
 
-                {/* ปุ่ม Explore More */}
-                <button
-                  onClick={() => navigate(`/event/${item.id}`)}
-                  className="mt-2 rounded-full bg-slate-800/80 px-4 py-1.5 text-xs font-medium text-white backdrop-blur-md border border-white/10 transition-colors hover:bg-teal-500 hover:border-teal-400"
-                >
-                  Explore More
-                </button>
+                {/* ปุ่มกด Developer Action Buttons */}
+                <div className="mt-3 flex flex-wrap items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const targetUrl = item.urlProject || item.liveUrl;
+                      if (targetUrl) {
+                        window.open(targetUrl, "_blank", "noopener,noreferrer");
+                      } else {
+                        navigate(`/event/${item._id || item.id}`);
+                      }
+                    }}
+                    className="flex items-center gap-1.5 rounded-full bg-teal-500 px-4 py-1.5 text-xs font-semibold text-slate-950 shadow-md shadow-teal-500/25 transition-all hover:bg-teal-400 hover:scale-105 active:scale-95 cursor-pointer"
+                  >
+                    <ExternalLink size={13} />
+                    Live Demo
+                  </button>
+
+                  {(item.githubUrl || item.githubFrontend) && (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(
+                          item.githubUrl || item.githubFrontend,
+                          "_blank",
+                          "noopener,noreferrer"
+                        );
+                      }}
+                      className="flex items-center gap-1.5 rounded-full bg-slate-900/80 px-3.5 py-1.5 text-xs font-medium text-slate-200 backdrop-blur-md border border-white/15 transition-all hover:bg-slate-800 hover:border-teal-400/50 hover:text-white cursor-pointer"
+                    >
+                      <img src={githubIcon} alt="GitHub" className="w-3.5 h-3.5 invert opacity-90" />
+                      Code
+                    </button>
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/event/${item._id || item.id}`);
+                    }}
+                    className="rounded-full bg-slate-800/70 px-3.5 py-1.5 text-xs font-medium text-slate-300 backdrop-blur-md border border-white/10 transition-colors hover:bg-slate-700/80 hover:text-white cursor-pointer"
+                  >
+                    Details →
+                  </button>
+                </div>
               </div>
             </SwiperSlide>
           ))}
