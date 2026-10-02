@@ -1,4 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
+import { Lock } from 'lucide-react';
 
 function NavBar() {
   const navigate = useNavigate();
@@ -57,13 +58,27 @@ function NavBar() {
         </NavLink>
       </div>
 
-      {/* ปุ่มกด Action */}
-      <button 
-        onClick={() => navigate('/booking')} 
-        className="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-blue-500 active:scale-95"
-      >
-        BOOK NOW
-      </button>
+      {/* สถานะพร้อมรับงาน & ปุ่มกด Action & ปุ่ม Login */}
+      <div className="flex items-center gap-2.5 sm:gap-3">
+        {/* <div className="hidden sm:flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/40 px-3 py-1 text-xs font-medium text-emerald-300 select-none">
+          <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Available for Hire
+        </div> */}
+        <button 
+          onClick={() => navigate('/event/contacts')} 
+          className="rounded-lg bg-teal-400 px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-bold text-slate-950 shadow-md transition-all hover:bg-teal-300 active:scale-95 cursor-pointer shadow-teal-500/20"
+        >
+          LET'S TALK ↗
+        </button>
+        <button
+          onClick={() => navigate('/login')}
+          title="Admin Login"
+          className="flex items-center gap-1.5 rounded-lg border border-white/15 bg-slate-800/80 px-3 py-2 text-xs font-semibold text-slate-300 backdrop-blur-md transition hover:bg-slate-700 hover:text-white hover:border-teal-400/50 active:scale-95 cursor-pointer"
+        >
+          <Lock size={14} className="text-teal-400" />
+          <span className="hidden sm:inline">Login</span>
+        </button>
+      </div>
     </nav>
   );
 }

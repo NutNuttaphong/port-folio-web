@@ -1,4 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
+import { Lock } from "lucide-react";
 import DayNightToggle from "./day-night-toggle";
 
 function MenuBar({ isDark, setIsDark }) {
@@ -41,22 +42,6 @@ function MenuBar({ isDark, setIsDark }) {
           >
             ABOUT US
           </NavLink>
-          {/* <NavLink
-            to="/inspiration"
-            className={({ isActive }) =>
-              `transition hover:text-emerald-400 ${isActive ? "text-emerald-400 font-bold" : "text-gray/80"}`
-            }
-          >
-            INSPIRATION
-          </NavLink>
-          <NavLink
-            to="/event/services"
-            className={({ isActive }) =>
-              `transition hover:text-emerald-400 ${isActive ? "text-emerald-400 font-bold" : "text-gray/80"}`
-            }
-          >
-            SERVICES
-          </NavLink> */}
           <NavLink
             to="/event/contacts"
             className={({ isActive }) =>
@@ -65,11 +50,19 @@ function MenuBar({ isDark, setIsDark }) {
           >
             CONTACTS
           </NavLink>
-
-      
-          
         </div>
+
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => navigate("/login")}
+            title="Admin Login"
+            className="flex items-center gap-1.5 rounded-lg border border-gray-200 dark:border-white/15 bg-gray-100 dark:bg-slate-800/80 px-2.5 py-1.5 text-xs font-semibold text-gray-700 dark:text-slate-300 transition hover:bg-teal-500 hover:text-white cursor-pointer"
+          >
+            <Lock size={14} className="text-teal-500" />
+            <span className="hidden sm:inline">Login</span>
+          </button>
           <DayNightToggle isDark={isDark} setIsDark={setIsDark} />
+        </div>
       </div>
     </nav>
   );

@@ -4,11 +4,26 @@ import {
   updateProject,
 } from "../../../services/project.service";
 import { getImageUrl } from "../../../../utils/imageUrl";
+import TagInput from "../../../../assets/share/text-array";
 
 const AddProjectDialog = ({ isOpen, onClose, onProjectSaved, project }) => {
 const [title, setTitle] = useState(project ? project.title : "");
   const [description, setDescription] = useState(project ? project.description : "");
   const [urlProject, setUrlProject] = useState(project ? project.urlProject : "");
+  const [urlGithubProject, setUrlGithubProject] = useState(project ? project.urlGithubProject : "");
+  const [tags, setTags] = useState(() => {
+    if (!project?.tags) return [];
+    if (Array.isArray(project.tags)) return project.tags;
+    if (typeof project.tags === "string") {
+      try {
+        const parsed = JSON.parse(project.tags);
+        return Array.isArray(parsed) ? parsed : [parsed];
+      } catch {
+        return project.tags.split(",").map((t) => t.trim()).filter(Boolean);
+      }
+    }
+    return [];
+  });
   const [image, setImage] = useState(null);
 
   const [preview, setPreview] = useState(project ? getImageUrl(project.imageUrl) : null);
@@ -23,6 +38,8 @@ const [title, setTitle] = useState(project ? project.title : "");
       formData.append("title", title);
       formData.append("description", description);
       formData.append("urlProject", urlProject);
+      formData.append("urlGithubProject", urlGithubProject);
+      formData.append("tags", JSON.stringify(tags));
 
       if (image) {
         formData.append("image", image);
@@ -85,6 +102,23 @@ const [title, setTitle] = useState(project ? project.title : "");
             <input
               value={urlProject}
               onChange={(e) => setUrlProject(e.target.value)}
+              className="border p-1 w-full"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-1">Tags / Tech Stack</label>
+            <TagInput
+              tags={tags}
+              onChange={setTags}
+              placeholder="พิมพ์ Tag เช่น React, NestJS แล้วกด Enter..."
+            />
+          </div>
+          <div className="mb-4">
+            <label>Url Github Project</label>
+            <br />
+            <input
+              value={urlGithubProject}
+              onChange={(e) => setUrlGithubProject(e.target.value)}
               className="border p-1 w-full"
             />
           </div>

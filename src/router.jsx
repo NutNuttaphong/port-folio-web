@@ -121,6 +121,7 @@ const router = createBrowserRouter([
       { path: "/inspiration", element: <Inspiration /> },
       { path: "/event/contacts", element: <ContactsPage /> },
       { path: "/booking", element: <BookingPage /> },
+      { path: "/login", element: <BookingPage /> },
       {
         element: <ProtectedRoute />,
         children: [
