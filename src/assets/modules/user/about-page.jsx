@@ -88,7 +88,7 @@ function AboutPage() {
   return (
     <div className="root px-5">
       <div className="flex flex-col items-center gap-4 text-start">
-        <div className="text-3xl sm:text-4xl font-serif font-bold  tracking-tight">
+        <div className="text-3xl sm:text-4xl  font-bold  tracking-tight">
           About EventCo
         </div>
         <p className="pb-2">
@@ -207,7 +207,7 @@ function AboutPage() {
         <section className="min-h-screen py-16 px-4 sm:px-6 lg:px-8">
           {/* Section Title */}
           <div className="text-center mb-16">
-            <div className="text-3xl sm:text-4xl font-serif font-bold tracking-tight">
+            <div className="text-3xl sm:text-4xl  font-bold tracking-tight">
               Time line
             </div>
           </div>
@@ -246,7 +246,7 @@ function AboutPage() {
                         </span>
 
                         {/* Title */}
-                        <h3 className="text-lg font-serif font-bold text-slate-800 mb-3">
+                        <h3 className="text-lg  font-bold text-slate-800 mb-3">
                           {item.title}
                         </h3>
 
@@ -266,7 +266,7 @@ function AboutPage() {
 
       <div className="w-full my-16">
         <div className="flex gap-2 justify-center mb-6 w-full">
-          <div className="text-3xl sm:text-4xl font-serif font-bold tracking-tight">
+          <div className="text-3xl sm:text-4xl  font-bold tracking-tight">
             Certifigcate
           </div>
         </div>

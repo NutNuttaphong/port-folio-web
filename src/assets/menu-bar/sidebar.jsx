@@ -24,7 +24,7 @@ export default function Sidebar() {
     <aside className="w-64 min-h-screen bg-white border-r border-slate-200 flex flex-col shrink-0">
       {/* โลโก้แบรนด์ */}
       <div className="h-18 flex items-center px-8 border-b border-slate-100">
-        <span className="text-2xl font-bold font-serif tracking-tight text-slate-800">
+        <span className="text-2xl font-bold tracking-tight text-slate-800">
           PortDev
         </span>
       </div>

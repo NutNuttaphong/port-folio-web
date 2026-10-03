@@ -129,7 +129,7 @@ export default function EventCarousel() {
   return (
     <div className="root">
       <div className="mb-8 flex flex-col items-center gap-2">
-        <div className="text-3xl sm:text-4xl font-serif font-bold tracking-tight">
+        <div className="text-3xl sm:text-4xl  font-bold tracking-tight">
           Our Portfolio
         </div>
         <p>Discover the extraordinary events we've brought to life</p>
@@ -177,7 +177,7 @@ export default function EventCarousel() {
             </div>
 
             <div className="absolute bottom-6 left-6 right-6 z-10 text-white">
-              <h3 className="text-xl sm:text-2xl font-serif font-bold tracking-wide leading-snug drop-shadow-md">
+              <h3 className="text-xl sm:text-2xl  font-bold tracking-wide leading-snug drop-shadow-md">
                 {item.title}
               </h3>
               <p className="text-sm font-sans text-slate-300 mt-1 uppercase">

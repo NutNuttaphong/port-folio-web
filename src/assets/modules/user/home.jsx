@@ -417,7 +417,7 @@ export default function EventCarousel() {
 
                 {/* เนื้อหาด้านล่าง */}
                 <div className="absolute bottom-6 inset-x-0 px-6 text-left z-10 flex flex-col items-start gap-1.5">
-                  <h3 className="text-2xl font-serif font-bold uppercase tracking-wider text-white">
+                  <h3 className="text-2xl  font-bold uppercase tracking-wider text-white">
                     {item.title}
                   </h3>
 

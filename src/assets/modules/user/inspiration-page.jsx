@@ -73,7 +73,7 @@ export default function EventCarousel() {
   return (
     <div className="root">
       <div className="mb-8 flex flex-col items-cemter gap-2">
-        <div className="text-3xl sm:text-4xl font-serif font-bold tracking-tight">
+        <div className="text-3xl sm:text-4xl  font-bold tracking-tight">
           Event Planning Blog
         </div>
         <div>

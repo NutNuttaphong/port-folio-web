@@ -62,7 +62,7 @@ function BookingPage() {
       <div className="w-full max-w-md rounded-3xl bg-slate-900/80 p-8 sm:p-10 shadow-2xl backdrop-blur-xl border border-white/10 text-white">
         {/* หัวข้อ */}
         <div className="mb-8 text-center">
-          <h2 className="text-3xl font-serif font-bold tracking-tight text-white">
+          <h2 className="text-3xl  font-bold tracking-tight text-white">
             Welcome Back
           </h2>
           <p className="mt-2 text-sm text-slate-400">
