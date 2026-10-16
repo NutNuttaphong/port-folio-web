@@ -12,7 +12,7 @@ function ContactsPage() {
   };
 
   return (
-    <div className="root">
+    <div className="root px-5">
       <div className="mb-8 flex flex-col items-cemter gap-2">
         <div className="text-3xl sm:text-4xl  font-bold tracking-tight">
           Contact Us
@@ -27,7 +27,7 @@ function ContactsPage() {
           <div className="text-2xl font-bold">Get in Touch</div>
 
           <div className="flex gap-4 border-2 w-full border-gray-300 rounded-xl p-4">
-            <div>
+            <div className="w-8 h-8 rounded-full bg-white">
              <img className="w-8 h-8" src={githubIcon} alt="" />
             </div>
             <div className="flex flex-col items-start gap-1">
@@ -41,7 +41,7 @@ function ContactsPage() {
           </div>
 
           <div className="flex gap-4 border-2 w-full border-gray-300 rounded-xl p-4">
-            <div>
+            <div className="w-8 h-8 rounded-full bg-white">
              <img className="w-8 h-8" src={phoneIcon} alt="" />
             </div>
             <div className="flex flex-col items-start gap-1">
@@ -54,7 +54,7 @@ function ContactsPage() {
           </div>
 
           <div className="flex gap-4 border-2 w-full border-gray-300 rounded-xl p-4">
-            <div>
+            <div className="w-8 h-8 rounded-full bg-white">
               <img className="w-8 h-8" src={mailIcon} alt="" />
             </div>
             <div className="flex flex-col items-start gap-1">

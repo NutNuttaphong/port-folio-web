@@ -115,7 +115,7 @@ function AboutPage() {
           scalable code. Continuously developing expertise in React.js and
           modern frontend development.
         </p>
-        <div className="grid grid-cols-2 gap-10 border p-5 rounded-2xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 border p-5 rounded-2xl">
           <div>
             <p className="font-medium text-lg pb-4">Personalskills</p>
             <div className="grid grid-cols-2 gap-5">
@@ -204,7 +204,7 @@ function AboutPage() {
       </div>
 
       <div className="w-full my-5">
-        <section className="min-h-screen py-16 px-4 sm:px-6 lg:px-8">
+        <section className="py-16 px-4 sm:px-6 lg:px-8">
           {/* Section Title */}
           <div className="text-center mb-16">
             <div className="text-3xl sm:text-4xl  font-bold tracking-tight">
