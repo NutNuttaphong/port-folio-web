@@ -16,6 +16,7 @@ import slideImage1 from "../../images/ahmetyuksek-autumn-bend-10069119_1920.jpg"
 import { getImageUrl } from "../../../utils/imageUrl";
 import AboutPage from "./about-page";
 import ContactPage from "./contacts-page";
+import AddDialog from "../../share/dialog"; // นำเข้า Component Popup (ต้องมีไฟล์นี้อยู่ด้วย)
 
 const baseSlides = [
   {
@@ -142,6 +143,7 @@ const baseSlides = [
 
 export default function EventCarousel() {
   const navigate = useNavigate();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const [slides, setSlides] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -182,22 +184,22 @@ export default function EventCarousel() {
   }
 
   const handleCardClick = (item) => {
-    const itemId = item._id || item.id;
+    // const itemId = item._id || item.id;
     // กำหนดลิงก์ YouTube ที่ต้องการเปิดในแท็บใหม่ตามที่ระบุ
-    const targetUrl =
-      item.urlProject || "https://www.youtube.com/watch?v=vxmDu5HlXZo";
+    const targetUrl = item.urlProject;
 
     if (targetUrl) {
       window.open(targetUrl, "_blank", "noopener,noreferrer");
-    } else {
-      navigate(`/event/${itemId}`);
+    } else if (targetUrl === "") {
+      // navigate(`/event/${itemId}`);
+      setIsDialogOpen(true);
     }
   };
 
   return (
     <div className="relative min-h-[calc(100vh-73px)] w-full flex flex-col items-center bg-gradient-to-b from-[#0e1a42] via-[#09112d] to-[#040714] text-white overflow-x-hidden">
       {/* Background StarField & Ambient Glows */}
-      <StarField count={120} />
+      <StarField count={320} />
       <div className="pointer-events-none fixed -top-40 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-teal-500/10 blur-[140px]" />
       <div className="pointer-events-none fixed top-1/3 left-1/4 h-[450px] w-[450px] rounded-full bg-blue-600/10 blur-[150px]" />
       <div className="pointer-events-none fixed bottom-10 right-1/4 h-[500px] w-[500px] rounded-full bg-indigo-600/10 blur-[160px]" />
@@ -212,22 +214,42 @@ export default function EventCarousel() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-400"></span>
           </span>
-          <span className="tracking-wider uppercase font-semibold">FULL-STACK DEVELOPER &amp; ARCHITECT</span>
+          <span className="tracking-wider uppercase font-semibold">
+            FULL-STACK DEVELOPER &amp; ARCHITECT
+          </span>
           <span className="text-slate-600">|</span>
-          <span className="text-slate-300 font-mono text-[11px]">Bangkok, TH 🇹🇭</span>
+          <span className="text-slate-300 font-mono text-[11px]">
+            Bangkok, TH 🇹🇭
+          </span>
         </div>
 
         {/* Main High-Impact Headline */}
         <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.15] max-w-4xl">
-          Building <span className="bg-gradient-to-r from-teal-300 via-sky-300 to-indigo-300 bg-clip-text text-transparent">Scalable Systems</span> &amp; Modern Web Experiences
+          Building{" "}
+          <span className="bg-gradient-to-r from-teal-300 via-sky-300 to-indigo-300 bg-clip-text text-transparent">
+            Scalable Systems
+          </span>{" "}
+          &amp; Modern Web Experiences
         </h1>
 
         {/* Subtitle & Self-Introduction */}
         <p className="mt-5 max-w-2xl text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
-          สวัสดีครับ ผม <strong className="text-white font-semibold">นัฐพงษ์ (Nuttaphong)</strong> — เว็บนี้พัฒนาเว็บแอปพลิเคชันด้วย{" "}
-          <span className="text-teal-300 font-mono text-xs px-2 py-0.5 rounded-md bg-slate-800/90 border border-teal-500/30">React 18</span>,{" "}
-          <span className="text-blue-300 font-mono text-xs px-2 py-0.5 rounded-md bg-slate-800/90 border border-blue-500/30">NestJS</span> และ{" "}
-          <span className="text-emerald-300 font-mono text-xs px-2 py-0.5 rounded-md bg-slate-800/90 border border-emerald-500/30">MongoDB</span>{" "}
+          สวัสดีครับ ผม{" "}
+          <strong className="text-white font-semibold">
+            นัฐพงษ์ (Nuttaphong)
+          </strong>{" "}
+          — เว็บนี้พัฒนาเว็บแอปพลิเคชันด้วย{" "}
+          <span className="text-teal-300 font-mono text-xs px-2 py-0.5 rounded-md bg-slate-800/90 border border-teal-500/30">
+            React 18
+          </span>
+          ,{" "}
+          <span className="text-blue-300 font-mono text-xs px-2 py-0.5 rounded-md bg-slate-800/90 border border-blue-500/30">
+            NestJS
+          </span>{" "}
+          และ{" "}
+          <span className="text-emerald-300 font-mono text-xs px-2 py-0.5 rounded-md bg-slate-800/90 border border-emerald-500/30">
+            MongoDB
+          </span>{" "}
           เน้นสถาปัตยกรรมที่แข็งแกร่ง ประสิทธิภาพสูง และ UI ที่น่าประทับใจ
         </p>
 
@@ -286,9 +308,14 @@ export default function EventCarousel() {
       {/* ======================================================== */}
       {/* 2. 3D CAROUSEL SECTION                                  */}
       {/* ======================================================== */}
-      <section id="featured-showcase" className="relative z-10 w-full py-8 flex flex-col items-center">
+      <section
+        id="featured-showcase"
+        className="relative z-10 w-full py-8 flex flex-col items-center"
+      >
         <div className="text-center mb-4">
-          <p className="text-2xl sm:text-3xl font-bold text-white mt-1">Featured Production Systems</p>
+          <p className="text-2xl sm:text-3xl font-bold text-white mt-1">
+            Featured Production Systems
+          </p>
         </div>
 
         <div className="relative w-full">
@@ -339,211 +366,215 @@ export default function EventCarousel() {
                   style={{ width: "min(92vw, 520px)", height: "600px" }}
                   className="group relative rounded-3xl my-10 overflow-hidden select-none transition-all duration-500 [&.swiper-slide-active]:ring-2 [&.swiper-slide-active]:ring-teal-400 [&.swiper-slide-active]:shadow-[0_0_40px_rgba(45,212,191,0.25)]"
                 >
-                {/* ภาพพื้นหลังการ์ด หรือ Code Editor Graphic */}
-                {item.codeSnippet ? (
-                  <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-[#0a1428] to-[#040817] flex items-center justify-center p-6 select-none pointer-events-none">
-                    <div className="w-full h-full rounded-2xl border border-teal-500/20 bg-slate-950/70 p-4 font-mono text-[11px] text-teal-300/80 overflow-hidden flex flex-col justify-between opacity-80 group-hover:opacity-100 transition">
-                      <div className="flex items-center justify-between border-b border-white/10 pb-2 text-slate-400">
-                        <span className="flex items-center gap-1.5">
-                          <span className="w-2 h-2 rounded-full bg-red-400 inline-block"></span>
-                          <span className="w-2 h-2 rounded-full bg-amber-400 inline-block"></span>
-                          <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>{" "}
-                          {item.codeFileName || "app.service.ts"}
-                        </span>
-                        <span className="text-teal-400">
-                          {item.codeMeta || "NestJS + Mongo"}
-                        </span>
-                      </div>
-                      <div className="space-y-1 text-slate-300 text-xs">
-                        <p>
-                          <span className="text-teal-400">@Controller</span>('
-                          {item.controller || "project"}')
-                        </p>
-                        <p>
-                          <span className="text-blue-400">export class</span>{" "}
-                          {item.className || "ProjectController"} &#123;
-                        </p>
-                        <p className="pl-4 text-slate-400">
-                          // Modular Full-Stack Architecture
-                        </p>
-                        <p className="pl-4">
+                  {/* ภาพพื้นหลังการ์ด หรือ Code Editor Graphic */}
+                  {item.codeSnippet ? (
+                    <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-[#0a1428] to-[#040817] flex items-center justify-center p-6 select-none pointer-events-none">
+                      <div className="w-full h-full rounded-2xl border border-teal-500/20 bg-slate-950/70 p-4 font-mono text-[11px] text-teal-300/80 overflow-hidden flex flex-col justify-between opacity-80 group-hover:opacity-100 transition">
+                        <div className="flex items-center justify-between border-b border-white/10 pb-2 text-slate-400">
+                          <span className="flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-red-400 inline-block"></span>
+                            <span className="w-2 h-2 rounded-full bg-amber-400 inline-block"></span>
+                            <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>{" "}
+                            {item.codeFileName || "app.service.ts"}
+                          </span>
                           <span className="text-teal-400">
-                            @UseInterceptors
+                            {item.codeMeta || "NestJS + Mongo"}
                           </span>
-                          (FileInterceptor(...))
-                        </p>
-                        <p className="pl-4 text-emerald-400">
-                          async create(@Body() dto, @UploadedFile() file)
-                        </p>
-                        <p>&#125;</p>
-                      </div>
-                      <div className="text-[10px] text-slate-500 border-t border-white/5 pt-2 flex justify-between">
-                        <span>Deployed on Vercel &amp; Railway</span>
-                        <span className="text-teal-400 font-bold">200 OK</span>
+                        </div>
+                        <div className="space-y-1 text-slate-300 text-xs">
+                          <p>
+                            <span className="text-teal-400">@Controller</span>('
+                            {item.controller || "project"}')
+                          </p>
+                          <p>
+                            <span className="text-blue-400">export class</span>{" "}
+                            {item.className || "ProjectController"} &#123;
+                          </p>
+                          <p className="pl-4 text-slate-400">
+                            // Modular Full-Stack Architecture
+                          </p>
+                          <p className="pl-4">
+                            <span className="text-teal-400">
+                              @UseInterceptors
+                            </span>
+                            (FileInterceptor(...))
+                          </p>
+                          <p className="pl-4 text-emerald-400">
+                            async create(@Body() dto, @UploadedFile() file)
+                          </p>
+                          <p>&#125;</p>
+                        </div>
+                        <div className="text-[10px] text-slate-500 border-t border-white/5 pt-2 flex justify-between">
+                          <span>Deployed on Vercel &amp; Railway</span>
+                          <span className="text-teal-400 font-bold">
+                            200 OK
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ) : (
-                  <img
-                    src={
-                      item.imageUrl
-                        ? getImageUrl(item.imageUrl)
-                        : item.image || slideImage1
-                    }
-                    alt={item.title}
-                    onError={(e) => {
-                      e.currentTarget.onerror = null;
-                      e.currentTarget.src = item.image || slideImage1;
-                    }}
-                    draggable="false"
-                    className="absolute inset-0 h-full w-full object-cover select-none pointer-events-none transition-transform duration-700 group-hover:scale-105"
-                  />
-                )}
-
-                {/* เลเยอร์ Gradient สีดำทับรูปเพื่อให้อ่านตัวหนังสือชัด */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050917]/95 via-[#050917]/60 to-transparent pointer-events-none" />
-
-                {/* Tag ด้านบนซ้าย (Top Badge) */}
-                <div className="absolute top-5 left-5 z-10 flex items-center gap-2">
-                  <span className="rounded-full bg-slate-900/80 px-3.5 py-1 text-xs font-semibold tracking-wider text-teal-300 backdrop-blur-md border border-teal-400/30 uppercase">
-                    {item.tag || "FULL-STACK • CMS"}
-                  </span>
-                  {item.status && (
-                    <span className="rounded-full bg-emerald-950/80 px-3 py-1 text-xs font-semibold tracking-wider text-emerald-300 backdrop-blur-md border border-emerald-400/30 uppercase">
-                      {item.status}
-                    </span>
-                  )}
-                </div>
-
-                {/* เนื้อหาด้านล่าง */}
-                <div className="absolute bottom-6 inset-x-0 px-6 text-left z-10 flex flex-col items-start gap-1.5">
-                  <h3 className="text-2xl  font-bold uppercase tracking-wider text-white">
-                    {item.title}
-                  </h3>
-
-                  {item.subtitle && (
-                    <p className="text-xs font-semibold tracking-wider text-teal-400 uppercase">
-                      {item.subtitle}
-                    </p>
-                  )}
-
-                  {item.description && (
-                    <p className="text-xs text-slate-300 leading-relaxed line-clamp-2 mt-0.5">
-                      {item.description}
-                    </p>
-                  )}
-
-                  {/* Interactive Tech Pills */}
-                  {((item.tags && item.tags.length > 0) ||
-                    (item.techPills && item.techPills.length > 0)) && (
-                    <div className="flex flex-wrap gap-1.5 my-2">
-                      {(item.tags && item.tags.length > 0
-                        ? item.tags
-                        : item.techPills
-                      ).map((pill, idx) => {
-                        const name =
-                          typeof pill === "string" ? pill : pill.name || pill;
-                        const isHighlight =
-                          typeof pill === "object" ? pill.highlight : false;
-                        return (
-                          <span
-                            key={idx}
-                            className={`px-2.5 py-0.5 rounded-full border text-[10px] font-mono ${
-                              isHighlight
-                                ? "bg-slate-800/90 border-teal-500/40 text-teal-300"
-                                : "bg-slate-800/90 border-white/10 text-slate-300"
-                            }`}
-                          >
-                            {name}
-                          </span>
-                        );
-                      })}
-                    </div>
-                  )}
-
-                  {/* Developer Action Buttons */}
-                  <div className="flex items-center gap-2 pt-1 w-full flex-wrap">
-                    {(item.urlProject || item.liveUrl) && (
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          window.open(
-                            item.urlProject || item.liveUrl,
-                            "_blank",
-                            "noopener,noreferrer",
-                          );
-                        }}
-                        className="rounded-full bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold px-4 py-1.5 text-xs transition shadow-md shadow-teal-500/20 flex items-center gap-1 cursor-pointer"
-                      >
-                        Live Demo ↗
-                      </button>
-                    )}
-
-                    {(item.urlGithubProject ||
-                      item.githubFrontend ||
-                      item.githubUrl) && (
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          window.open(
-                            item.urlGithubProject ||
-                              item.githubFrontend ||
-                              item.githubUrl,
-                            "_blank",
-                            "noopener,noreferrer",
-                          );
-                        }}
-                        className="rounded-full bg-slate-800/90 hover:bg-slate-700 text-white font-medium px-3.5 py-1.5 text-xs backdrop-blur-md border border-white/15 transition flex items-center gap-1 cursor-pointer"
-                      >
-                        {item.githubBackend ? "Frontend Code" : "GitHub Code"}
-                      </button>
-                    )}
-
-                    {item.githubBackend && (
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          window.open(
-                            item.githubBackend,
-                            "_blank",
-                            "noopener,noreferrer",
-                          );
-                        }}
-                        className="rounded-full bg-slate-800/90 hover:bg-slate-700 text-white font-medium px-3.5 py-1.5 text-xs backdrop-blur-md border border-white/15 transition flex items-center gap-1 cursor-pointer"
-                      >
-                        Backend Code
-                      </button>
-                    )}
-
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate(`/event/${item._id || item.id}`);
+                  ) : (
+                    <img
+                      src={
+                        item.imageUrl
+                          ? getImageUrl(item.imageUrl)
+                          : item.image || slideImage1
+                      }
+                      alt={item.title}
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = item.image || slideImage1;
                       }}
-                      className="rounded-full bg-slate-800/70 hover:bg-slate-700 text-slate-300 font-medium px-3 py-1.5 text-xs backdrop-blur-md border border-white/10 transition flex items-center gap-1 cursor-pointer"
-                    >
-                      Details →
-                    </button>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </div>
-    </section>
+                      draggable="false"
+                      className="absolute inset-0 h-full w-full object-cover select-none pointer-events-none transition-transform duration-700 group-hover:scale-105"
+                    />
+                  )}
 
-    {/* ======================================================== */}
-    {/* 3. ABOUT & CONTACT SECTIONS                              */}
-    {/* ======================================================== */}
-    <section className="relative z-10 w-full">
-      <AboutPage />
-      <ContactPage />
-    </section>
-  </div>
-);
+                  {/* เลเยอร์ Gradient สีดำทับรูปเพื่อให้อ่านตัวหนังสือชัด */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#050917]/95 via-[#050917]/60 to-transparent pointer-events-none" />
+
+                  {/* Tag ด้านบนซ้าย (Top Badge) */}
+                  <div className="absolute top-5 left-5 z-10 flex items-center gap-2">
+                    <span className="rounded-full bg-slate-900/80 px-3.5 py-1 text-xs font-semibold tracking-wider text-teal-300 backdrop-blur-md border border-teal-400/30 uppercase">
+                      {item.tag || "FULL-STACK • CMS"}
+                    </span>
+                    {item.status && (
+                      <span className="rounded-full bg-emerald-950/80 px-3 py-1 text-xs font-semibold tracking-wider text-emerald-300 backdrop-blur-md border border-emerald-400/30 uppercase">
+                        {item.status}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* เนื้อหาด้านล่าง */}
+                  <div className="absolute bottom-6 inset-x-0 px-6 text-left z-10 flex flex-col items-start gap-1.5">
+                    <h3 className="text-2xl  font-bold uppercase tracking-wider text-white">
+                      {item.title}
+                    </h3>
+
+                    {item.subtitle && (
+                      <p className="text-xs font-semibold tracking-wider text-teal-400 uppercase">
+                        {item.subtitle}
+                      </p>
+                    )}
+
+                    {item.description && (
+                      <p className="text-xs text-slate-300 leading-relaxed line-clamp-2 mt-0.5">
+                        {item.description}
+                      </p>
+                    )}
+
+                    {/* Interactive Tech Pills */}
+                    {((item.tags && item.tags.length > 0) ||
+                      (item.techPills && item.techPills.length > 0)) && (
+                      <div className="flex flex-wrap gap-1.5 my-2">
+                        {(item.tags && item.tags.length > 0
+                          ? item.tags
+                          : item.techPills
+                        ).map((pill, idx) => {
+                          const name =
+                            typeof pill === "string" ? pill : pill.name || pill;
+                          const isHighlight =
+                            typeof pill === "object" ? pill.highlight : false;
+                          return (
+                            <span
+                              key={idx}
+                              className={`px-2.5 py-0.5 rounded-full border text-[10px] font-mono ${
+                                isHighlight
+                                  ? "bg-slate-800/90 border-teal-500/40 text-teal-300"
+                                  : "bg-slate-800/90 border-white/10 text-slate-300"
+                              }`}
+                            >
+                              {name}
+                            </span>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* Developer Action Buttons */}
+                    <div className="flex items-center gap-2 pt-1 w-full flex-wrap">
+                      {(item.urlProject || item.liveUrl) && (
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(
+                              item.urlProject || item.liveUrl,
+                              "_blank",
+                              "noopener,noreferrer",
+                            );
+                          }}
+                          className="rounded-full bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold px-4 py-1.5 text-xs transition shadow-md shadow-teal-500/20 flex items-center gap-1 cursor-pointer"
+                        >
+                          Live Demo ↗
+                        </button>
+                      )}
+
+                      {(item.urlGithubProject ||
+                        item.githubFrontend ||
+                        item.githubUrl) && (
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(
+                              item.urlGithubProject ||
+                                item.githubFrontend ||
+                                item.githubUrl,
+                              "_blank",
+                              "noopener,noreferrer",
+                            );
+                          }}
+                          className="rounded-full bg-slate-800/90 hover:bg-slate-700 text-white font-medium px-3.5 py-1.5 text-xs backdrop-blur-md border border-white/15 transition flex items-center gap-1 cursor-pointer"
+                        >
+                          {item.githubBackend ? "Frontend Code" : "GitHub Code"}
+                        </button>
+                      )}
+
+                      {item.githubBackend && (
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(
+                              item.githubBackend,
+                              "_blank",
+                              "noopener,noreferrer",
+                            );
+                          }}
+                          className="rounded-full bg-slate-800/90 hover:bg-slate-700 text-white font-medium px-3.5 py-1.5 text-xs backdrop-blur-md border border-white/15 transition flex items-center gap-1 cursor-pointer"
+                        >
+                          Backend Code
+                        </button>
+                      )}
+
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/event/${item._id || item.id}`);
+                        }}
+                        className="rounded-full bg-slate-800/70 hover:bg-slate-700 text-slate-300 font-medium px-3 py-1.5 text-xs backdrop-blur-md border border-white/10 transition flex items-center gap-1 cursor-pointer"
+                      >
+                        Details →
+                      </button>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </div>
+      </section>
+
+      {/* ======================================================== */}
+      {/* 3. ABOUT & CONTACT SECTIONS                              */}
+      {/* ======================================================== */}
+      <section className="relative z-10 w-full">
+        <AboutPage />
+        <ContactPage />
+      </section>
+
+      <AddDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)}/>
+    </div>
+  );
 }
