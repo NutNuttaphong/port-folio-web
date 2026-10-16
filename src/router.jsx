@@ -24,6 +24,7 @@ import TablePort from "./assets/modules/admin/portfolio-am/table-port";
 import TableService from "./assets/modules/admin/services-am/table-service";
 import TableUser from "./assets/modules/admin/user-am/table-user";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ChatWidget from "./components/ChatWidget";
 
 function getBackgroundStyle(pathname) {
   // 1. หน้าแรก (Home): ธีมน้ำเงินเข้มอวกาศ
@@ -102,6 +103,7 @@ function RootLayout() {
         </div>
       </div>
       <Footer />
+      {!isAdminPage && <ChatWidget />}
     </div>
   );
 }
