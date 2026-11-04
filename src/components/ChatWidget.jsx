@@ -44,11 +44,19 @@ export default function ChatWidget() {
     if (savedContact) setFormContact(savedContact);
   }, []);
 
-  // 2. ดึงประวัติแชทและเปิดระบบ Polling ตรวจสอบข้อความตอบกลับจากณัฐพงษ์ทุก 3.5 วินาที
+  // 2. ดึงประวัติแชท พร้อมระบบ Idle Timeout & Visibility Detection ป้องกันไม่ให้ยิง Server ตลอดเวลาจนไม่ยอม Sleep
   useEffect(() => {
     if (!sessionId || !isOpen) return;
 
+    let intervalId = null;
+    let isIdle = false;
+    let idleTimer = null;
+    const IDLE_TIMEOUT_MS = 60000; // 60 วินาที ถ้าไม่มีการขยับเมาส์/พิมพ์ ให้หยุดยิง request เพื่อปล่อยให้ Server Sleep ได้
+
     const fetchMessages = async () => {
+      // ถ้าหน้าต่างถูกซ่อน (สลับแท็บ) หรือผู้ใช้ไม่ได้ใช้งาน (Idle) ให้ข้ามการเรียก API
+      if (document.hidden || isIdle) return;
+
       try {
         const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
         const res = await fetch(`${API_URL}/contact/messages/${sessionId}`);
@@ -63,9 +71,62 @@ export default function ChatWidget() {
       }
     };
 
-    fetchMessages();
-    const interval = setInterval(fetchMessages, 3500);
-    return () => clearInterval(interval);
+    const startPolling = () => {
+      if (intervalId) clearInterval(intervalId);
+      fetchMessages();
+      intervalId = setInterval(fetchMessages, 5000); // 5 วินาที
+    };
+
+    const stopPolling = () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+    };
+
+    // รีเซ็ตตัวจับเวลา Idle เมื่อผู้ใช้มีปฏิสัมพันธ์กับหน้าเว็บ
+    const handleUserActivity = () => {
+      if (isIdle) {
+        isIdle = false;
+        startPolling();
+      }
+      if (idleTimer) clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        isIdle = true;
+        stopPolling();
+      }, IDLE_TIMEOUT_MS);
+    };
+
+    // ตรวจจับเมื่อผู้ใช้สลับแท็บ
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopPolling();
+      } else {
+        isIdle = false;
+        handleUserActivity();
+        startPolling();
+      }
+    };
+
+    // เริ่มต้นทำงาน
+    startPolling();
+    handleUserActivity();
+
+    window.addEventListener("mousemove", handleUserActivity, { passive: true });
+    window.addEventListener("keydown", handleUserActivity, { passive: true });
+    window.addEventListener("click", handleUserActivity, { passive: true });
+    window.addEventListener("touchstart", handleUserActivity, { passive: true });
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      stopPolling();
+      if (idleTimer) clearTimeout(idleTimer);
+      window.removeEventListener("mousemove", handleUserActivity);
+      window.removeEventListener("keydown", handleUserActivity);
+      window.removeEventListener("click", handleUserActivity);
+      window.removeEventListener("touchstart", handleUserActivity);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
   }, [sessionId, isOpen]);
 
   // 3. เลื่อนหน้าจอลงล่างสุดอัตโนมัติเมื่อมีข้อความใหม่
