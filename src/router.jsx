@@ -4,7 +4,7 @@ import {
   Outlet,
   useLocation,
 } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NavBar from "./assets/menu-bar/nav-bar";
 import Sidebar from "./assets/menu-bar/sidebar";
 import MenuBar from "./assets/menu-bar/menu-bar";
@@ -26,34 +26,6 @@ import TableUser from "./assets/modules/admin/user-am/table-user";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ChatWidget from "./components/ChatWidget";
 
-function getBackgroundStyle(pathname) {
-  // 1. หน้าแรก (Home): ธีมน้ำเงินเข้มอวกาศ
-  if (pathname === "/") {
-    return "bg-gradient-to-b from-[#09112d] via-[#060b1e] to-[#030611]";
-  }
-
-  // 2. หน้า Portfolio: ธีมมืดอมม่วง/Slate
-  if (pathname.startsWith("/portfolio")) {
-    return "bg-[#FFFFFF]";
-  }
-
-  // 3. หน้า Services / Contacts: ธีมน้ำเงินเข้มหม่น
-  if (
-    pathname.startsWith("/event/services") ||
-    pathname.startsWith("/event/contacts")
-  ) {
-    return "bg-[#FFFFFF]";
-  }
-
-  // 4. หน้ารายละเอียด Event (/event/:id)
-  if (pathname.startsWith("/event/")) {
-    return "bg-gradient-to-b from-slate-900 to-black";
-  }
-
-  // ค่า Default สำหรับหน้าอื่นๆ (เช่น About Us, Booking)
-  return "bg-[#FFFFFF]";
-}
-
 function EventDetailPage() {
   return (
     <div className="flex min-h-[80vh] items-center justify-center text-white">
@@ -64,17 +36,17 @@ function EventDetailPage() {
 
 function RootLayout() {
   const location = useLocation();
-  // ตรวจสอบว่าอยู่หน้าแรก (Home) หรือไม่
   const [isDark, setIsDark] = useState(false); // ควบคุมสถานะ Dark/Light ที่นี่
   const isHomePage = location.pathname === "/";
   const isAdminPage = location.pathname.startsWith("/table-");
-  // const isTableHome = location.pathname === "/table-home";
-  // const isTablePort = location.pathname === "/table-port";
-  // const isTableAbout = location.pathname === "/table-about";
-  // const isTableIns = location.pathname === "/table-inspiration";
-  // const isTableService = location.pathname === "/table-service";
 
-  // const currentBg = getBackgroundStyle(location.pathname);
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDark]);
 
   return (
     <div className={`min-h-screen w-full transition-colors duration-700 ${
@@ -82,9 +54,6 @@ function RootLayout() {
         ? "bg-[#0B101D] text-white"  // 🌙 ธีมมืดพรีเมียม
         : "bg-[#FFFFFF] text-slate-900" // ☀️ ธีมสว่าง
     }`}>
-      {/* <span currentPath={currentPath == "/"} className="hidden">
-        <NavBar />
-      </span> */}
       {/* ส่ง isDark และ setIsDark เข้าไปใน MenuBar */}
       {isHomePage && <NavBar isDark={isDark} setIsDark={setIsDark} />}
       {!isHomePage && !isAdminPage && (
@@ -98,7 +67,7 @@ function RootLayout() {
           <div
             className={isAdminPage ? "flex-1 p-8 sm:p-12 overflow-y-auto" : ""}
           >
-            <Outlet />
+            <Outlet context={{ isDark }} />
           </div>
         </div>
       </div>

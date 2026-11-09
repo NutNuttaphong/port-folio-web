@@ -1,3 +1,4 @@
+import { useOutletContext } from "react-router-dom";
 import slideImage1 from "../../images/image/ai1.png";
 import slideImage2 from "../../images/image/ai2.png";
 import slideImage3 from "../../images/image/ai3.png";
@@ -24,17 +25,19 @@ import AntigravityIcon from "../../images/icon/Antigravity.svg";
 import GeminiIcon from "../../images/icon/Gemini.svg";
 import gitlabIcon from "../../images/icon/gitlab.svg";
 
+
 const timelineData = [
   {
     year: "2018 - 2023",
-    title: "Mea FahLaung Univercity",
+    title: "Mae Fah Luang University",
     description:
-      "University education level Educatation Bachelor of Engineering Major in Computer Engineering Mea Fah Laung Univercity",
+      "Bachelor of Engineering (B.Eng.) in Computer Engineering — School of Information Technology, Mae Fah Luang University",
   },
   {
     year: "2023 - 2026",
-    title: "Be1 Digital Company Limited.",
-    description: "Position: Developer/Front End Developer",
+    title: "Be1 Digital Company Limited",
+    description:
+      "Position: Full-Stack & Front-End Developer — Developing high-impact enterprise applications for government organizations and private sectors.",
   },
 ];
 
@@ -85,39 +88,29 @@ const baseSlides = [
 ];
 
 function AboutPage() {
+  const outletContext = useOutletContext();
+  const isDark = outletContext?.isDark ?? false;
   return (
     <div className="root px-5">
       <div className="flex flex-col items-center gap-4 text-start">
-        <div className="text-3xl sm:text-4xl  font-bold  tracking-tight">
-          About EventCo
+        <div className="text-3xl sm:text-4xl font-bold tracking-tight">
+          Engineering Profile &amp; About Me
         </div>
         <p className="pb-2">
-                   <span className="pl-10">Frontend Developer </span>with 3+ years of experience building and
-          maintaining Web Applications using Angular, TypeScript, and
-          JavaScript. Experienced in developing data-driven systems, reusable
-          components, REST API integration, responsive interfaces, and
-          performance optimization. Comfortable collaborating with UX/UI,
-          Backend, QA, and Business teams throughout the development lifecycle.
-          Strong focus on clean, maintainable, and scalable code, while
-          continuously expanding expertise in React.js and modern frontend
+          <span className="pl-10">Frontend Developer </span>with 3+ years of
+          experience building and maintaining Web Applications using Angular,
+          TypeScript, and JavaScript. Experienced in developing data-driven
+          systems, reusable components, REST API integration, responsive
+          interfaces, and performance optimization. Comfortable collaborating
+          with UX/UI, Backend, QA, and Business teams throughout the development
+          lifecycle. Strong focus on clean, maintainable, and scalable code,
+          while continuously expanding expertise in React.js and modern frontend
           development.
         </p>
 
-        <p className="pb-10">
-          <span className="pl-10">Experienced</span> in developing both product-based applications and projects
-          for government organizations, including the Royal Thai Police,
-          Ministry of Finance, and Bank for Agriculture and Agricultural
-          Cooperatives (BAAC). Responsible for developing responsive Web
-          Applications, integrating RESTful APIs, implementing UI based on Figma
-          designs, preparing systems for UAT, and deploying applications using
-          Docker. Experienced in working with teams following Scrum/Agile
-          methodologies, with a strong focus on writing clean, maintainable, and
-          scalable code. Continuously developing expertise in React.js and
-          modern frontend development.
-        </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 border p-5 rounded-2xl">
           <div>
-            <p className="font-medium text-lg pb-4">Personalskills</p>
+            <p className="font-medium text-lg pb-4">Core Tech Stack</p>
             <div className="grid grid-cols-2 gap-5">
               <ul className="space-y-4">
                 <li className="flex items-center gap-2">
@@ -198,6 +191,147 @@ function AboutPage() {
                   <span>Gemini</span>
                 </li>
               </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* ======================================================== */}
+        {/* LOOP & AI AGENT ENGINEERING SECTION (DARK / LIGHT THEME) */}
+        {/* ======================================================== */}
+        <div
+          className={`mt-8 w-full rounded-2xl border p-6 sm:p-8 transition-all duration-500 shadow-xl `}
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <div
+              className={`flex h-10 w-10 items-center justify-center rounded-xl border text-lg transition-colors duration-500 shrink-0 `}
+            >
+              🔄
+            </div>
+            <div>
+              <h3
+                className={`text-lg font-bold tracking-wide transition-colors duration-500 `}
+              >
+                Loop &amp; AI Agent Engineering
+              </h3>
+              <p
+                className={`text-xs font-mono transition-colors duration-500 `}
+              >
+                Autonomous Coding Loops, Quality Gates &amp; Safety Harness
+                Architecture
+              </p>
+            </div>
+          </div>
+
+          <p
+            className={`text-xs sm:text-sm leading-relaxed mb-6 transition-colors duration-500 `}
+          >
+            เชี่ยวชาญการออกแบบสถาปัตยกรรม{" "}
+            <strong
+              className={
+                isDark
+                  ? "text-teal-300 font-semibold"
+                  : "text-teal-900 font-semibold"
+              }
+            >
+              Closed-Loop AI Workflows
+            </strong>{" "}
+            ร่วมกับ AI Agents ชั้นนำอย่าง Antigravity และ Gemini —
+            พัฒนาต่อยอดจากการสั่งงานแบบ Prompting สู่การสร้าง{" "}
+            <strong
+              className={
+                isDark
+                  ? "text-teal-300 font-semibold"
+                  : "text-teal-900 font-semibold"
+              }
+            >
+              ระบบวงรอบอัตโนมัติ (Engineering Loops)
+            </strong>{" "}
+            ที่ AI สามารถวิเคราะห์ Requirement, วางแผน, เขียนโค้ด, รันเทส
+            และแก้ไขข้อผิดพลาดได้ด้วยตนเองภายใต้กรอบการควบคุมที่ปลอดภัย
+          </p>
+
+          {/* 4 Pillars Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            {/* Pillar 1 */}
+            <div
+              className={`rounded-xl border p-4 transition-all duration-300 flex flex-col justify-between `}
+            >
+              <div>
+                <div
+                  className={`font-semibold mb-1.5 flex items-center gap-2 text-xs sm:text-sm transition-colors duration-500`}
+                >
+                  <span>⚡</span> Agentic Execution Loops
+                </div>
+                <p
+                  className={`leading-relaxed text-xs transition-colors duration-500 `}
+                >
+                  ออกแบบกระบวนการทำงานแบบวนลูป Plan ➔ Execute ➔ Validate ➔
+                  Self-Correct
+                  เพื่อส่งมอบฟีเจอร์ที่สมบูรณ์แบบโดยไม่ต้องคอยป้อนคำสั่งทีละขั้นตอน
+                </p>
+              </div>
+            </div>
+
+            {/* Pillar 2 */}
+            <div
+              className={`rounded-xl border p-4 transition-all duration-300 flex flex-col justify-between `}
+            >
+              <div>
+                <div
+                  className={`font-semibold mb-1.5 flex items-center gap-2 text-xs sm:text-sm transition-colors duration-500 ${
+                    isDark ? "text-sky-300" : "text-sky-700 font-bold"
+                  }`}
+                >
+                  <span>🛡️</span> Harness &amp; Safety Guardrails
+                </div>
+                <p
+                  className={`leading-relaxed text-xs transition-colors duration-500 `}
+                >
+                  วางระบบเกราะป้องกัน (Harness) ควบคุม Token &amp; Quota Budget,
+                  กำหนด Stop Conditions
+                  และสิทธิ์การเข้าถึงไฟล์ระบบเพื่อความปลอดภัยสูงสุด
+                </p>
+              </div>
+            </div>
+
+            {/* Pillar 3 */}
+            <div
+              className={`rounded-xl border p-4 transition-all duration-300 flex flex-col justify-between `}
+            >
+              <div>
+                <div
+                  className={`font-semibold mb-1.5 flex items-center gap-2 text-xs sm:text-sm transition-colors duration-500 `}
+                >
+                  <span>🧪</span> Automated Quality Gates
+                </div>
+                <p
+                  className={`leading-relaxed text-xs transition-colors duration-500 `}
+                >
+                  ผสานการทำงานกับ Automated Build, Static Linting และ Unit
+                  Testing เข้ากับ Loop
+                  เพื่อการันตีว่าโค้ดที่ผลิตออกมาผ่านการทดสอบจริงก่อน Deploy
+                </p>
+              </div>
+            </div>
+
+            {/* Pillar 4 */}
+            <div
+              className={`rounded-xl border p-4 transition-all duration-300 flex flex-col justify-between `}
+            >
+              <div>
+                <div
+                  className={`font-semibold mb-1.5 flex items-center gap-2 text-xs sm:text-sm transition-colors duration-500 `}
+                >
+                  <span>🤝</span> Human-in-the-Loop Escalation
+                </div>
+                <p
+                  className={`leading-relaxed text-xs transition-colors duration-500 `}
+                >
+                  ออกแบบจุดตัดสินใจเชิงสถาปัตยกรรม (Architecture Decision
+                  Points) ให้ AI
+                  ส่งต่องานกลับสู่มนุษย์ในส่วนที่ต้องการความแม่นยำทางธุรกิจ
+                </p>
+              </div>
             </div>
           </div>
         </div>

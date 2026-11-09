@@ -215,7 +215,7 @@ export default function EventCarousel() {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-400"></span>
           </span>
           <span className="tracking-wider uppercase font-semibold">
-            FULL-STACK DEVELOPER &amp; ARCHITECT
+            FULL-STACK &amp; LOOP ENGINEER
           </span>
           <span className="text-slate-600">|</span>
           <span className="text-slate-300 font-mono text-[11px]">
@@ -238,7 +238,7 @@ export default function EventCarousel() {
           <strong className="text-white font-semibold">
             นัฐพงษ์ (Nuttaphong)
           </strong>{" "}
-          — เว็บนี้พัฒนาเว็บแอปพลิเคชันด้วย{" "}
+          — พัฒนาเว็บแอปพลิเคชันด้วย{" "}
           <span className="text-teal-300 font-mono text-xs px-2 py-0.5 rounded-md bg-slate-800/90 border border-teal-500/30">
             React 18
           </span>
@@ -250,7 +250,7 @@ export default function EventCarousel() {
           <span className="text-emerald-300 font-mono text-xs px-2 py-0.5 rounded-md bg-slate-800/90 border border-emerald-500/30">
             MongoDB
           </span>{" "}
-          เน้นสถาปัตยกรรมที่แข็งแกร่ง ประสิทธิภาพสูง และ UI ที่น่าประทับใจ
+          ผสานแนวคิด <strong>Loop Engineering</strong> เพื่อสร้างระบบที่มีประสิทธิภาพสูง แข็งแกร่ง และปลอดภัย
         </p>
 
         {/* Quick Metrics & Skills Chips */}
@@ -258,6 +258,10 @@ export default function EventCarousel() {
           <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-slate-900/70 px-3.5 py-1.5 backdrop-blur-md">
             <span className="text-teal-400 font-bold">3+</span>
             <span className="text-slate-400">Years Exp</span>
+          </div>
+          <div className="flex items-center gap-2 rounded-xl border border-teal-500/30 bg-teal-950/40 px-3.5 py-1.5 backdrop-blur-md text-teal-300 shadow-sm shadow-teal-500/10">
+            <span className="text-teal-400 font-bold">🔄 AI Loop</span>
+            <span className="text-slate-300">Agentic Orchestration</span>
           </div>
           <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-slate-900/70 px-3.5 py-1.5 backdrop-blur-md">
             <span className="text-emerald-400 font-bold">100%</span>

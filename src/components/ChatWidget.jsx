@@ -4,9 +4,6 @@ import {
   X,
   Send,
   Loader2,
-  Sparkles,
-  User,
-  Check,
   CheckCheck,
   FileText,
   ArrowLeft,
@@ -19,30 +16,24 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState([]);
   const [isSending, setIsSending] = useState(false);
   const [honeypot, setHoneypot] = useState("");
-  const [sessionId, setSessionId] = useState("");
-
-  // Form Fields
-  const [formName, setFormName] = useState("");
-  const [formContact, setFormContact] = useState("");
-  const [formDetails, setFormDetails] = useState("");
-  const [formError, setFormError] = useState("");
-
-  const messagesEndRef = useRef(null);
-
-  // 1. กำหนด Session ID ต่อเนื่อง (เก็บใน localStorage)
-  useEffect(() => {
+  
+  // 1. กำหนด Session ID และค่าฟอร์มเริ่มต้นจาก localStorage (Lazy Initialization)
+  const [sessionId] = useState(() => {
     let currentId = localStorage.getItem("chat_session_id");
     if (!currentId) {
       currentId = `hr-${Math.random().toString(36).substring(2, 7)}`;
       localStorage.setItem("chat_session_id", currentId);
     }
-    setSessionId(currentId);
+    return currentId;
+  });
 
-    const savedName = localStorage.getItem("chat_user_name");
-    const savedContact = localStorage.getItem("chat_user_contact");
-    if (savedName) setFormName(savedName);
-    if (savedContact) setFormContact(savedContact);
-  }, []);
+  // Form Fields
+  const [formName, setFormName] = useState(() => localStorage.getItem("chat_user_name") || "");
+  const [formContact, setFormContact] = useState(() => localStorage.getItem("chat_user_contact") || "");
+  const [formDetails, setFormDetails] = useState("");
+  const [formError, setFormError] = useState("");
+
+  const messagesEndRef = useRef(null);
 
   // 2. ดึงประวัติแชท พร้อมระบบ Idle Timeout & Visibility Detection ป้องกันไม่ให้ยิง Server ตลอดเวลาจนไม่ยอม Sleep
   useEffect(() => {
@@ -50,13 +41,16 @@ export default function ChatWidget() {
 
     let intervalId = null;
     let isIdle = false;
+    let isFetching = false;
     let idleTimer = null;
-    const IDLE_TIMEOUT_MS = 60000; // 60 วินาที ถ้าไม่มีการขยับเมาส์/พิมพ์ ให้หยุดยิง request เพื่อปล่อยให้ Server Sleep ได้
+    let lastActivityTime = Date.now();
+    const IDLE_TIMEOUT_MS = 60000; // 60 วินาที
 
     const fetchMessages = async () => {
-      // ถ้าหน้าต่างถูกซ่อน (สลับแท็บ) หรือผู้ใช้ไม่ได้ใช้งาน (Idle) ให้ข้ามการเรียก API
-      if (document.hidden || isIdle) return;
+      // ถ้าหน้าต่างถูกซ่อน (สลับแท็บ), ผู้ใช้หลับ (Idle), หรือกำลังรอผลลัพธ์รอบก่อน ให้ข้าม
+      if (document.hidden || isIdle || isFetching) return;
 
+      isFetching = true;
       try {
         const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
         const res = await fetch(`${API_URL}/contact/messages/${sessionId}`);
@@ -66,8 +60,10 @@ export default function ChatWidget() {
             setMessages(data.messages);
           }
         }
-      } catch (err) {
+      } catch {
         // silent fail on polling
+      } finally {
+        isFetching = false;
       }
     };
 
@@ -84,8 +80,12 @@ export default function ChatWidget() {
       }
     };
 
-    // รีเซ็ตตัวจับเวลา Idle เมื่อผู้ใช้มีปฏิสัมพันธ์กับหน้าเว็บ
+    // รีเซ็ตตัวจับเวลา Idle เมื่อผู้ใช้มีปฏิสัมพันธ์ (พร้อม Throttle 1 วินาที ลดภาระ CPU)
     const handleUserActivity = () => {
+      const now = Date.now();
+      if (now - lastActivityTime < 1000 && !isIdle) return;
+      lastActivityTime = now;
+
       if (isIdle) {
         isIdle = false;
         startPolling();
@@ -104,7 +104,6 @@ export default function ChatWidget() {
       } else {
         isIdle = false;
         handleUserActivity();
-        startPolling();
       }
     };
 
@@ -115,7 +114,9 @@ export default function ChatWidget() {
     window.addEventListener("mousemove", handleUserActivity, { passive: true });
     window.addEventListener("keydown", handleUserActivity, { passive: true });
     window.addEventListener("click", handleUserActivity, { passive: true });
-    window.addEventListener("touchstart", handleUserActivity, { passive: true });
+    window.addEventListener("touchstart", handleUserActivity, {
+      passive: true,
+    });
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
@@ -294,7 +295,6 @@ export default function ChatWidget() {
       {/* 2. หน้าต่างแชท (Real Chat Window UI) */}
       {isOpen && (
         <div className="relative flex flex-col w-[340px] sm:w-[400px] h-[540px] rounded-3xl border border-teal-500/30 bg-[#091124]/95 text-white shadow-2xl shadow-black/90 backdrop-blur-2xl transition-all duration-300 animate-in fade-in zoom-in-95 overflow-hidden">
-          
           {/* Header */}
           <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 bg-[#0d172e]">
             <div className="flex items-center gap-3">
@@ -306,13 +306,16 @@ export default function ChatWidget() {
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <h4 className="text-xs font-bold text-white tracking-wide">Nuttaphong S.</h4>
+                  <h4 className="text-xs font-bold text-white tracking-wide">
+                    Nuttaphong S.
+                  </h4>
                   <span className="rounded bg-teal-500/20 px-1 py-0.2 text-[9px] font-mono text-teal-300 border border-teal-500/30">
                     DEV
                   </span>
                 </div>
                 <p className="text-[10px] text-emerald-400 font-mono flex items-center gap-1">
-                  <span className="animate-pulse">●</span> ออนไลน์ • ส่งตรงเข้า LINE ทันที
+                  <span className="animate-pulse">●</span> ออนไลน์ • ส่งตรงเข้า
+                  LINE ทันที
                 </p>
               </div>
             </div>
@@ -365,9 +368,13 @@ export default function ChatWidget() {
                     N
                   </div>
                   <div className="max-w-[85%] rounded-2xl rounded-tl-sm bg-slate-800/90 border border-white/10 px-3.5 py-2.5 text-xs text-slate-200 leading-relaxed shadow-sm">
-                    <p>👋 สวัสดีครับ! ยินดีต้อนรับ HR &amp; Recruiter ทุกท่านครับ</p>
+                    <p>
+                      👋 สวัสดีครับ! ยินดีต้อนรับ HR &amp; Recruiter ทุกท่านครับ
+                    </p>
                     <p className="mt-1 text-slate-300">
-                      สนใจตำแหน่งงานหรืออยากชวนคุยโปรเจกต์ พิมพ์คุยในนี้ได้เลยครับ หรือสามารถกดฝากข้อมูลเพื่อให้ผมติดต่อกลับได้ทันทีครับ 🚀
+                      สนใจตำแหน่งงานหรืออยากชวนคุยโปรเจกต์
+                      พิมพ์คุยในนี้ได้เลยครับ
+                      หรือสามารถกดฝากข้อมูลเพื่อให้ผมติดต่อกลับได้ทันทีครับ 🚀
                     </p>
 
                     {/* Quick Action Button ฝากข้อมูลติดต่อกลับ */}
@@ -392,7 +399,9 @@ export default function ChatWidget() {
                 {/* รายการข้อความที่สนทนากัน */}
                 {messages.map((msg, index) => {
                   const isMe = msg.sender === "user";
-                  const isContactCard = msg.text?.includes("📋 [แบบฟอร์มฝากข้อมูลติดต่อกลับ]");
+                  const isContactCard = msg.text?.includes(
+                    "📋 [แบบฟอร์มฝากข้อมูลติดต่อกลับ]",
+                  );
 
                   return (
                     <div
@@ -421,20 +430,38 @@ export default function ChatWidget() {
                               <span>แบบฟอร์มฝากข้อมูลติดต่อกลับ</span>
                             </div>
                             <p className="whitespace-pre-wrap text-[11px] leading-relaxed text-slate-200">
-                              {msg.text.replace("📋 [แบบฟอร์มฝากข้อมูลติดต่อกลับ]\n", "")}
+                              {msg.text.replace(
+                                "📋 [แบบฟอร์มฝากข้อมูลติดต่อกลับ]\n",
+                                "",
+                              )}
                             </p>
                           </div>
                         ) : (
-                          <p className="break-words whitespace-pre-wrap">{msg.text}</p>
+                          <p className="break-words whitespace-pre-wrap">
+                            {msg.text}
+                          </p>
                         )}
 
                         <div
                           className={`flex items-center justify-end gap-1 text-[9px] mt-1.5 font-mono ${
-                            isMe ? (isContactCard ? "text-teal-400/70" : "text-slate-800/70") : "text-slate-500"
+                            isMe
+                              ? isContactCard
+                                ? "text-teal-400/70"
+                                : "text-slate-800/70"
+                              : "text-slate-500"
                           }`}
                         >
                           <span>{msg.createdAt || "ตอนนี้"}</span>
-                          {isMe && <CheckCheck size={11} className={isContactCard ? "text-teal-300" : "text-slate-900"} />}
+                          {isMe && (
+                            <CheckCheck
+                              size={11}
+                              className={
+                                isContactCard
+                                  ? "text-teal-300"
+                                  : "text-slate-900"
+                              }
+                            />
+                          )}
                         </div>
                       </div>
                     </div>
@@ -506,17 +533,25 @@ export default function ChatWidget() {
                   <span>แบบฟอร์มฝากข้อมูลติดต่อกลับ</span>
                 </div>
                 <p className="text-[11px] text-slate-400 leading-relaxed">
-                  กรอกข้อมูลด้านล่างนี้ ระบบจะจัดส่งรายละเอียดตรงเข้า <span className="text-emerald-400 font-semibold">LINE ของคุณณัฐพงษ์</span> ทันทีครับ
+                  กรอกข้อมูลด้านล่างนี้ ระบบจะจัดส่งรายละเอียดตรงเข้า{" "}
+                  <span className="text-emerald-400 font-semibold">
+                    LINE ของคุณณัฐพงษ์
+                  </span>{" "}
+                  ทันทีครับ
                 </p>
               </div>
 
               {/* Form Inputs */}
-              <form onSubmit={handleFormSubmit} className="space-y-3 flex-1 flex flex-col justify-between">
+              <form
+                onSubmit={handleFormSubmit}
+                className="space-y-3 flex-1 flex flex-col justify-between"
+              >
                 <div className="space-y-3">
                   {/* Field 1: Name / Company */}
                   <div>
                     <label className="block text-[11px] font-semibold text-slate-300 mb-1">
-                      ชื่อผู้ติดต่อ / บริษัท หรือ หน่วยงาน <span className="text-rose-400">*</span>
+                      ชื่อผู้ติดต่อ / บริษัท หรือ หน่วยงาน{" "}
+                      <span className="text-rose-400">*</span>
                     </label>
                     <input
                       type="text"
@@ -534,7 +569,8 @@ export default function ChatWidget() {
                   {/* Field 2: Contact Info */}
                   <div>
                     <label className="block text-[11px] font-semibold text-slate-300 mb-1">
-                      เบอร์โทรศัพท์ / อีเมล / LINE ID <span className="text-rose-400">*</span>
+                      เบอร์โทรศัพท์ / อีเมล / LINE ID{" "}
+                      <span className="text-rose-400">*</span>
                     </label>
                     <input
                       type="text"
@@ -552,7 +588,8 @@ export default function ChatWidget() {
                   {/* Field 3: Job details / Message */}
                   <div>
                     <label className="block text-[11px] font-semibold text-slate-300 mb-1">
-                      รายละเอียดงาน / ข้อความถึงณัฐพงษ์ <span className="text-rose-400">*</span>
+                      รายละเอียดงาน / ข้อความถึงณัฐพงษ์{" "}
+                      <span className="text-rose-400">*</span>
                     </label>
                     <textarea
                       value={formDetails}
@@ -609,7 +646,6 @@ export default function ChatWidget() {
               </form>
             </div>
           )}
-
         </div>
       )}
     </div>
