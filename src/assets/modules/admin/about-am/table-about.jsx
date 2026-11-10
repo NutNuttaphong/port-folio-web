@@ -27,7 +27,7 @@ function TableAbout() {
         refreshAbout();
       } catch (error) {
         console.error("Error deleting about information:", error);
-        alert("เกิดข้อผิดพลาดในการลบข้อมูล");
+        alert("An error occurred while deleting data.");
       }
     }
   };

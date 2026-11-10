@@ -1,3 +1,4 @@
+import { getAuthHeaders } from '../../utils/apiAuth';
 // src/assets/services/port.service.js
 
 // const API_URL = 'http://localhost:3000/portfolio';
@@ -18,6 +19,7 @@ export const getPort = async () => {
 export const createPort = async (formData) => {
   const response = await fetch(API_URL, {
     method: 'POST',
+   headers: getAuthHeaders(),
     body: formData,
   });
   if (!response.ok) {
@@ -30,6 +32,7 @@ export const createPort = async (formData) => {
 export const updatePort = async (_id, formData) => {
   const response = await fetch(`${API_URL}/${_id}`, {
     method: 'PATCH',
+   headers: getAuthHeaders(),
     body: formData,
   });
   if (!response.ok) {
@@ -42,7 +45,8 @@ export const updatePort = async (_id, formData) => {
 export const deletePort = async (_id) => {
   const response = await fetch(`${API_URL}/${_id}`, {
     method: 'DELETE',
-  });
+   headers: getAuthHeaders(),
+    });
   if (!response.ok) {
     throw new Error('Failed to delete portfolio');
   }

@@ -1,3 +1,4 @@
+import { getAuthHeaders } from '../../utils/apiAuth';
 // src/services/project.service.js
 
 // const API_URL = 'http://localhost:3000/project';
@@ -18,6 +19,7 @@ export const getProjects = async () => {
 export const createProject = async (formData) => {
   const response = await fetch(API_URL, {
     method: 'POST',
+   headers: getAuthHeaders(),
     // ข้อควรระวัง: เวลาส่ง FormData ห้ามใส่ 'Content-Type': 'application/json' เด็ดขาด
     // เบราว์เซอร์จะจัดการ Header ให้เราเองอัตโนมัติครับ
     body: formData,
@@ -32,6 +34,7 @@ export const createProject = async (formData) => {
 export const updateProject = async (_id, formData) => {
  const response = await fetch(`${API_URL}/${_id}`, {
     method: 'PATCH', // แนะนำให้พิมพ์ตัวพิมพ์ใหญ่ครับ
+    headers: getAuthHeaders(),
     body: formData,
   });
   
@@ -45,7 +48,8 @@ export const updateProject = async (_id, formData) => {
 export const deleteProject = async (_id) => {
  const response = await fetch(`${API_URL}/${_id}`, {
     method: 'DELETE', // แนะนำให้พิมพ์ตัวพิมพ์ใหญ่ครับ
-  });
+  headers: getAuthHeaders(),
+    });
   
   if (!response.ok) {
     throw new Error('Failed to delete project');

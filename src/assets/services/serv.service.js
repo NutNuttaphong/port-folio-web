@@ -1,3 +1,4 @@
+import { getAuthHeaders } from '../../utils/apiAuth';
 // const API_URL = 'http://localhost:3000/serv';
 
 const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
@@ -14,7 +15,8 @@ export const getServ = async () => {
 export const createServ = async (formData) => {
     const response = await fetch(API_URL, {
         method: 'POST',
-        body: formData,
+   headers: getAuthHeaders(),
+    body: formData,
     });
     if (!response.ok) {
         throw new Error('Failed to create serv');
@@ -25,7 +27,8 @@ export const createServ = async (formData) => {
 export const updateServ = async (_id, formData) => {
     const response = await fetch(`${API_URL}/${_id}`, {
         method: 'PATCH',
-        body: formData,
+   headers: getAuthHeaders(),
+    body: formData,
     });
     if (!response.ok) {
         throw new Error('Failed to update serv');
@@ -36,6 +39,7 @@ export const updateServ = async (_id, formData) => {
 export const deleteServ = async (_id) => {
     const response = await fetch(`${API_URL}/${_id}`, {
         method: 'DELETE',
+   headers: getAuthHeaders(),
     });
     if (!response.ok) {
         throw new Error('Failed to delete serv');

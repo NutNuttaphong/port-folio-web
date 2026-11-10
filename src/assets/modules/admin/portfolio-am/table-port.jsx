@@ -26,7 +26,7 @@ function TablePortfolio() {
         refreshPortfolios();
       } catch (error) {
         console.error("Error deleting portfolio:", error);
-        alert("เกิดข้อผิดพลาดในการลบข้อมูล");
+        alert("An error occurred while deleting data.");
       }
     }
   };

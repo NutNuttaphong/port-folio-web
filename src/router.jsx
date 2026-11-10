@@ -4,27 +4,49 @@ import {
   Outlet,
   useLocation,
 } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import NavBar from "./assets/menu-bar/nav-bar";
 import Sidebar from "./assets/menu-bar/sidebar";
 import MenuBar from "./assets/menu-bar/menu-bar";
 import EventCarousel from "./assets/modules/user/home";
-import Services from "./assets/modules/user/services-page";
-import PortfolioPage from "./assets/modules/user/portfolio-page";
-import AboutPage from "./assets/modules/user/about-page";
-import Inspiration from "./assets/modules/user/inspiration-page";
-import ContactsPage from "./assets/modules/user/contacts-page";
-import BookingPage from "./assets/modules/user/booking-page";
 import Footer from "./assets/footer/footer";
-
-import TableHome from "./assets/modules/admin/home-am/table-home";
-import TableAbout from "./assets/modules/admin/about-am/table-about";
-import TableInspiration from "./assets/modules/admin/inspiration-am/table-inspiration";
-import TablePort from "./assets/modules/admin/portfolio-am/table-port";
-import TableService from "./assets/modules/admin/services-am/table-service";
-import TableUser from "./assets/modules/admin/user-am/table-user";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ChatWidget from "./components/ChatWidget";
+
+import AboutPage from "./assets/modules/user/about-page";
+import ContactsPage from "./assets/modules/user/contacts-page";
+
+// ========================================================
+// CODE SPLITTING: LAZY LOADED ROUTE MODULES
+// ========================================================
+// User Routes (Loaded on demand)
+const Services = lazy(() => import("./assets/modules/user/services-page"));
+const PortfolioPage = lazy(() => import("./assets/modules/user/portfolio-page"));
+const Inspiration = lazy(() => import("./assets/modules/user/inspiration-page"));
+const BookingPage = lazy(() => import("./assets/modules/user/booking-page"));
+
+// Admin Routes (Completely detached from visitor entry bundle)
+const TableHome = lazy(() => import("./assets/modules/admin/home-am/table-home"));
+const TableAbout = lazy(() => import("./assets/modules/admin/about-am/table-about"));
+const TableInspiration = lazy(() => import("./assets/modules/admin/inspiration-am/table-inspiration"));
+const TablePort = lazy(() => import("./assets/modules/admin/portfolio-am/table-port"));
+const TableService = lazy(() => import("./assets/modules/admin/services-am/table-service"));
+const TableUser = lazy(() => import("./assets/modules/admin/user-am/table-user"));
+
+function PageLoader({ isDark }) {
+  return (
+    <div
+      className={`flex min-h-[50vh] w-full items-center justify-center transition-colors duration-500 ${
+        isDark ? "text-teal-400" : "text-teal-600"
+      }`}
+    >
+      <div className="flex flex-col items-center gap-3">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-current border-t-transparent" />
+        <span className="text-xs font-mono tracking-widest opacity-75">LOADING...</span>
+      </div>
+    </div>
+  );
+}
 
 function EventDetailPage() {
   return (
@@ -67,7 +89,9 @@ function RootLayout() {
           <div
             className={isAdminPage ? "flex-1 p-8 sm:p-12 overflow-y-auto" : ""}
           >
-            <Outlet context={{ isDark }} />
+            <Suspense fallback={<PageLoader isDark={isDark} />}>
+              <Outlet context={{ isDark }} />
+            </Suspense>
           </div>
         </div>
       </div>

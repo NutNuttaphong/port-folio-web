@@ -79,7 +79,7 @@ const AddServDialog = ({ isOpen, onClose, onServSaved, serv }) => {
             />
           </div>
           {/* <div className="mb-4">
-            <label>อัปโหลดรูปภาพ:</label>
+            <label>Upload Image:</label>
             <br />
             <input
               type="file"
@@ -90,7 +90,7 @@ const AddServDialog = ({ isOpen, onClose, onServSaved, serv }) => {
 
           {/* 🔥 3. ส่วนแสดงรูปภาพ */}
           <div className="mb-4">
-            <label>Image {serv && "(ถ้าไม่เปลี่ยนไม่ต้องเลือก)"}:</label>
+            <label>Image {serv && "(Leave empty to keep current)"}:</label>
 
             {/* โชว์รูปภาพถ้ามี preview */}
             {preview && (

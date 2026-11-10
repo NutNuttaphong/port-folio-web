@@ -27,7 +27,7 @@ function TableUser() {
         refreshUser();
       } catch (error) {
         console.error("Error deleting user information:", error);
-        alert("เกิดข้อผิดพลาดในการลบข้อมูล");
+        alert("An error occurred while deleting data.");
       }
     }
   };

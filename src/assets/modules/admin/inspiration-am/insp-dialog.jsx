@@ -81,7 +81,7 @@ const AddInspDialog = ({
             />
           </div>
           {/* <div className="mb-4">
-            <label>อัปโหลดรูปภาพ:</label>
+            <label>Upload Image:</label>
             <br />
             <input
               type="file"
@@ -92,7 +92,7 @@ const AddInspDialog = ({
 
           {/* 🔥 3. ส่วนแสดงรูปภาพ */}
           <div className="mb-4">
-            <label>Image {inspiration && "(ถ้าไม่เปลี่ยนไม่ต้องเลือก)"}:</label>
+            <label>Image {inspiration && "(Leave empty to keep current)"}:</label>
 
             {/* โชว์รูปภาพถ้ามี preview */}
             {preview && (

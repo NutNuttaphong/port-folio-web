@@ -110,7 +110,7 @@ const [title, setTitle] = useState(project ? project.title : "");
             <TagInput
               tags={tags}
               onChange={setTags}
-              placeholder="พิมพ์ Tag เช่น React, NestJS แล้วกด Enter..."
+              placeholder="Type tags e.g. React, NestJS and press Enter..."
             />
           </div>
           <div className="mb-4">
@@ -123,7 +123,7 @@ const [title, setTitle] = useState(project ? project.title : "");
             />
           </div>
           {/* <div className="mb-4">
-            <label>อัปโหลดรูปภาพ:</label>
+            <label>Upload Image:</label>
             <br />
             <input
               type="file"
@@ -135,7 +135,7 @@ const [title, setTitle] = useState(project ? project.title : "");
 
           {/* 🔥 3. ส่วนแสดงรูปภาพ */}
           <div className="mb-4">
-            <label>Image {project && "(ถ้าไม่เปลี่ยนไม่ต้องเลือก)"}:</label>
+            <label>Image {project && "(Leave empty to keep current)"}:</label>
             
             {/* โชว์รูปภาพถ้ามี preview */}
             {preview && (

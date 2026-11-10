@@ -32,22 +32,6 @@ function NavBar() {
         >
           ABOUT US
         </NavLink>
-        {/* <NavLink
-          to="/inspiration"
-          className={({ isActive }) =>
-            `transition hover:text-emerald-400 ${isActive ? "text-emerald-400 font-bold" : "text-white/80"}`
-          }
-        >
-          INSPIRATION
-        </NavLink>
-        <NavLink
-          to="/event/services"
-          className={({ isActive }) =>
-            `transition hover:text-emerald-400 ${isActive ? "text-emerald-400 font-bold" : "text-white/80"}`
-          }
-        >
-          SERVICES
-        </NavLink> */}
         <NavLink
           to="/event/contacts"
           className={({ isActive }) =>
@@ -60,10 +44,6 @@ function NavBar() {
 
       {/* สถานะพร้อมรับงาน & ปุ่มกด Action & ปุ่ม Login */}
       <div className="flex items-center gap-2.5 sm:gap-3">
-        {/* <div className="hidden sm:flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/40 px-3 py-1 text-xs font-medium text-emerald-300 select-none">
-          <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          Available for Hire
-        </div> */}
         <button 
           onClick={() => navigate('/event/contacts')} 
           className="rounded-lg bg-teal-400 px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-bold text-slate-950 shadow-md transition-all hover:bg-teal-300 active:scale-95 cursor-pointer shadow-teal-500/20"

@@ -99,7 +99,7 @@ const AddUserDialog = ({ isOpen, onClose, onUserSaved, user }) => {
             />
           </div>
           {/* <div className="mb-4">
-            <label>อัปโหลดรูปภาพ:</label>
+            <label>Upload Image:</label>
             <br />
             <input
               type="file"
@@ -110,7 +110,7 @@ const AddUserDialog = ({ isOpen, onClose, onUserSaved, user }) => {
 
           {/* 🔥 3. ส่วนแสดงรูปภาพ */}
           <div className="mb-4">
-            <label>Image {user && "(ถ้าไม่เปลี่ยนไม่ต้องเลือก)"}:</label>
+            <label>Image {user && "(Leave empty to keep current)"}:</label>
 
             {/* โชว์รูปภาพถ้ามี preview */}
             {preview && (

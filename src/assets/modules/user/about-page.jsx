@@ -225,7 +225,7 @@ function AboutPage() {
           <p
             className={`text-xs sm:text-sm leading-relaxed mb-6 transition-colors duration-500 `}
           >
-            เชี่ยวชาญการออกแบบสถาปัตยกรรม{" "}
+            Specialized in designing{" "}
             <strong
               className={
                 isDark
@@ -235,8 +235,8 @@ function AboutPage() {
             >
               Closed-Loop AI Workflows
             </strong>{" "}
-            ร่วมกับ AI Agents ชั้นนำอย่าง Antigravity และ Gemini —
-            พัฒนาต่อยอดจากการสั่งงานแบบ Prompting สู่การสร้าง{" "}
+            with leading AI Agents like Antigravity and Gemini —
+            advancing beyond one-off prompting into autonomous{" "}
             <strong
               className={
                 isDark
@@ -244,10 +244,10 @@ function AboutPage() {
                   : "text-teal-900 font-semibold"
               }
             >
-              ระบบวงรอบอัตโนมัติ (Engineering Loops)
+              Engineering Loops
             </strong>{" "}
-            ที่ AI สามารถวิเคราะห์ Requirement, วางแผน, เขียนโค้ด, รันเทส
-            และแก้ไขข้อผิดพลาดได้ด้วยตนเองภายใต้กรอบการควบคุมที่ปลอดภัย
+            where AI agents analyze requirements, formulate plans, write code, run automated tests,
+            and self-correct within strictly sandboxed safety guardrails.
           </p>
 
           {/* 4 Pillars Grid */}
@@ -265,9 +265,7 @@ function AboutPage() {
                 <p
                   className={`leading-relaxed text-xs transition-colors duration-500 `}
                 >
-                  ออกแบบกระบวนการทำงานแบบวนลูป Plan ➔ Execute ➔ Validate ➔
-                  Self-Correct
-                  เพื่อส่งมอบฟีเจอร์ที่สมบูรณ์แบบโดยไม่ต้องคอยป้อนคำสั่งทีละขั้นตอน
+                  Architects Plan ➔ Execute ➔ Validate ➔ Self-Correct execution cycles to reliably ship production-ready features without manual micromanagement.
                 </p>
               </div>
             </div>
@@ -287,9 +285,7 @@ function AboutPage() {
                 <p
                   className={`leading-relaxed text-xs transition-colors duration-500 `}
                 >
-                  วางระบบเกราะป้องกัน (Harness) ควบคุม Token &amp; Quota Budget,
-                  กำหนด Stop Conditions
-                  และสิทธิ์การเข้าถึงไฟล์ระบบเพื่อความปลอดภัยสูงสุด
+                  Establishes containment harnesses to govern token and quota budgets, configure strict stop conditions, and sandbox file system permissions.
                 </p>
               </div>
             </div>
@@ -307,9 +303,7 @@ function AboutPage() {
                 <p
                   className={`leading-relaxed text-xs transition-colors duration-500 `}
                 >
-                  ผสานการทำงานกับ Automated Build, Static Linting และ Unit
-                  Testing เข้ากับ Loop
-                  เพื่อการันตีว่าโค้ดที่ผลิตออกมาผ่านการทดสอบจริงก่อน Deploy
+                  Embeds automated production builds, static linting, and unit test suites directly into agent loops to ensure verified code prior to deployment.
                 </p>
               </div>
             </div>
@@ -327,9 +321,7 @@ function AboutPage() {
                 <p
                   className={`leading-relaxed text-xs transition-colors duration-500 `}
                 >
-                  ออกแบบจุดตัดสินใจเชิงสถาปัตยกรรม (Architecture Decision
-                  Points) ให้ AI
-                  ส่งต่องานกลับสู่มนุษย์ในส่วนที่ต้องการความแม่นยำทางธุรกิจ
+                  Identifies Architecture Decision Points where the AI escalates back to human judgment for critical business and architectural choices.
                 </p>
               </div>
             </div>

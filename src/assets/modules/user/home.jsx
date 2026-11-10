@@ -233,12 +233,12 @@ export default function EventCarousel() {
         </h1>
 
         {/* Subtitle & Self-Introduction */}
-        <p className="mt-5 max-w-2xl text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
-          สวัสดีครับ ผม{" "}
+        <p className="mt-5 max-w-3xl text-sm sm:text-base text-white leading-relaxed font-normal">
+          Hi, I'm{" "}
           <strong className="text-white font-semibold">
-            นัฐพงษ์ (Nuttaphong)
+            Nuttaphong
           </strong>{" "}
-          — พัฒนาเว็บแอปพลิเคชันด้วย{" "}
+          — Full-Stack Engineer crafting robust web applications with{" "}
           <span className="text-teal-300 font-mono text-xs px-2 py-0.5 rounded-md bg-slate-800/90 border border-teal-500/30">
             React 18
           </span>
@@ -246,18 +246,18 @@ export default function EventCarousel() {
           <span className="text-blue-300 font-mono text-xs px-2 py-0.5 rounded-md bg-slate-800/90 border border-blue-500/30">
             NestJS
           </span>{" "}
-          และ{" "}
+          and{" "}
           <span className="text-emerald-300 font-mono text-xs px-2 py-0.5 rounded-md bg-slate-800/90 border border-emerald-500/30">
             MongoDB
-          </span>{" "}
-          ผสานแนวคิด <strong>Loop Engineering</strong> เพื่อสร้างระบบที่มีประสิทธิภาพสูง แข็งแกร่ง และปลอดภัย
+          </span>
+          , leveraging <strong>Loop Engineering</strong> principles to build high-performance, resilient, and secure systems.
         </p>
 
         {/* Quick Metrics & Skills Chips */}
         <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 font-mono text-xs text-slate-300">
           <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-slate-900/70 px-3.5 py-1.5 backdrop-blur-md">
             <span className="text-teal-400 font-bold">3+</span>
-            <span className="text-slate-400">Years Exp</span>
+            <span className="text-white">Years Exp</span>
           </div>
           <div className="flex items-center gap-2 rounded-xl border border-teal-500/30 bg-teal-950/40 px-3.5 py-1.5 backdrop-blur-md text-teal-300 shadow-sm shadow-teal-500/10">
             <span className="text-teal-400 font-bold">🔄 AI Loop</span>
@@ -265,15 +265,15 @@ export default function EventCarousel() {
           </div>
           <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-slate-900/70 px-3.5 py-1.5 backdrop-blur-md">
             <span className="text-emerald-400 font-bold">100%</span>
-            <span className="text-slate-400">Full-Stack Coverage</span>
+            <span className="text-white">Full-Stack Coverage</span>
           </div>
           <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-slate-900/70 px-3.5 py-1.5 backdrop-blur-md">
             <span className="text-blue-400 font-bold">REST &amp; AI</span>
-            <span className="text-slate-400">Architecture</span>
+            <span className="text-white">Architecture</span>
           </div>
           <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-slate-900/70 px-3.5 py-1.5 backdrop-blur-md">
             <span className="text-amber-400 font-bold">Clean Code</span>
-            <span className="text-slate-400">TypeScript Standard</span>
+            <span className="text-white">TypeScript Standard</span>
           </div>
         </div>
 
@@ -287,7 +287,7 @@ export default function EventCarousel() {
             }}
             className="inline-flex items-center gap-2 rounded-xl bg-teal-400 px-5 py-3 text-xs sm:text-sm font-bold text-slate-950 transition hover:bg-teal-300 hover:shadow-lg hover:shadow-teal-400/25 active:scale-95 cursor-pointer"
           >
-            <span>สำรวจผลงานคัดสรร (Featured Works)</span>
+            <span>Explore Featured Works</span>
             <span>↓</span>
           </button>
           <a

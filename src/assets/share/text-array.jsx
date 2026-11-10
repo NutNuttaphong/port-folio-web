@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { X } from "lucide-react";
 
-export function TagInput({ tags: propTags, onChange, placeholder = "พิมพ์ Tag แล้วกด Enter..." }) {
+export function TagInput({ tags: propTags, onChange, placeholder = "Type tag and press Enter..." }) {
   const [internalTags, setInternalTags] = useState([]);
   const [input, setInput] = useState("");
 
-  // รองรับทั้งแบบส่ง props มา (Controlled) หรือใช้ state ภายใน (Uncontrolled)
+  // Supports both Controlled and Uncontrolled state
   const isControlled = Array.isArray(propTags) && typeof onChange === "function";
   const currentTags = isControlled ? propTags : internalTags;
 
@@ -58,13 +58,13 @@ export function TagInput({ tags: propTags, onChange, placeholder = "พิมพ
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder={currentTags.length === 0 ? placeholder : "เพิ่ม Tag อีก..."}
+          placeholder={currentTags.length === 0 ? placeholder : "Add more tags..."}
           className="flex-1 min-w-[130px] bg-transparent text-sm text-slate-800 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none py-1 px-1"
         />
       </div>
 
       {/* <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-1.5 flex items-center gap-1">
-        <span>💡</span> พิมพ์ข้อความแล้วกด <strong className="text-slate-600 dark:text-slate-300">Enter</strong> หรือ <strong className="text-slate-600 dark:text-slate-300">Comma (,)</strong> เพื่อเพิ่ม Tag
+        <span>💡</span> Type text and press <strong className="text-slate-600 dark:text-slate-300">Enter</strong> or <strong className="text-slate-600 dark:text-slate-300">Comma (,)</strong> to add tags
       </p> */}
     </div>
   );

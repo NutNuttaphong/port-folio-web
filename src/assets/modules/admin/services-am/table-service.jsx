@@ -27,7 +27,7 @@ function TableServ() {
         refreshServ();
       } catch (error) {
         console.error("Error deleting service information:", error);
-        alert("เกิดข้อผิดพลาดในการลบข้อมูล");
+        alert("An error occurred while deleting data.");
       }
     }
   };

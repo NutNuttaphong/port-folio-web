@@ -1,3 +1,4 @@
+import { getAuthHeaders } from '../../utils/apiAuth';
 // src/assets/services/user.service.js
 
 // const API_URL = 'http://localhost:3000/user';
@@ -18,6 +19,7 @@ export const getUser = async () => {
 export const createUser = async (formData) => {
   const response = await fetch(API_URL, {
     method: 'POST',
+   headers: getAuthHeaders(),
     body: formData,
   });
   if (!response.ok) {
@@ -30,6 +32,7 @@ export const createUser = async (formData) => {
 export const updateUser = async (_id, formData) => {
   const response = await fetch(`${API_URL}/${_id}`, {
     method: 'PATCH',
+   headers: getAuthHeaders(),
     body: formData,
   });
   if (!response.ok) {
@@ -42,7 +45,8 @@ export const updateUser = async (_id, formData) => {
 export const deleteUser = async (_id) => {
   const response = await fetch(`${API_URL}/${_id}`, {
     method: 'DELETE',
-  });
+   headers: getAuthHeaders(),
+    });
   if (!response.ok) {
     throw new Error('Failed to delete user information');
   }

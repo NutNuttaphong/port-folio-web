@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
+
   return (
     <footer className="bg-[#0b1329] text-slate-300 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -12,7 +13,7 @@ export default function Footer() {
             Port<span className="text-teal-400">Dev</span>
           </div>
           <p className="text-sm text-slate-400 leading-relaxed text-start">
-            Full-Stack Software Engineer — มุ่งมั่นสร้างสรรค์เว็บแอปพลิเคชันและสถาปัตยกรรมระบบที่เสถียร รวดเร็ว และตอบโจทย์ธุรกิจ
+            Full-Stack Software Engineer — Dedicated to engineering scalable, high-performance web applications and resilient system architectures.
           </p>
           
           {/* Social Icons (ใช้ SVG ตรงๆ ไม่พึ่ง library เพื่อป้องกัน Error) */}
@@ -33,7 +34,7 @@ export default function Footer() {
 
         {/* Quick Links */}
         <div>
-          <h4 className="text-white font-semibold mb-4 tracking-wider text-start text-sm">เมนูนำทาง</h4>
+          <h4 className="text-white font-semibold mb-4 tracking-wider text-start text-sm">Quick Links</h4>
           <ul className="space-y-2 text-start text-sm">
             <li><Link to="/portfolio" className="hover:text-teal-400 transition">Portfolio</Link></li>
             <li><Link to="/about-us" className="hover:text-teal-400 transition">About Us</Link></li>
@@ -43,7 +44,7 @@ export default function Footer() {
 
         {/* Services / Expertise */}
         <div>
-          <h4 className="text-white font-semibold mb-4 tracking-wider text-start text-sm">ความเชี่ยวชาญ (Expertise)</h4>
+          <h4 className="text-white font-semibold mb-4 tracking-wider text-start text-sm">Expertise</h4>
           <ul className="space-y-2 text-start text-sm text-slate-400">
             <li className="hover:text-slate-200 transition">Full-Stack Web Architecture</li>
             <li className="hover:text-slate-200 transition">React 18 &amp; Modern UI/UX</li>
@@ -54,7 +55,7 @@ export default function Footer() {
 
         {/* Contact */}
         <div>
-          <h4 className="text-white font-semibold mb-4 tracking-wider text-start text-sm">ติดต่อเรา</h4>
+          <h4 className="text-white font-semibold mb-4 tracking-wider text-start text-sm">Contact Info</h4>
           <ul className="space-y-3 text-sm text-slate-400">
             <li className="flex items-center gap-3">
               <MapPin size={18} className="text-teal-400 shrink-0" />

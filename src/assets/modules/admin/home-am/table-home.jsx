@@ -26,7 +26,7 @@ function TableHome() {
         refreshProjects();
       } catch (error) {
         console.error("Error deleting project:", error);
-        alert("เกิดข้อผิดพลาดในการลบข้อมูล");
+        alert("An error occurred while deleting data.");
       }
     }
   };

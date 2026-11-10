@@ -6,12 +6,11 @@ import {
   Loader2,
   CheckCheck,
   FileText,
-  ArrowLeft,
 } from "lucide-react";
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
-  const [viewMode, setViewMode] = useState("chat"); // "chat" | "form"
+  const [viewMode, setViewMode] = useState("form"); // "form" | "chat"
   const [inputText, setInputText] = useState("");
   const [messages, setMessages] = useState([]);
   const [isSending, setIsSending] = useState(false);
@@ -192,29 +191,29 @@ export default function ChatWidget() {
     }
   };
 
-  // 5. ส่งแบบฟอร์มข้อมูลติดต่อกลับ
+  // 5. Submit contact request form
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     if (!formName.trim()) {
-      setFormError("กรุณากรอกชื่อของคุณ หรือชื่อบริษัท/องค์กร");
+      setFormError("Please enter your name or company/organization.");
       return;
     }
     if (!formContact.trim()) {
-      setFormError("กรุณากรอกเบอร์โทรศัพท์, อีเมล หรือ LINE ID");
+      setFormError("Please enter your phone number, email, or LINE ID.");
       return;
     }
     if (!formDetails.trim()) {
-      setFormError("กรุณาระบุรายละเอียดงานหรือข้อความที่ต้องการคุย");
+      setFormError("Please provide project details or your message.");
       return;
     }
 
     localStorage.setItem("chat_user_name", formName.trim());
     localStorage.setItem("chat_user_contact", formContact.trim());
 
-    const formattedMessage = `📋 [แบบฟอร์มฝากข้อมูลติดต่อกลับ]\n👤 ผู้ติดต่อ: ${formName.trim()}\n📞 ช่องทางติดต่อ: ${formContact.trim()}\n💬 รายละเอียด: ${formDetails.trim()}`;
+    const formattedMessage = `📋 [Contact Request Form]\n👤 Contact Name: ${formName.trim()}\n📞 Channel: ${formContact.trim()}\n💬 Details: ${formDetails.trim()}`;
 
-    const now = new Date().toLocaleTimeString("th-TH", {
+    const now = new Date().toLocaleTimeString("en-US", {
       hour: "2-digit",
       minute: "2-digit",
       hour12: false,
@@ -252,7 +251,7 @@ export default function ChatWidget() {
         const botAckMsg = {
           id: `bot-ack-${Date.now()}`,
           sender: "nuttaphong",
-          text: `✅ ได้รับข้อมูลติดต่อกลับเรียบร้อยแล้วครับ! ข้อมูลถูกส่งตรงเข้า LINE ของณัฐพงษ์แล้ว ผมจะรีบติดต่อกลับโดยเร็วที่สุดครับ 🙏`,
+          text: `✅ Contact request received! Your message has been sent directly to Nuttaphong's LINE. I will get back to you as soon as possible. 🙏`,
           createdAt: now,
         };
 
@@ -277,7 +276,10 @@ export default function ChatWidget() {
       {/* 1. ปุ่มลอยเปิดแชท (Floating Button) */}
       {!isOpen && (
         <button
-          onClick={() => setIsOpen(true)}
+          onClick={() => {
+            setIsOpen(true);
+            setViewMode("form");
+          }}
           className="group relative flex items-center gap-2.5 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 p-3.5 sm:px-5 sm:py-3.5 text-slate-950 font-bold shadow-xl shadow-teal-500/25 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-teal-400/40 active:scale-95 cursor-pointer"
           aria-label="Open chat"
         >
@@ -314,8 +316,7 @@ export default function ChatWidget() {
                   </span>
                 </div>
                 <p className="text-[10px] text-emerald-400 font-mono flex items-center gap-1">
-                  <span className="animate-pulse">●</span> ออนไลน์ • ส่งตรงเข้า
-                  LINE ทันที
+                  <span className="animate-pulse">●</span> Online • Connected to LINE
                 </p>
               </div>
             </div>
@@ -329,10 +330,10 @@ export default function ChatWidget() {
                     setFormError("");
                   }}
                   className="flex items-center gap-1 rounded-full bg-teal-500/15 hover:bg-teal-500/25 text-teal-300 text-[10px] font-bold px-2.5 py-1 border border-teal-500/30 transition cursor-pointer"
-                  title="ฝากข้อมูลติดต่อกลับ"
+                  title="Leave Contact Details"
                 >
                   <FileText size={12} />
-                  <span>ฝากข้อมูล</span>
+                  <span>Contact Form</span>
                 </button>
               ) : (
                 <button
@@ -341,9 +342,10 @@ export default function ChatWidget() {
                     setFormError("");
                   }}
                   className="flex items-center gap-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] font-bold px-2.5 py-1 border border-white/10 transition cursor-pointer"
+                  title="Switch to Live Chat"
                 >
-                  <ArrowLeft size={12} />
-                  <span>กลับไปแชท</span>
+                  <MessageSquare size={12} />
+                  <span>Live Chat</span>
                 </button>
               )}
 
@@ -362,22 +364,20 @@ export default function ChatWidget() {
             <>
               {/* Chat Messages Body */}
               <div className="flex-1 overflow-y-auto p-4 space-y-3.5 scrollbar-thin scrollbar-thumb-slate-700">
-                {/* ข้อความต้อนรับอัตโนมัติ */}
+                {/* Auto Welcome Message */}
                 <div className="flex items-start gap-2.5">
                   <div className="h-7 w-7 rounded-full bg-slate-800 flex items-center justify-center text-teal-300 text-xs font-bold shrink-0 mt-0.5 border border-teal-500/30">
                     N
                   </div>
                   <div className="max-w-[85%] rounded-2xl rounded-tl-sm bg-slate-800/90 border border-white/10 px-3.5 py-2.5 text-xs text-slate-200 leading-relaxed shadow-sm">
                     <p>
-                      👋 สวัสดีครับ! ยินดีต้อนรับ HR &amp; Recruiter ทุกท่านครับ
+                      👋 Hi there! Welcome HR, recruiters, and visitors!
                     </p>
                     <p className="mt-1 text-slate-300">
-                      สนใจตำแหน่งงานหรืออยากชวนคุยโปรเจกต์
-                      พิมพ์คุยในนี้ได้เลยครับ
-                      หรือสามารถกดฝากข้อมูลเพื่อให้ผมติดต่อกลับได้ทันทีครับ 🚀
+                      Interested in collaborating or discussing projects? Feel free to chat here, or leave your contact details so I can reach out to you directly! 🚀
                     </p>
 
-                    {/* Quick Action Button ฝากข้อมูลติดต่อกลับ */}
+                    {/* Quick Action Button Leave Contact Info */}
                     <button
                       type="button"
                       onClick={() => {
@@ -387,21 +387,21 @@ export default function ChatWidget() {
                       className="mt-2.5 w-full flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-teal-500/20 to-emerald-500/20 hover:from-teal-500/30 hover:to-emerald-500/30 text-teal-300 font-bold text-[11px] py-2 px-3 border border-teal-500/40 transition active:scale-95 cursor-pointer shadow-sm"
                     >
                       <FileText size={13} className="text-teal-400" />
-                      <span>📋 กดที่นี่เพื่อฝากข้อมูลให้ณัฐพงษ์ติดต่อกลับ</span>
+                      <span>📋 Click here to leave your contact information</span>
                     </button>
 
                     <span className="block text-[9px] text-slate-500 text-right mt-1.5 font-mono">
-                      บอทต้อนรับ
+                      Assistant Bot
                     </span>
                   </div>
                 </div>
 
-                {/* รายการข้อความที่สนทนากัน */}
+                {/* Conversation message list */}
                 {messages.map((msg, index) => {
                   const isMe = msg.sender === "user";
-                  const isContactCard = msg.text?.includes(
-                    "📋 [แบบฟอร์มฝากข้อมูลติดต่อกลับ]",
-                  );
+                  const isContactCard =
+                    msg.text?.includes("📋 [แบบฟอร์มฝากข้อมูลติดต่อกลับ]") ||
+                    msg.text?.includes("📋 [Contact Request Form]");
 
                   return (
                     <div
@@ -427,13 +427,12 @@ export default function ChatWidget() {
                           <div className="space-y-1.5 text-xs">
                             <div className="flex items-center gap-1.5 text-teal-300 font-bold border-b border-teal-500/20 pb-1 text-[11px]">
                               <FileText size={13} />
-                              <span>แบบฟอร์มฝากข้อมูลติดต่อกลับ</span>
+                              <span>Contact Request Form</span>
                             </div>
                             <p className="whitespace-pre-wrap text-[11px] leading-relaxed text-slate-200">
-                              {msg.text.replace(
-                                "📋 [แบบฟอร์มฝากข้อมูลติดต่อกลับ]\n",
-                                "",
-                              )}
+                              {msg.text
+                                .replace("📋 [แบบฟอร์มฝากข้อมูลติดต่อกลับ]\n", "")
+                                .replace("📋 [Contact Request Form]\n", "")}
                             </p>
                           </div>
                         ) : (
@@ -451,7 +450,7 @@ export default function ChatWidget() {
                               : "text-slate-500"
                           }`}
                         >
-                          <span>{msg.createdAt || "ตอนนี้"}</span>
+                          <span>{msg.createdAt || "Just now"}</span>
                           {isMe && (
                             <CheckCheck
                               size={11}
@@ -468,12 +467,12 @@ export default function ChatWidget() {
                   );
                 })}
 
-                {/* แสดงสถานะเมื่อกำลังส่ง */}
+                {/* Sending status */}
                 {isSending && (
                   <div className="flex justify-end">
                     <div className="rounded-2xl rounded-tr-sm bg-teal-500/20 px-3 py-1.5 text-[11px] text-teal-300 flex items-center gap-1.5 font-mono">
                       <Loader2 size={12} className="animate-spin" />
-                      <span>กำลังส่งเข้า LINE...</span>
+                      <span>Sending to LINE...</span>
                     </div>
                   </div>
                 )}
@@ -503,7 +502,7 @@ export default function ChatWidget() {
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyDown={handleKeyDown}
                   maxLength={500}
-                  placeholder="พิมพ์ข้อความคุยกับณัฐพงษ์..."
+                  placeholder="Type a message to Nuttaphong..."
                   className="flex-1 rounded-xl border border-white/10 bg-slate-900/90 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400 transition"
                 />
 
@@ -530,14 +529,14 @@ export default function ChatWidget() {
               <div className="mb-3.5">
                 <div className="flex items-center gap-2 text-teal-300 font-bold text-xs mb-1">
                   <FileText size={15} />
-                  <span>แบบฟอร์มฝากข้อมูลติดต่อกลับ</span>
+                  <span>Contact Request Form</span>
                 </div>
                 <p className="text-[11px] text-slate-400 leading-relaxed">
-                  กรอกข้อมูลด้านล่างนี้ ระบบจะจัดส่งรายละเอียดตรงเข้า{" "}
+                  Fill out the form below. Your message will be dispatched directly to{" "}
                   <span className="text-emerald-400 font-semibold">
-                    LINE ของคุณณัฐพงษ์
+                    Nuttaphong's LINE
                   </span>{" "}
-                  ทันทีครับ
+                  instantly.
                 </p>
               </div>
 
@@ -550,7 +549,7 @@ export default function ChatWidget() {
                   {/* Field 1: Name / Company */}
                   <div>
                     <label className="block text-[11px] font-semibold text-slate-300 mb-1">
-                      ชื่อผู้ติดต่อ / บริษัท หรือ หน่วยงาน{" "}
+                      Contact Name / Company or Organization{" "}
                       <span className="text-rose-400">*</span>
                     </label>
                     <input
@@ -560,7 +559,7 @@ export default function ChatWidget() {
                         setFormName(e.target.value);
                         if (formError) setFormError("");
                       }}
-                      placeholder="เช่น คุณสมชาย (บริษัท ABC Tech)"
+                      placeholder="e.g. John Doe (ABC Tech Co.)"
                       maxLength={100}
                       className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-3.5 py-2 text-xs text-white placeholder-slate-500 outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400 transition"
                     />
@@ -569,7 +568,7 @@ export default function ChatWidget() {
                   {/* Field 2: Contact Info */}
                   <div>
                     <label className="block text-[11px] font-semibold text-slate-300 mb-1">
-                      เบอร์โทรศัพท์ / อีเมล / LINE ID{" "}
+                      Phone Number / Email / LINE ID{" "}
                       <span className="text-rose-400">*</span>
                     </label>
                     <input
@@ -579,7 +578,7 @@ export default function ChatWidget() {
                         setFormContact(e.target.value);
                         if (formError) setFormError("");
                       }}
-                      placeholder="เช่น 081-xxx-xxxx หรือ email@company.com"
+                      placeholder="e.g. +66 81-xxx-xxxx or email@company.com"
                       maxLength={100}
                       className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-3.5 py-2 text-xs text-white placeholder-slate-500 outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400 transition"
                     />
@@ -588,7 +587,7 @@ export default function ChatWidget() {
                   {/* Field 3: Job details / Message */}
                   <div>
                     <label className="block text-[11px] font-semibold text-slate-300 mb-1">
-                      รายละเอียดงาน / ข้อความถึงณัฐพงษ์{" "}
+                      Project Details / Message to Nuttaphong{" "}
                       <span className="text-rose-400">*</span>
                     </label>
                     <textarea
@@ -598,7 +597,7 @@ export default function ChatWidget() {
                         if (formError) setFormError("");
                       }}
                       rows={3}
-                      placeholder="ระบุตำแหน่งงาน, เทคโนโลยีที่ใช้ หรือช่วงเวลาที่สะดวกให้ติดต่อกลับ..."
+                      placeholder="Specify role, tech stack, or preferred time to connect..."
                       maxLength={500}
                       className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-3.5 py-2 text-xs text-white placeholder-slate-500 outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400 transition resize-none"
                     />
@@ -622,12 +621,12 @@ export default function ChatWidget() {
                     {isSending ? (
                       <>
                         <Loader2 size={14} className="animate-spin" />
-                        <span>กำลังจัดส่งข้อมูลเข้า LINE...</span>
+                        <span>Sending to LINE...</span>
                       </>
                     ) : (
                       <>
                         <Send size={14} />
-                        <span>ส่งข้อมูลติดต่อกลับ (เด้งเข้า LINE)</span>
+                        <span>Submit Contact Request (Direct to LINE)</span>
                       </>
                     )}
                   </button>
@@ -640,7 +639,7 @@ export default function ChatWidget() {
                     }}
                     className="w-full py-1.5 text-center text-[11px] text-slate-400 hover:text-slate-200 transition cursor-pointer"
                   >
-                    ยกเลิก / กลับไปหน้าแชทสด
+                    Switch to Live Chat 💬
                   </button>
                 </div>
               </form>

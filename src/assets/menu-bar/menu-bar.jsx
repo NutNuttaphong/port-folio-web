@@ -53,14 +53,22 @@ function MenuBar({ isDark, setIsDark }) {
         </div>
 
         <div className="flex items-center gap-3">
-          <button
-            onClick={() => navigate("/login")}
+          <NavLink
+            to="/login"
             title="Admin Login"
-            className="flex items-center gap-1.5 rounded-lg border border-gray-200 dark:border-white/15 bg-gray-100 dark:bg-slate-800/80 px-2.5 py-1.5 text-xs font-semibold text-gray-700 dark:text-slate-300 transition hover:bg-teal-500 hover:text-white cursor-pointer"
+            className={({ isActive }) =>
+              `transition hover:text-emerald-400 cursor-pointer ${
+                isActive
+                  ? "text-emerald-400 font-bold flex items-center gap-1.5 px-2.5 py-1.5 text-xs"
+                  : "flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold text-gray-700 hover:text-emerald-600"
+              }`
+            }
           >
-            <Lock size={14} className="text-teal-500" />
-            <span className="hidden sm:inline">Login</span>
-          </button>
+            <span className="flex gap-1.5 items-center cursor-pointer">
+              <Lock size={14} className="text-teal-500" />
+              <span className="hidden sm:inline hover:text-emerald-600">Login</span>
+            </span>
+          </NavLink>
           <DayNightToggle isDark={isDark} setIsDark={setIsDark} />
         </div>
       </div>

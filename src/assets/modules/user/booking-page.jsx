@@ -16,16 +16,16 @@ function BookingPage() {
     e.preventDefault();
     setErrorMessage("");
 
-    // ตรวจสอบว่ากรอกครบหรือไม่
+    // Validate inputs
     if (!username.trim() || !password.trim()) {
-      setErrorMessage("กรุณากรอก Username และ Password ให้ครบถ้วน");
+      setErrorMessage("Please enter both Username and Password.");
       return;
     }
 
     setIsLoading(true);
 
     try {
-      // ส่ง Request แบบ POST ไปยัง NestJS Backend
+      // Send POST request to NestJS Backend
       const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
       const response = await fetch(`${API_URL}/user/login`, {
@@ -39,17 +39,15 @@ function BookingPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        // หาก Backend ส่งสถานะ Error กลับมา (เช่น 401 Unauthorized)
-        throw new Error(data.message || "ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง");
+        throw new Error(data.message || "Invalid username or password.");
       }
 
-      // ล็อกอินสำเร็จ -> บันทึกข้อมูลผู้ใช้ลงใน localStorage เพื่อใช้ตรวจสอบสิทธิ์
+      // Login success -> store user session in localStorage
       localStorage.setItem("currentUser", JSON.stringify(data));
       navigate("/table-home");
     } catch (error) {
-      // แสดงข้อความ Error ที่ได้รับจาก Backend
       setErrorMessage(
-        error.message || "เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์",
+        error.message || "Failed to connect to the server.",
       );
     } finally {
       setIsLoading(false);

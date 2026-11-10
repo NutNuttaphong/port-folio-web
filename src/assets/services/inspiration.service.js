@@ -1,3 +1,4 @@
+import { getAuthHeaders } from '../../utils/apiAuth';
 // const API_URL = 'http://localhost:3000/inspiration';
 
 const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
@@ -14,7 +15,8 @@ export const getInspiration = async () => {
 export const createInspiration = async (formData) => {
     const response = await fetch(API_URL, {
         method: 'POST',
-        body: formData
+   headers: getAuthHeaders(),
+    body: formData
     });
     if (!response.ok) {
         throw new Error('Failed to create inspiration');
@@ -26,7 +28,8 @@ export const createInspiration = async (formData) => {
 export const updateInspiration = async (_id, formData) => {
     const response = await fetch(`${API_URL}/${_id}`, {
         method: 'PATCH',
-        body: formData,
+   headers: getAuthHeaders(),
+    body: formData,
     });
     if (!response.ok) {
         throw new Error('Failed to update inspiration');
@@ -37,6 +40,7 @@ export const updateInspiration = async (_id, formData) => {
 export const deleteInspiration = async (_id) => {
     const response = await fetch(`${API_URL}/${_id}`, {
         method: 'DELETE',
+   headers: getAuthHeaders(),
     });
     if (!response.ok) {
         throw new Error('Failed to delete inspiration');

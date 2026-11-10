@@ -79,7 +79,7 @@ const AddAboutDialog = ({ isOpen, onClose, onAboutSaved, about }) => {
             />
           </div>
           {/* <div className="mb-4">
-            <label>อัปโหลดรูปภาพ:</label>
+            <label>Upload Image:</label>
             <br />
             <input
               type="file"
@@ -90,7 +90,7 @@ const AddAboutDialog = ({ isOpen, onClose, onAboutSaved, about }) => {
 
           {/* 🔥 3. ส่วนแสดงรูปภาพ */}
           <div className="mb-4">
-            <label>Image {about && "(ถ้าไม่เปลี่ยนไม่ต้องเลือก)"}:</label>
+            <label>Image {about && "(Leave empty to keep current)"}:</label>
 
             {/* โชว์รูปภาพถ้ามี preview */}
             {preview && (
