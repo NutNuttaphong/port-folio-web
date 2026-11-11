@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Navigation, Autoplay } from "swiper/modules";
 import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
@@ -14,8 +14,10 @@ import StarField from "./start-field";
 import HomeService from "../../services/project.service";
 import slideImage1 from "../../images/ahmetyuksek-autumn-bend-10069119_1920.jpg";
 import { getImageUrl } from "../../../utils/imageUrl";
-import AboutPage from "./about-page";
-import ContactPage from "./contacts-page";
+import SkillsSection from "./home-sections/SkillsSection";
+import CommunitySection from "./home-sections/CommunitySection";
+import ExperienceSection from "./home-sections/ExperienceSection";
+import ContactSection from "./home-sections/ContactSection";
 import AddDialog from "../../share/dialog"; // นำเข้า Component Popup (ต้องมีไฟล์นี้อยู่ด้วย)
 
 const baseSlides = [
@@ -141,8 +143,9 @@ const baseSlides = [
   },
 ];
 
-export default function EventCarousel() {
-  const navigate = useNavigate();
+export default function EventCarousel({ isAbout = false }) {
+  const outletCtx = useOutletContext();
+  const isDark = outletCtx?.isDark ?? true;
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const [slides, setSlides] = useState([]);
@@ -197,83 +200,93 @@ export default function EventCarousel() {
   };
 
   return (
-    <div className="relative min-h-[calc(100vh-73px)] w-full flex flex-col items-center bg-gradient-to-b from-[#0e1a42] via-[#09112d] to-[#040714] text-white overflow-x-hidden">
+    <div className={`relative min-h-[calc(100vh-73px)] w-full flex flex-col items-center overflow-x-hidden transition-colors duration-500 ${
+      isDark
+        ? "bg-gradient-to-b from-[#0e1a42] via-[#09112d] to-[#040714] text-white"
+        : "bg-gradient-to-b from-[#f8fafc] via-[#eef4ff] to-[#f1f5f9] text-slate-900"
+    }`}>
       {/* Background StarField & Ambient Glows */}
-      <StarField count={320} />
-      <div className="pointer-events-none fixed -top-40 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-teal-500/10 blur-[140px]" />
-      <div className="pointer-events-none fixed top-1/3 left-1/4 h-[450px] w-[450px] rounded-full bg-blue-600/10 blur-[150px]" />
-      <div className="pointer-events-none fixed bottom-10 right-1/4 h-[500px] w-[500px] rounded-full bg-indigo-600/10 blur-[160px]" />
+      {isDark ? (
+        <>
+          <StarField count={320} />
+          <div className="pointer-events-none fixed -top-40 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-teal-500/10 blur-[140px]" />
+          <div className="pointer-events-none fixed top-1/3 left-1/4 h-[450px] w-[450px] rounded-full bg-blue-600/10 blur-[150px]" />
+          <div className="pointer-events-none fixed bottom-10 right-1/4 h-[500px] w-[500px] rounded-full bg-indigo-600/10 blur-[160px]" />
+        </>
+      ) : (
+        <>
+          <div className="pointer-events-none fixed -top-40 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-teal-300/20 blur-[140px]" />
+          <div className="pointer-events-none fixed top-1/3 left-1/4 h-[450px] w-[450px] rounded-full bg-sky-300/25 blur-[150px]" />
+          <div className="pointer-events-none fixed bottom-10 right-1/4 h-[500px] w-[500px] rounded-full bg-indigo-200/25 blur-[160px]" />
+        </>
+      )}
 
       {/* ======================================================== */}
       {/* 1. HERO FIRST IMPRESSION (HIGH-IMPACT SHOWCASE)          */}
       {/* ======================================================== */}
       <header className="relative z-10 mx-auto max-w-5xl px-6 pt-12 sm:pt-16 pb-6 text-center flex flex-col items-center">
         {/* Top Status Badge with glowing ping */}
-        <div className="inline-flex items-center gap-2.5 rounded-full border border-teal-500/30 bg-slate-900/90 px-4 py-1.5 text-xs font-medium text-teal-300 backdrop-blur-md shadow-lg shadow-teal-500/10 mb-6">
+        <div className="inline-flex items-center gap-2.5 rounded-full border border-teal-300 dark:border-teal-500/30 bg-teal-50 dark:bg-slate-900/90 px-4 py-1.5 text-xs font-semibold text-teal-800 dark:text-teal-300 backdrop-blur-md shadow-sm mb-6">
           <span className="flex h-2 w-2 relative">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-400"></span>
           </span>
           <span className="tracking-wider uppercase font-semibold">
-            FULL-STACK &amp; LOOP ENGINEER
+            {isAbout ? "ABOUT ME • FULL-STACK & LOOP ENGINEER" : "FULL-STACK & LOOP ENGINEER"}
           </span>
           <span className="text-slate-600">|</span>
-          <span className="text-slate-300 font-mono text-[11px]">
+          <span className="text-slate-600 dark:text-slate-300 font-mono text-[11px]">
             Bangkok, TH 🇹🇭
           </span>
         </div>
 
         {/* Main High-Impact Headline */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.15] max-w-4xl">
-          Building{" "}
-          <span className="bg-gradient-to-r from-teal-300 via-sky-300 to-indigo-300 bg-clip-text text-transparent">
-            Scalable Systems
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.15] max-w-4xl text-slate-900 dark:text-white">
+          Hi, I&apos;m Nuttaphong —{" "}
+          <span className="bg-gradient-to-r from-teal-600 via-sky-600 to-indigo-700 dark:from-teal-300 dark:via-sky-300 dark:to-indigo-300 bg-clip-text text-transparent">
+            Front-end Developer
           </span>{" "}
-          &amp; Modern Web Experiences
+          with 3+ Years Experience
         </h1>
 
         {/* Subtitle & Self-Introduction */}
-        <p className="mt-5 max-w-3xl text-sm sm:text-base text-white leading-relaxed font-normal">
-          Hi, I'm{" "}
-          <strong className="text-white font-semibold">
-            Nuttaphong
-          </strong>{" "}
-          — Full-Stack Engineer crafting robust web applications with{" "}
-          <span className="text-teal-300 font-mono text-xs px-2 py-0.5 rounded-md bg-slate-800/90 border border-teal-500/30">
+        <p className="mt-5 text-start max-w-3xl text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+          Specializing in architecting and delivering enterprise-grade web applications with{" "}
+          <span className="text-teal-800 dark:text-teal-300 font-mono text-xs px-2 py-0.5 rounded-md bg-teal-50 dark:bg-slate-800/90 border border-teal-300 dark:border-teal-500/30 font-medium">
             React 18
           </span>
           ,{" "}
-          <span className="text-blue-300 font-mono text-xs px-2 py-0.5 rounded-md bg-slate-800/90 border border-blue-500/30">
+          <span className="text-blue-800 dark:text-blue-300 font-mono text-xs px-2 py-0.5 rounded-md bg-blue-50 dark:bg-slate-800/90 border border-blue-300 dark:border-blue-500/30 font-medium">
             NestJS
           </span>{" "}
           and{" "}
-          <span className="text-emerald-300 font-mono text-xs px-2 py-0.5 rounded-md bg-slate-800/90 border border-emerald-500/30">
+          <span className="text-emerald-800 dark:text-emerald-300 font-mono text-xs px-2 py-0.5 rounded-md bg-emerald-50 dark:bg-slate-800/90 border border-emerald-300 dark:border-emerald-500/30 font-medium">
             MongoDB
           </span>
-          , leveraging <strong>Loop Engineering</strong> principles to build high-performance, resilient, and secure systems.
+          , leveraging <strong>Loop Engineering</strong> principles to build high-performance, resilient, and secure production systems.
         </p>
 
         {/* Quick Metrics & Skills Chips */}
-        <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 font-mono text-xs text-slate-300">
-          <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-slate-900/70 px-3.5 py-1.5 backdrop-blur-md">
+        <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 font-mono text-xs text-slate-700 dark:text-slate-300">
+          <div className="flex items-center gap-2 rounded-xl border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-slate-900/70 shadow-sm dark:shadow-none px-3.5 py-1.5 backdrop-blur-md">
             <span className="text-teal-400 font-bold">3+</span>
-            <span className="text-white">Years Exp</span>
+            <span className="text-slate-800 dark:text-white">Years Exp</span>
           </div>
-          <div className="flex items-center gap-2 rounded-xl border border-teal-500/30 bg-teal-950/40 px-3.5 py-1.5 backdrop-blur-md text-teal-300 shadow-sm shadow-teal-500/10">
+          <div className="flex items-center gap-2 rounded-xl border border-teal-200 dark:border-teal-500/30 bg-teal-50 dark:bg-teal-950/40 px-3.5 py-1.5 backdrop-blur-md text-teal-800 dark:text-teal-300 shadow-sm">
             <span className="text-teal-400 font-bold">🔄 AI Loop</span>
-            <span className="text-slate-300">Agentic Orchestration</span>
+            <span className="text-slate-700 dark:text-slate-300">Agentic Orchestration</span>
           </div>
-          <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-slate-900/70 px-3.5 py-1.5 backdrop-blur-md">
+          <div className="flex items-center gap-2 rounded-xl border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-slate-900/70 shadow-sm dark:shadow-none px-3.5 py-1.5 backdrop-blur-md">
             <span className="text-emerald-400 font-bold">100%</span>
-            <span className="text-white">Full-Stack Coverage</span>
+            <span className="text-slate-800 dark:text-white">Full-Stack Coverage</span>
           </div>
-          <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-slate-900/70 px-3.5 py-1.5 backdrop-blur-md">
+          <div className="flex items-center gap-2 rounded-xl border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-slate-900/70 shadow-sm dark:shadow-none px-3.5 py-1.5 backdrop-blur-md">
             <span className="text-blue-400 font-bold">REST &amp; AI</span>
-            <span className="text-white">Architecture</span>
+            <span className="text-slate-800 dark:text-white">Architecture</span>
           </div>
-          <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-slate-900/70 px-3.5 py-1.5 backdrop-blur-md">
+          <div className="flex items-center gap-2 rounded-xl border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-slate-900/70 shadow-sm dark:shadow-none px-3.5 py-1.5 backdrop-blur-md">
             <span className="text-amber-400 font-bold">Clean Code</span>
-            <span className="text-white">TypeScript Standard</span>
+            <span className="text-slate-800 dark:text-white">TypeScript Standard</span>
           </div>
         </div>
 
@@ -294,14 +307,14 @@ export default function EventCarousel() {
             href="https://github.com/NutNuttaphong"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-slate-900/80 px-5 py-3 text-xs sm:text-sm font-semibold text-white backdrop-blur-md transition hover:bg-slate-800 hover:border-teal-400/50 active:scale-95 cursor-pointer"
+            className="inline-flex items-center gap-2 rounded-xl border border-slate-300 dark:border-white/15 bg-white dark:bg-slate-900/80 px-5 py-3 text-xs sm:text-sm font-semibold text-slate-800 dark:text-white backdrop-blur-md transition hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-teal-400/50 shadow-sm active:scale-95 cursor-pointer"
           >
             <span>GitHub Repositories ↗</span>
           </a>
         </div>
 
         {/* Scroll Indicator */}
-        <div className="mt-10 flex flex-col items-center gap-1.5 text-slate-400 text-[11px] font-mono opacity-80">
+        <div className="mt-10 flex flex-col items-center gap-1.5 text-slate-500 dark:text-slate-400 text-[11px] font-mono">
           <span>SCROLL TO EXPLORE 3D SHOWCASE</span>
           <div className="w-5 h-8 rounded-full border-2 border-slate-500/50 flex justify-center p-1">
             <div className="w-1 h-2 bg-teal-400 rounded-full animate-bounce"></div>
@@ -317,17 +330,17 @@ export default function EventCarousel() {
         className="relative z-10 w-full py-8 flex flex-col items-center"
       >
         <div className="text-center mb-4">
-          <p className="text-2xl sm:text-3xl font-bold text-white mt-1">
+          <p className="text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white mt-1">
             Featured Production Systems
           </p>
         </div>
 
         <div className="relative w-full">
           {/* ปุ่ม Navigation ซ้าย-ขวา */}
-          <button className="swiper-prev absolute left-2 sm:left-6 md:left-10 top-1/2 -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-slate-900/60 backdrop-blur-md border border-white/10 text-white/90 shadow-xl transition-all duration-300 hover:bg-teal-500 hover:scale-110 active:scale-95">
+          <button className="swiper-prev absolute left-2 sm:left-6 md:left-10 top-1/2 -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-white dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-white/10 text-slate-800 dark:text-white/90 shadow-lg transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-110 active:scale-95">
             <ChevronLeft size={24} />
           </button>
-          <button className="swiper-next absolute right-2 sm:right-6 md:right-10 top-1/2 -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-slate-900/60 backdrop-blur-md border border-white/10 text-white/90 shadow-xl transition-all duration-300 hover:bg-teal-500 hover:scale-110 active:scale-95">
+          <button className="swiper-next absolute right-2 sm:right-6 md:right-10 top-1/2 -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-white dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-white/10 text-slate-800 dark:text-white/90 shadow-lg transition-all duration-300 hover:bg-teal-500 hover:text-white hover:scale-110 active:scale-95">
             <ChevronRight size={24} />
           </button>
 
@@ -550,17 +563,6 @@ export default function EventCarousel() {
                           Backend Code
                         </button>
                       )}
-
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          navigate(`/event/${item._id || item.id}`);
-                        }}
-                        className="rounded-full bg-slate-800/70 hover:bg-slate-700 text-slate-300 font-medium px-3 py-1.5 text-xs backdrop-blur-md border border-white/10 transition flex items-center gap-1 cursor-pointer"
-                      >
-                        Details →
-                      </button>
                     </div>
                   </div>
                 </SwiperSlide>
@@ -571,12 +573,24 @@ export default function EventCarousel() {
       </section>
 
       {/* ======================================================== */}
-      {/* 3. ABOUT & CONTACT SECTIONS                              */}
+      {/* 3. SKILLS & TECHNOLOGIES SECTION                         */}
       {/* ======================================================== */}
-      <section className="relative z-10 w-full">
-        <AboutPage />
-        <ContactPage />
-      </section>
+      <SkillsSection />
+
+      {/* ======================================================== */}
+      {/* 4. OPEN SOURCE / COMMUNITY / WRITING SECTION             */}
+      {/* ======================================================== */}
+      <CommunitySection />
+
+      {/* ======================================================== */}
+      {/* 5. EXPERIENCE & EDUCATION SECTION                        */}
+      {/* ======================================================== */}
+      <ExperienceSection />
+
+      {/* ======================================================== */}
+      {/* 6. CONTACT SECTION (FOLLOWED BY FOOTER IN ROOT LAYOUT)   */}
+      {/* ======================================================== */}
+      <ContactSection />
 
       <AddDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)}/>
     </div>

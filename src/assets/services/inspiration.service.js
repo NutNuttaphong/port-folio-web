@@ -1,4 +1,4 @@
-import { getAuthHeaders } from '../../utils/apiAuth';
+import { getAuthHeaders, handleAuthError } from '../../utils/apiAuth';
 // const API_URL = 'http://localhost:3000/inspiration';
 
 const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
@@ -7,7 +7,8 @@ const API_URL = `${BASE_URL}/inspiration`;
 export const getInspiration = async () => {
     const response = await fetch(API_URL);
     if (!response.ok) {
-        throw new Error('Failed to fetch inspiration');
+    handleAuthError(response);
+    throw new Error('Failed to fetch inspiration');
     }
     return response.json();
 };
@@ -19,7 +20,8 @@ export const createInspiration = async (formData) => {
     body: formData
     });
     if (!response.ok) {
-        throw new Error('Failed to create inspiration');
+    handleAuthError(response);
+    throw new Error('Failed to create inspiration');
     }
     return response.json();
 };
@@ -32,7 +34,8 @@ export const updateInspiration = async (_id, formData) => {
     body: formData,
     });
     if (!response.ok) {
-        throw new Error('Failed to update inspiration');
+    handleAuthError(response);
+    throw new Error('Failed to update inspiration');
     }
     return response.json();
 };
@@ -43,7 +46,8 @@ export const deleteInspiration = async (_id) => {
    headers: getAuthHeaders(),
     });
     if (!response.ok) {
-        throw new Error('Failed to delete inspiration');
+    handleAuthError(response);
+    throw new Error('Failed to delete inspiration');
     }
     return response.json();
 };

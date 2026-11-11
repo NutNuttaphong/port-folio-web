@@ -6,12 +6,18 @@ function MenuBar({ isDark, setIsDark }) {
   const navigate = useNavigate();
 
   return (
-    <nav className="sticky top-0 z-50 flex items-center justify-between border-b border-gray-200 bg-white/10 px-6 py-4 text-gray backdrop-blur-md">
+    <nav className={`sticky top-0 z-50 flex items-center justify-between border-b px-6 py-4 backdrop-blur-md transition-colors duration-500 ${
+      isDark
+        ? "border-white/10 bg-gray-900/80 text-white"
+        : "border-slate-200/80 bg-white/80 text-slate-900 shadow-sm"
+    }`}>
       <div className="root-bar flex items-center justify-between">
-        {/* โลโก้ EventCo (กดกลับหน้าแรก) */}
+        {/* โลโก้ PortDev */}
         <div
           onClick={() => navigate("/")}
-          className="cursor-pointer text-2xl font-bold tracking-wider transition hover:text-emerald-400 select-none"
+          className={`cursor-pointer text-2xl font-bold tracking-wider transition select-none ${
+            isDark ? "text-white hover:text-emerald-400" : "text-slate-900 hover:text-teal-600"
+          }`}
         >
           PortDev
         </div>
@@ -21,7 +27,11 @@ function MenuBar({ isDark, setIsDark }) {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `transition hover:text-emerald-400 ${isActive ? "text-emerald-400 font-bold" : "text-gray/80"}`
+              `transition ${
+                isActive
+                  ? (isDark ? "text-emerald-400 font-bold" : "text-teal-600 font-bold")
+                  : (isDark ? "text-white/80 hover:text-emerald-400" : "text-slate-600 hover:text-teal-600")
+              }`
             }
           >
             HOME
@@ -29,7 +39,11 @@ function MenuBar({ isDark, setIsDark }) {
           <NavLink
             to="/portfolio"
             className={({ isActive }) =>
-              `transition hover:text-emerald-400 ${isActive ? "text-emerald-400 font-bold" : "text-gray/80"}`
+              `transition ${
+                isActive
+                  ? (isDark ? "text-emerald-400 font-bold" : "text-teal-600 font-bold")
+                  : (isDark ? "text-white/80 hover:text-emerald-400" : "text-slate-600 hover:text-teal-600")
+              }`
             }
           >
             PORTFOLIO
@@ -37,15 +51,21 @@ function MenuBar({ isDark, setIsDark }) {
           <NavLink
             to="/about-us"
             className={({ isActive }) =>
-              `transition hover:text-emerald-400 ${isActive ? "text-emerald-400 font-bold" : "text-gray/80"}`
+              `transition ${
+                isActive
+                  ? (isDark ? "text-emerald-400 font-bold" : "text-teal-600 font-bold")
+                  : (isDark ? "text-white/80 hover:text-emerald-400" : "text-slate-600 hover:text-teal-600")
+              }`
             }
-          >
-            ABOUT US
-          </NavLink>
+          >ABOUT ME</NavLink>
           <NavLink
             to="/event/contacts"
             className={({ isActive }) =>
-              `transition hover:text-emerald-400 ${isActive ? "text-emerald-400 font-bold" : "text-gray/80"}`
+              `transition ${
+                isActive
+                  ? (isDark ? "text-emerald-400 font-bold" : "text-teal-600 font-bold")
+                  : (isDark ? "text-white/80 hover:text-emerald-400" : "text-slate-600 hover:text-teal-600")
+              }`
             }
           >
             CONTACTS
@@ -57,16 +77,16 @@ function MenuBar({ isDark, setIsDark }) {
             to="/login"
             title="Admin Login"
             className={({ isActive }) =>
-              `transition hover:text-emerald-400 cursor-pointer ${
+              `transition cursor-pointer ${
                 isActive
-                  ? "text-emerald-400 font-bold flex items-center gap-1.5 px-2.5 py-1.5 text-xs"
-                  : "flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold text-gray-700 hover:text-emerald-600"
+                  ? (isDark ? "text-emerald-400 font-bold flex items-center gap-1.5 px-2.5 py-1.5 text-xs" : "text-teal-600 font-bold flex items-center gap-1.5 px-2.5 py-1.5 text-xs")
+                  : (isDark ? "flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold text-slate-300 hover:text-white" : "flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900")
               }`
             }
           >
             <span className="flex gap-1.5 items-center cursor-pointer">
               <Lock size={14} className="text-teal-500" />
-              <span className="hidden sm:inline hover:text-emerald-600">Login</span>
+              <span className="hidden sm:inline">Login</span>
             </span>
           </NavLink>
           <DayNightToggle isDark={isDark} setIsDark={setIsDark} />

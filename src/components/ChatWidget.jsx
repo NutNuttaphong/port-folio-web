@@ -34,6 +34,20 @@ export default function ChatWidget() {
 
   const messagesEndRef = useRef(null);
 
+  // Listen to open-chat-widget custom event from anywhere in the app
+  useEffect(() => {
+    const handleOpenWidget = (e) => {
+      setIsOpen(true);
+      if (e?.detail?.viewMode) {
+        setViewMode(e.detail.viewMode);
+      } else {
+        setViewMode("form");
+      }
+    };
+    window.addEventListener("open-chat-widget", handleOpenWidget);
+    return () => window.removeEventListener("open-chat-widget", handleOpenWidget);
+  }, []);
+
   // 2. ดึงประวัติแชท พร้อมระบบ Idle Timeout & Visibility Detection ป้องกันไม่ให้ยิง Server ตลอดเวลาจนไม่ยอม Sleep
   useEffect(() => {
     if (!sessionId || !isOpen) return;

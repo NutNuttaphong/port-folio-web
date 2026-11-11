@@ -57,13 +57,13 @@ function BookingPage() {
   return (
     <div className="flex min-h-[calc(100vh-73px)] w-full items-center justify-center px-4 py-12">
       {/* กล่องการ์ด Login */}
-      <div className="w-full max-w-md rounded-3xl bg-slate-900/80 p-8 sm:p-10 shadow-2xl backdrop-blur-xl border border-white/10 text-white">
+      <div className="w-full max-w-md rounded-3xl bg-white dark:bg-slate-900/80 p-8 sm:p-10 shadow-xl border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white">
         {/* หัวข้อ */}
         <div className="mb-8 text-center">
-          <h2 className="text-3xl  font-bold tracking-tight text-white">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
             Welcome Back
           </h2>
-          <p className="mt-2 text-sm text-slate-400">
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
             Sign in to continue to your bookings
           </p>
         </div>
@@ -80,7 +80,7 @@ function BookingPage() {
 
           {/* ช่องกรอก Username */}
           <div className="flex flex-col gap-1.5 text-left">
-            <label className="text-xs font-medium text-slate-300">
+            <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
               Username
             </label>
             <div className="relative flex items-center">
@@ -91,14 +91,14 @@ function BookingPage() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Enter your username"
-                className="w-full rounded-xl bg-slate-800/80 py-2.5 pl-10 pr-4 text-sm text-white placeholder-slate-500 border border-white/10 focus:border-teal-400 focus:outline-none focus:ring-1 focus:ring-teal-400 transition"
+                className="w-full rounded-xl bg-slate-50 dark:bg-slate-800/80 py-2.5 pl-10 pr-4 text-sm text-slate-900 dark:text-white placeholder-slate-400 border border-slate-300 dark:border-white/10 focus:border-teal-400 focus:outline-none focus:ring-1 focus:ring-teal-400 transition shadow-sm"
               />
             </div>
           </div>
 
           {/* ช่องกรอก Password */}
           <div className="flex flex-col gap-1.5 text-left">
-            <label className="text-xs font-medium text-slate-300">
+            <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
               Password
             </label>
             <div className="relative flex items-center">
@@ -109,7 +109,7 @@ function BookingPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
-                className="w-full rounded-xl bg-slate-800/80 py-2.5 pl-10 pr-4 text-sm text-white placeholder-slate-500 border border-white/10 focus:border-teal-400 focus:outline-none focus:ring-1 focus:ring-teal-400 transition"
+                className="w-full rounded-xl bg-slate-50 dark:bg-slate-800/80 py-2.5 pl-10 pr-4 text-sm text-slate-900 dark:text-white placeholder-slate-400 border border-slate-300 dark:border-white/10 focus:border-teal-400 focus:outline-none focus:ring-1 focus:ring-teal-400 transition shadow-sm"
               />
             </div>
           </div>

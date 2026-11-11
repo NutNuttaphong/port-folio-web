@@ -1,4 +1,4 @@
-import { getAuthHeaders } from '../../utils/apiAuth';
+import { getAuthHeaders, handleAuthError } from '../../utils/apiAuth';
 // src/assets/services/user.service.js
 
 // const API_URL = 'http://localhost:3000/user';
@@ -10,6 +10,7 @@ const API_URL = `${BASE_URL}/user`;
 export const getUser = async () => {
   const response = await fetch(API_URL);
   if (!response.ok) {
+    handleAuthError(response);
     throw new Error('Failed to fetch user information');
   }
   return response.json();
@@ -23,6 +24,7 @@ export const createUser = async (formData) => {
     body: formData,
   });
   if (!response.ok) {
+    handleAuthError(response);
     throw new Error('Failed to create user information');
   }
   return response.json();
@@ -36,6 +38,7 @@ export const updateUser = async (_id, formData) => {
     body: formData,
   });
   if (!response.ok) {
+    handleAuthError(response);
     throw new Error('Failed to update user information');
   }
   return response.json();
@@ -48,6 +51,7 @@ export const deleteUser = async (_id) => {
    headers: getAuthHeaders(),
     });
   if (!response.ok) {
+    handleAuthError(response);
     throw new Error('Failed to delete user information');
   }
   return response.json();

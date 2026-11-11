@@ -72,12 +72,12 @@ export default function EventCarousel() {
 
   return (
     <div className="root">
-      <div className="mb-8 flex flex-col items-cemter gap-2">
-        <div className="text-3xl sm:text-4xl  font-bold tracking-tight">
-          Event Planning Blog
+      <div className="mb-8 flex flex-col items-center gap-2">
+        <div className="text-3xl sm:text-4xl font-bold tracking-tight">
+          Inspirations &amp; Technical Prototypes
         </div>
-        <div>
-          Insights, tips, and inspiration from our event planning experts
+        <div className="text-slate-400 text-sm sm:text-base max-w-xl mx-auto">
+          Creative UI/UX explorations, AI agent orchestration experiments, and modern technology benchmarks.
         </div>
       </div>
 

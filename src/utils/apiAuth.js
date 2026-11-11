@@ -20,3 +20,25 @@ export function getAuthHeaders(existingHeaders = {}) {
   }
   return existingHeaders;
 }
+
+/**
+ * Handle 401 Unauthorized responses across all API services.
+ * Clears stale credentials and redirects to login.
+ */
+export function handleAuthError(response) {
+  if (response && response.status === 401) {
+    try {
+      localStorage.removeItem("currentUser");
+    } catch {
+      // ignore
+    }
+    if (
+      typeof window !== "undefined" &&
+      !window.location.pathname.includes("/login") &&
+      !window.location.pathname.includes("/booking")
+    ) {
+      alert("Your session has expired or authentication is missing. Please log in again.");
+      window.location.href = "/booking";
+    }
+  }
+}

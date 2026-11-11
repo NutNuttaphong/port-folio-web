@@ -1,4 +1,4 @@
-import { getAuthHeaders } from '../../utils/apiAuth';
+import { getAuthHeaders, handleAuthError } from '../../utils/apiAuth';
 // src/services/project.service.js
 
 // const API_URL = 'http://localhost:3000/project';
@@ -10,6 +10,7 @@ const API_URL = `${BASE_URL}/project`;
 export const getProjects = async () => {
   const response = await fetch(API_URL);
   if (!response.ok) {
+    handleAuthError(response);
     throw new Error('Failed to fetch projects');
   }
   return response.json();
@@ -26,6 +27,7 @@ export const createProject = async (formData) => {
   });
   
   if (!response.ok) {
+    handleAuthError(response);
     throw new Error('Failed to create project');
   }
   return response.json();
@@ -39,6 +41,7 @@ export const updateProject = async (_id, formData) => {
   });
   
   if (!response.ok) {
+    handleAuthError(response);
     throw new Error('Failed to Update project');
   }
   return response.json();
@@ -52,6 +55,7 @@ export const deleteProject = async (_id) => {
     });
   
   if (!response.ok) {
+    handleAuthError(response);
     throw new Error('Failed to delete project');
   }
   return response.json();

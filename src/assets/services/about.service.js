@@ -1,4 +1,4 @@
-import { getAuthHeaders } from '../../utils/apiAuth';
+import { getAuthHeaders, handleAuthError } from '../../utils/apiAuth';
 // src/assets/services/about information.service.js
 
 // const API_URL = 'http://localhost:3000/about';
@@ -10,6 +10,7 @@ const API_URL = `${BASE_URL}/about`;
 export const getAbout = async () => {
   const response = await fetch(API_URL);
   if (!response.ok) {
+    handleAuthError(response);
     throw new Error('Failed to fetch about information');
   }
   return response.json();
@@ -23,6 +24,7 @@ export const createAbout = async (formData) => {
     body: formData,
   });
   if (!response.ok) {
+    handleAuthError(response);
     throw new Error('Failed to create about information');
   }
   return response.json();
@@ -36,6 +38,7 @@ export const updateAbout = async (_id, formData) => {
     body: formData,
   });
   if (!response.ok) {
+    handleAuthError(response);
     throw new Error('Failed to update about information');
   }
   return response.json();
@@ -48,6 +51,7 @@ export const deleteAbout = async (_id) => {
    headers: getAuthHeaders(),
     });
   if (!response.ok) {
+    handleAuthError(response);
     throw new Error('Failed to delete about information');
   }
   return response.json();

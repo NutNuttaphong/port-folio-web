@@ -7,7 +7,8 @@ export default function ProtectedRoute() {
   if (user) {
     try {
       const parsed = JSON.parse(user);
-      if (parsed && (parsed.access_token || parsed.userId)) {
+      // Must have valid access_token for backend authentication
+      if (parsed && (parsed.access_token || parsed.token)) {
         isAuthenticated = true;
       }
     } catch {

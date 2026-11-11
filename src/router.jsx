@@ -13,8 +13,9 @@ import Footer from "./assets/footer/footer";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ChatWidget from "./components/ChatWidget";
 
-import AboutPage from "./assets/modules/user/about-page";
-import ContactsPage from "./assets/modules/user/contacts-page";
+// User Routes (Loaded on demand)
+const AboutPage = lazy(() => import("./assets/modules/user/about-page"));
+const ContactsPage = lazy(() => import("./assets/modules/user/contacts-page"));
 
 // ========================================================
 // CODE SPLITTING: LAZY LOADED ROUTE MODULES
@@ -58,15 +59,21 @@ function EventDetailPage() {
 
 function RootLayout() {
   const location = useLocation();
-  const [isDark, setIsDark] = useState(false); // ควบคุมสถานะ Dark/Light ที่นี่
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem("theme_mode");
+    if (saved !== null) return saved === "dark";
+    return true; // Default to dark mode
+  });
   const isHomePage = location.pathname === "/";
   const isAdminPage = location.pathname.startsWith("/table-");
 
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add("dark");
+      localStorage.setItem("theme_mode", "dark");
     } else {
       document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme_mode", "light");
     }
   }, [isDark]);
 
@@ -82,7 +89,7 @@ function RootLayout() {
         <MenuBar isDark={isDark} setIsDark={setIsDark} />
       )}
 
-      <div className={isDark ? "flex w-full bg-[#1a1a1a]" : "flex w-full bg-[#f8fafc]"}>
+      <div className={isDark ? "flex w-full bg-[#0e1a42]" : "flex w-full bg-[#f8fafc]"}>
         {isAdminPage && <Sidebar />}
 
         <div className="flex-1 flex flex-col min-w-0">
@@ -95,7 +102,7 @@ function RootLayout() {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer isDark={isDark} />
       {!isAdminPage && <ChatWidget />}
     </div>
   );

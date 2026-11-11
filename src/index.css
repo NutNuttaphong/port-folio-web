@@ -1,5 +1,6 @@
 
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 @theme {
   /* กำหนดให้ font-sans และ  กลายเป็นฟอนต์เดียวกันทั้งเว็บ */
   --font-sans: 'Prompt', system-ui, sans-serif;
@@ -59,6 +60,11 @@
 
 body {
   margin: 0;
+}
+
+::selection {
+  background-color: rgba(13, 148, 136, 0.45);
+  color: inherit;
 }
 
 #root {

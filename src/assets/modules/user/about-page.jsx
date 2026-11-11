@@ -1,424 +1,193 @@
 import { useOutletContext } from "react-router-dom";
-import slideImage1 from "../../images/image/ai1.png";
-import slideImage2 from "../../images/image/ai2.png";
-import slideImage3 from "../../images/image/ai3.png";
-import slideImage4 from "../../images/image/ai4.png";
-import slideImage5 from "../../images/image/ai5.png";
-import slideImage6 from "../../images/image/ai6.png";
-import slideImage7 from "../../images/image/react.png";
+import StarField from "./start-field";
+import AboutFeaturedCaseStudies from "./home-sections/AboutFeaturedCaseStudies";
+import SkillsSection from "./home-sections/SkillsSection";
+import CommunitySection from "./home-sections/CommunitySection";
+import ExperienceSection from "./home-sections/ExperienceSection";
+import ContactSection from "./home-sections/ContactSection";
+import { Sparkles, MapPin, Briefcase, GraduationCap, Code2, ArrowDown } from "lucide-react";
 
-import angIcon from "../../images/icon/angular.svg";
-import vueIcon from "../../images/icon/vue.svg";
-import reactIcon from "../../images/icon/react.svg";
-import nuxtIcon from "../../images/icon/nuxt.svg";
-import tsIcon from "../../images/icon/ts.svg";
-import javascriptIcon from "../../images/icon/javascript.svg";
-import cssIcon from "../../images/icon/css.svg";
-import tailwindIcon from "../../images/icon/tailwind.svg";
-
-import githubIcon from "../../images/icon/github.svg";
-import bitbucketIcon from "../../images/icon/bitbucket.svg";
-import postmanIcon from "../../images/icon/postman.svg";
-import sourcetreetIcon from "../../images/icon/sourcetree.svg";
-import vscodeIcon from "../../images/icon/vscode.svg";
-import AntigravityIcon from "../../images/icon/Antigravity.svg";
-import GeminiIcon from "../../images/icon/Gemini.svg";
-import gitlabIcon from "../../images/icon/gitlab.svg";
-
-
-const timelineData = [
-  {
-    year: "2018 - 2023",
-    title: "Mae Fah Luang University",
-    description:
-      "Bachelor of Engineering (B.Eng.) in Computer Engineering — School of Information Technology, Mae Fah Luang University",
-  },
-  {
-    year: "2023 - 2026",
-    title: "Be1 Digital Company Limited",
-    description:
-      "Position: Full-Stack & Front-End Developer — Developing high-impact enterprise applications for government organizations and private sectors.",
-  },
-];
-
-const baseSlides = [
-  {
-    _id: 1,
-    tag: "LAUNCH",
-    title:
-      "BASIC TO INTERMEDIATE AI: PRACTICAL AI SKILLS FOR LEARNING, WORKING, AND EARNING",
-    image: slideImage1, // 2. นำตัวแปรมาใส่ที่นี่
-  },
-  {
-    _id: 2,
-    tag: "LAUNCH",
-    title: "ReactJS for Beginners",
-    image: slideImage7, // 2. นำตัวแปรมาใส่ที่นี่
-  },
-  {
-    _id: 3,
-    tag: "LAUNCH",
-    title: "Fundamental Principles of Artificial Intelligence",
-    image: slideImage3, // 2. นำตัวแปรมาใส่ที่นี่
-  },
-  {
-    _id: 4,
-    tag: "LAUNCH",
-    title: " Al for Lifelong Learning and Self-Development",
-    image: slideImage4, // 2. นำตัวแปรมาใส่ที่นี่
-  },
-  {
-    _id: 5,
-    tag: "LAUNCH",
-    title: "Data and Database Fundamentals for AlSystems",
-    image: slideImage5, // 2. นำตัวแปรมาใส่ที่นี่
-  },
-  {
-    _id: 6,
-    tag: "LAUNCH",
-    title: "Al-Driven Workflow and Process Optimization",
-    image: slideImage6, // 2. นำตัวแปรมาใส่ที่นี่
-  },
-  {
-    _id: 7,
-    tag: "LAUNCH",
-    title: "Ethics, Security, and the Future of Al",
-    image: slideImage2, // 2. นำตัวแปรมาใส่ที่นี่
-  },
-];
-
-function AboutPage() {
-  const outletContext = useOutletContext();
-  const isDark = outletContext?.isDark ?? false;
+export default function AboutPage() {
+  const outletCtx = useOutletContext();
+  const isDark = outletCtx?.isDark ?? true;
   return (
-    <div className="root px-5">
-      <div className="flex flex-col items-center gap-4 text-start">
-        <div className="text-3xl sm:text-4xl font-bold tracking-tight">
-          Engineering Profile &amp; About Me
-        </div>
-        <p className="pb-2">
-          <span className="pl-10">Frontend Developer </span>with 3+ years of
-          experience building and maintaining Web Applications using Angular,
-          TypeScript, and JavaScript. Experienced in developing data-driven
-          systems, reusable components, REST API integration, responsive
-          interfaces, and performance optimization. Comfortable collaborating
-          with UX/UI, Backend, QA, and Business teams throughout the development
-          lifecycle. Strong focus on clean, maintainable, and scalable code,
-          while continuously expanding expertise in React.js and modern frontend
-          development.
-        </p>
+    <div className={`relative min-h-[calc(100vh-73px)] w-full flex flex-col items-center overflow-x-hidden transition-colors duration-500 ${
+      isDark
+        ? "bg-gradient-to-b from-[#0e1a42] via-[#09112d] to-[#040714] text-white"
+        : "bg-gradient-to-b from-[#f8fafc] via-[#eef4ff] to-[#f1f5f9] text-slate-900"
+    }`}>
+      {/* Background StarField & Ambient Glows */}
+      {isDark ? (
+        <>
+          <StarField count={220} />
+          <div className="pointer-events-none fixed -top-40 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-teal-500/10 blur-[140px]" />
+          <div className="pointer-events-none fixed top-1/3 left-1/4 h-[450px] w-[450px] rounded-full bg-blue-600/10 blur-[150px]" />
+          <div className="pointer-events-none fixed bottom-10 right-1/4 h-[500px] w-[500px] rounded-full bg-indigo-600/10 blur-[160px]" />
+        </>
+      ) : (
+        <>
+          <div className="pointer-events-none fixed -top-40 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-teal-300/20 blur-[140px]" />
+          <div className="pointer-events-none fixed top-1/3 left-1/4 h-[450px] w-[450px] rounded-full bg-sky-300/25 blur-[150px]" />
+          <div className="pointer-events-none fixed bottom-10 right-1/4 h-[500px] w-[500px] rounded-full bg-indigo-200/25 blur-[160px]" />
+        </>
+      )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 border p-5 rounded-2xl">
-          <div>
-            <p className="font-medium text-lg pb-4">Core Tech Stack</p>
-            <div className="grid grid-cols-2 gap-5">
-              <ul className="space-y-4">
-                <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={angIcon} alt="" />
-                  <span>Angular</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={vueIcon} alt="" />
-                  <span>Vue.js</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={reactIcon} alt="" />
-                  <span>React / Vite</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={nuxtIcon} alt="" />
-                  <span>Nuxt</span>
-                </li>
-              </ul>
+      {/* ======================================================== */}
+      {/* 1. HERO SECTION (IN-DEPTH BIOGRAPHICAL INTRO)            */}
+      {/* ======================================================== */}
+      <header className="relative z-10 w-full max-w-6xl mx-auto px-6 pt-12 sm:pt-16 pb-8">
+        {/* Top Header Badge */}
+        <div className="text-start mb-8">
+          <div className="inline-flex items-center gap-2.5 rounded-full border border-teal-300 dark:border-teal-500/30 bg-teal-50 dark:bg-slate-900/90 px-4 py-1.5 text-xs font-semibold text-teal-900 dark:text-teal-300 backdrop-blur-md shadow-sm mb-4">
+            <span className="flex h-2 w-2 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-400"></span>
+            </span>
+            <span className="tracking-wider uppercase font-semibold">
+              ABOUT ME • PROFESSIONAL PROFILE
+            </span>
+            <span className="text-slate-400 dark:text-slate-600">|</span>
+            <span className="text-teal-800 dark:text-slate-300 font-mono text-[11px]">Nuttaphong S.</span>
+          </div>
 
-              <ul className="space-y-4">
-                <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={tsIcon} alt="" />
-                  <span>TypeScript</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={javascriptIcon} alt="" />
-                  <span>JavaScript</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={cssIcon} alt="" />
-                  <span>CSS</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={tailwindIcon} alt="" />
-                  <span>Tailwind</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div>
-            <p className="font-medium text-lg pb-4">Tools</p>
-            <div className="grid grid-cols-2 gap-5">
-              <ul className="space-y-4">
-                <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={githubIcon} alt="" />
-                  <span></span>
-                  Github
-                </li>
-                <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={gitlabIcon} alt="" />
-                  <span>Gitlab</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={postmanIcon} alt="" />
-                  <span>PostMan</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={sourcetreetIcon} alt="" />
-                  <span>Sourcetree</span>
-                </li>
-              </ul>
-              <ul className="space-y-4">
-                <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={bitbucketIcon} alt="" />
-                  <span>Bitbucket</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={vscodeIcon} alt="" />
-                  <span>VSCode</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={AntigravityIcon} alt="" />
-                  <span>Antigravity</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <img className="w-6 h-6" src={GeminiIcon} alt="" />
-                  <span>Gemini</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-[1.15] max-w-6xl mx-auto text-slate-900 dark:text-white">
+            Crafting{" "}
+            <span className="bg-gradient-to-r from-teal-600 via-sky-600 to-indigo-700 dark:from-teal-300 dark:via-sky-300 dark:to-indigo-300 bg-clip-text text-transparent">
+              Scalable Software
+            </span>{" "}
+            with Precision &amp; Purpose
+          </h1>
         </div>
 
-        {/* ======================================================== */}
-        {/* LOOP & AI AGENT ENGINEERING SECTION (DARK / LIGHT THEME) */}
-        {/* ======================================================== */}
-        <div
-          className={`mt-8 w-full rounded-2xl border p-6 sm:p-8 transition-all duration-500 shadow-xl `}
-        >
-          <div className="flex items-center gap-3 mb-4">
-            <div
-              className={`flex h-10 w-10 items-center justify-center rounded-xl border text-lg transition-colors duration-500 shrink-0 `}
-            >
-              🔄
-            </div>
-            <div>
-              <h3
-                className={`text-lg font-bold tracking-wide transition-colors duration-500 `}
-              >
-                Loop &amp; AI Agent Engineering
-              </h3>
-              <p
-                className={`text-xs font-mono transition-colors duration-500 `}
-              >
-                Autonomous Coding Loops, Quality Gates &amp; Safety Harness
-                Architecture
+        {/* 2-Column Biographical Presentation */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          {/* Left Column: Authentic Story Narrative */}
+          <div className="lg:col-span-7 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/80 shadow-md shadow-slate-200/60 dark:shadow-none p-6 sm:p-10 backdrop-blur-xl flex flex-col justify-between text-left">
+            <div className="space-y-4 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed font-normal text-left">
+              <div className="flex items-center gap-2 text-teal-800 dark:text-teal-400 font-mono text-xs font-bold uppercase tracking-wider mb-2">
+                <Sparkles size={16} />
+                <span>My Journey &amp; Engineering Philosophy</span>
+              </div>
+              <p className="text-left">
+                Hi, I'm <strong className="text-slate-900 dark:text-white font-semibold">Nuttaphong</strong> — Frontend Software Engineer dedicated to architecting resilient, high-performance web systems that scale seamlessly.
+              </p>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed text-left">
+                My software journey began with a Bachelor's degree in Computer Engineering at <strong>Mae Fah Luang University</strong>, where I developed a rigorous grounding in distributed algorithms, database systems, and low-level computer architecture.
+              </p>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed text-left">
+                Over the past 3+ years at <strong>Be1 Digital Co., Ltd.</strong>, I have engineered enterprise-grade web applications for both public sector institutions and private enterprises. I specialize in building robust clients with <strong>Angular</strong>, backed by hardened microservices and <strong>MongoDB</strong> NoSQL schemas.
+              </p>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed text-left">
+                I strongly advocate for <strong>Loop Engineering</strong> — shifting from manual, one-off AI prompting to closed-loop autonomous coding agent systems governed by strict automated quality gates, linting, and testing harnesses.
               </p>
             </div>
-          </div>
 
-          <p
-            className={`text-xs sm:text-sm leading-relaxed mb-6 transition-colors duration-500 `}
-          >
-            Specialized in designing{" "}
-            <strong
-              className={
-                isDark
-                  ? "text-teal-300 font-semibold"
-                  : "text-teal-900 font-semibold"
-              }
-            >
-              Closed-Loop AI Workflows
-            </strong>{" "}
-            with leading AI Agents like Antigravity and Gemini —
-            advancing beyond one-off prompting into autonomous{" "}
-            <strong
-              className={
-                isDark
-                  ? "text-teal-300 font-semibold"
-                  : "text-teal-900 font-semibold"
-              }
-            >
-              Engineering Loops
-            </strong>{" "}
-            where AI agents analyze requirements, formulate plans, write code, run automated tests,
-            and self-correct within strictly sandboxed safety guardrails.
-          </p>
-
-          {/* 4 Pillars Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-            {/* Pillar 1 */}
-            <div
-              className={`rounded-xl border p-4 transition-all duration-300 flex flex-col justify-between `}
-            >
-              <div>
-                <div
-                  className={`font-semibold mb-1.5 flex items-center gap-2 text-xs sm:text-sm transition-colors duration-500`}
-                >
-                  <span>⚡</span> Agentic Execution Loops
-                </div>
-                <p
-                  className={`leading-relaxed text-xs transition-colors duration-500 `}
-                >
-                  Architects Plan ➔ Execute ➔ Validate ➔ Self-Correct execution cycles to reliably ship production-ready features without manual micromanagement.
-                </p>
-              </div>
-            </div>
-
-            {/* Pillar 2 */}
-            <div
-              className={`rounded-xl border p-4 transition-all duration-300 flex flex-col justify-between `}
-            >
-              <div>
-                <div
-                  className={`font-semibold mb-1.5 flex items-center gap-2 text-xs sm:text-sm transition-colors duration-500 ${
-                    isDark ? "text-sky-300" : "text-sky-700 font-bold"
-                  }`}
-                >
-                  <span>🛡️</span> Harness &amp; Safety Guardrails
-                </div>
-                <p
-                  className={`leading-relaxed text-xs transition-colors duration-500 `}
-                >
-                  Establishes containment harnesses to govern token and quota budgets, configure strict stop conditions, and sandbox file system permissions.
-                </p>
-              </div>
-            </div>
-
-            {/* Pillar 3 */}
-            <div
-              className={`rounded-xl border p-4 transition-all duration-300 flex flex-col justify-between `}
-            >
-              <div>
-                <div
-                  className={`font-semibold mb-1.5 flex items-center gap-2 text-xs sm:text-sm transition-colors duration-500 `}
-                >
-                  <span>🧪</span> Automated Quality Gates
-                </div>
-                <p
-                  className={`leading-relaxed text-xs transition-colors duration-500 `}
-                >
-                  Embeds automated production builds, static linting, and unit test suites directly into agent loops to ensure verified code prior to deployment.
-                </p>
-              </div>
-            </div>
-
-            {/* Pillar 4 */}
-            <div
-              className={`rounded-xl border p-4 transition-all duration-300 flex flex-col justify-between `}
-            >
-              <div>
-                <div
-                  className={`font-semibold mb-1.5 flex items-center gap-2 text-xs sm:text-sm transition-colors duration-500 `}
-                >
-                  <span>🤝</span> Human-in-the-Loop Escalation
-                </div>
-                <p
-                  className={`leading-relaxed text-xs transition-colors duration-500 `}
-                >
-                  Identifies Architecture Decision Points where the AI escalates back to human judgment for critical business and architectural choices.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full my-5">
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          {/* Section Title */}
-          <div className="text-center mb-16">
-            <div className="text-3xl sm:text-4xl  font-bold tracking-tight">
-              Time line
+            <div className="pt-6 mt-6 border-t border-slate-200 dark:border-white/10 flex flex-wrap items-center gap-3">
+              <a
+                href="#featured-projects"
+                className="inline-flex items-center gap-2 rounded-xl bg-teal-400 px-5 py-2.5 text-xs font-bold text-slate-950 transition hover:bg-teal-300 active:scale-95 cursor-pointer shadow-md shadow-teal-500/20"
+              >
+                <span>View Case Studies</span>
+                <ArrowDown size={14} />
+              </a>
+              <a
+                href="https://github.com/NutNuttaphong"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 dark:border-white/15 bg-white dark:bg-slate-800/80 px-4 py-2.5 text-xs font-semibold text-slate-800 dark:text-slate-200 transition hover:border-teal-400 hover:text-teal-700 dark:hover:text-teal-300 hover:bg-teal-100/70 dark:hover:bg-slate-700/80 shadow-sm active:scale-95 cursor-pointer"
+              >
+                <span>GitHub Repositories ↗</span>
+              </a>
             </div>
           </div>
 
-          {/* Timeline Container */}
-          <div className="relative max-w-5xl mx-auto">
-            {/* Center Vertical Line (จอมือถืออยู่ซ้าย จอใหญ่ตรงกลาง) */}
-            <div className="absolute top-0 bottom-0 left-4 md:left-1/2 w-0.5 -translate-x-1/2 bg-teal-200" />
-
-            <div className="flex flex-col gap-12 md:gap-16">
-              {timelineData.map((item, index) => {
-                const isLeft = index % 2 === 0;
-
-                return (
-                  <div
-                    key={item.year}
-                    className="relative flex items-center md:justify-between"
-                  >
-                    {/* Timeline Dot */}
-                    <div className="absolute left-4 md:left-1/2 -translate-x-1/2 z-10 flex items-center justify-center">
-                      <div className="h-3.5 w-3.5 rounded-full bg-teal-500 ring-4 ring-white" />
-                    </div>
-
-                    {/* Content Box */}
-                    <div
-                      className={`ml-10 md:ml-0 md:w-[45%] ${
-                        isLeft
-                          ? "md:mr-auto text-left md:text-right"
-                          : "md:ml-auto text-left"
-                      }`}
-                    >
-                      <div className="group relative rounded-2xl border border-teal-100 bg-white/90 p-6 sm:p-8 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md hover:border-teal-300">
-                        {/* Year */}
-                        <span className="text-2xl font-bold tracking-wide text-teal-600 block mb-1">
-                          {item.year}
-                        </span>
-
-                        {/* Title */}
-                        <h3 className="text-lg  font-bold text-slate-800 mb-3">
-                          {item.title}
-                        </h3>
-
-                        {/* Description */}
-                        <p className="text-sm leading-relaxed text-slate-600">
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
+          {/* Right Column: Quick Profile & Core Metrics */}
+          <div className="lg:col-span-5 rounded-3xl border border-slate-200 dark:border-teal-500/30 bg-white dark:bg-slate-900/80 shadow-md shadow-slate-200/60 dark:shadow-none p-6 sm:p-8 backdrop-blur-xl flex flex-col justify-between text-left">
+            <div>
+              <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-200 dark:border-white/10">
+                <div className="h-12 w-12 rounded-2xl bg-gradient-to-tr from-teal-400 to-blue-500 p-0.5 shadow-md">
+                  <div className="h-full w-full rounded-2xl bg-white dark:bg-slate-950 flex items-center justify-center font-bold text-teal-800 dark:text-teal-300 text-lg shadow-inner dark:shadow-none">
+                    N
                   </div>
-                );
-              })}
+                </div>
+                <div>
+                  <h3 className="text-start text-base font-bold text-slate-900 dark:text-white">Nuttaphong S.</h3>
+                  <p className="text-xs text-teal-700 dark:text-teal-300 font-mono font-medium">Full-Stack &amp; Loop Engineer</p>
+                </div>
+              </div>
+
+              {/* Attributes List */}
+              <div className="space-y-3.5 text-xs">
+                <div className="flex items-start gap-2.5">
+                  <MapPin size={16} className="text-teal-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-slate-500 text-start dark:text-slate-400 block text-[11px]">Location</span>
+                    <span className="text-slate-800 dark:text-white font-medium">Bangkok, Thailand 🇹🇭 (Remote / Hybrid)</span>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2.5">
+                  <Briefcase size={16} className="text-sky-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-slate-500 text-start dark:text-slate-400 block text-[11px]">Industry Experience</span>
+                    <span className="text-slate-800 dark:text-white font-medium">3+ Years Enterprise Development (Be1 Digital)</span>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2.5">
+                  <GraduationCap size={16} className="text-emerald-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-slate-500 text-start dark:text-slate-400 block text-[11px]">Education</span>
+                    <span className="text-slate-800 dark:text-white font-medium">B.Eng. Computer Engineering (MFU)</span>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2.5">
+                  <Code2 size={16} className="text-indigo-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-slate-500 text-start dark:text-slate-400 block text-[11px]">Core Tech Stack</span>
+                    <span className="text-slate-800 dark:text-white font-medium">React 18, NestJS, MongoDB, TypeScript</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Metrics Chips */}
+            <div className="pt-6 mt-6 border-t border-slate-200 dark:border-white/10 grid grid-cols-2 gap-2 text-center font-mono">
+              <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none">
+                <span className="text-teal-700 dark:text-teal-400 font-bold text-base block">3+</span>
+                <span className="text-[10px] text-slate-600 dark:text-slate-400 font-medium">Years Experience</span>
+              </div>
+              <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-teal-200 dark:border-teal-500/30 shadow-sm dark:shadow-none">
+                <span className="text-teal-800 dark:text-teal-300 font-bold text-base block">100%</span>
+                <span className="text-[10px] text-slate-600 dark:text-slate-400 font-medium">Full-Stack Coverage</span>
+              </div>
             </div>
           </div>
-        </section>
-      </div>
-
-      <div className="w-full my-16">
-        <div className="flex gap-2 justify-center mb-6 w-full">
-          <div className="text-3xl sm:text-4xl  font-bold tracking-tight">
-            Certifigcate
-          </div>
         </div>
+      </header>
 
-        <div>
-          <div className="p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 justify-items-center">
-            {baseSlides.map((item) => (
-              <div key={item._id} className="flex flex-col items-center gap-4">
-                <div
-                  key={item._id}
-                  className="group relative h-[240px] w-[auto] overflow-hidden cursor-pointer shadow-lg transition-transform duration-300"
-                >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className=" w-full h-full"
-                  />
-                </div>
-                <div className="text-center font-semibold">{item.title}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* ======================================================== */}
+      {/* 2. FEATURED PROJECTS (ARCHITECTURAL CASE STUDIES)        */}
+      {/* ======================================================== */}
+      <AboutFeaturedCaseStudies />
+
+      {/* ======================================================== */}
+      {/* 3. SKILLS & TECHNOLOGIES SECTION                         */}
+      {/* ======================================================== */}
+      <SkillsSection />
+
+      {/* ======================================================== */}
+      {/* 4. OPEN SOURCE / COMMUNITY / WRITING SECTION             */}
+      {/* ======================================================== */}
+      <CommunitySection />
+
+      {/* ======================================================== */}
+      {/* 5. EXPERIENCE & EDUCATION SECTION                        */}
+      {/* ======================================================== */}
+      <ExperienceSection />
+
+      {/* ======================================================== */}
+      {/* 6. CONTACT SECTION (FOLLOWED BY FOOTER IN ROOT LAYOUT)   */}
+      {/* ======================================================== */}
+      <ContactSection />
     </div>
   );
 }
-
-export default AboutPage;

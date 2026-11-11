@@ -1,4 +1,4 @@
-import { getAuthHeaders } from '../../utils/apiAuth';
+import { getAuthHeaders, handleAuthError } from '../../utils/apiAuth';
 // src/assets/services/port.service.js
 
 // const API_URL = 'http://localhost:3000/portfolio';
@@ -10,6 +10,7 @@ const API_URL = `${BASE_URL}/portfolio`;
 export const getPort = async () => {
   const response = await fetch(API_URL);
   if (!response.ok) {
+    handleAuthError(response);
     throw new Error('Failed to fetch portfolios');
   }
   return response.json();
@@ -23,6 +24,7 @@ export const createPort = async (formData) => {
     body: formData,
   });
   if (!response.ok) {
+    handleAuthError(response);
     throw new Error('Failed to create portfolio');
   }
   return response.json();
@@ -36,6 +38,7 @@ export const updatePort = async (_id, formData) => {
     body: formData,
   });
   if (!response.ok) {
+    handleAuthError(response);
     throw new Error('Failed to update portfolio');
   }
   return response.json();
@@ -48,6 +51,7 @@ export const deletePort = async (_id) => {
    headers: getAuthHeaders(),
     });
   if (!response.ok) {
+    handleAuthError(response);
     throw new Error('Failed to delete portfolio');
   }
   return response.json();
