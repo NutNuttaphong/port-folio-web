@@ -7,5 +7,8 @@ export const getImageUrl = (url) => {
   if (url.startsWith('/uploads/')) {
     return `${baseUrl}${url}`;
   }
+  if (url.startsWith('uploads/')) {
+    return `${baseUrl}/${url}`;
+  }
   return url;
 };
