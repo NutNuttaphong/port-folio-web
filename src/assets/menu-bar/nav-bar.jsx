@@ -68,7 +68,8 @@ function NavBar({ isDark, setIsDark }) {
       {/* Action Buttons: Download CV, Login, DayNightToggle */}
       <div className="flex items-center gap-2.5 sm:gap-3">
         <a
-          href="/Nuttaphong-Resume.pdf"
+          href="/Nuttaphong_Samipak_CV.pdf"
+          download="Nuttaphong_Samipak_CV.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 rounded-lg bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold px-3 sm:px-4 py-2 text-xs sm:text-sm transition shadow-sm shadow-teal-500/20 active:scale-95 cursor-pointer"

@@ -19,12 +19,12 @@ export default function ExperienceSection() {
           text: "Built responsive interfaces with Tailwind CSS in web applications used across mobile devices.",
         },
         {
-          text: "Improved web performance with lazy loading and shared reusable components, reducing duplication code across the project ",
-          badges: ["[reduced up to 15%]", "[2024 performance]"],
+          text: "Improved web performance with lazy loading and shared reusable components, reducing duplication code and the amount loaded up front.",
+          badges: ["[ADD result if known]"],
         },
         {
-          text: "Edited tools and code when needed to support front-end requirements. ",
-          badges: ["[SPECIFY what, e.g. API response tune]"],
+          text: "Edited back-end code when needed to support front-end requirements. ",
+          badges: ["[SPECIFY what, e.g. API response fields]"],
         },
         {
           text: "Collaborated with UI/UX designers, QA engineers and Back-end developers.",
@@ -66,20 +66,25 @@ export default function ExperienceSection() {
       </div>
 
       {/* Timeline with vertical line on left */}
-      <div className="relative pl-6 sm:pl-8 border-l-2 border-teal-500/30 space-y-8 sm:space-y-10">
+      <div className="relative pl-6 sm:pl-8 space-y-8 sm:space-y-10">
         {experiences.map((item, idx) => {
           const isWork = item.type === "work";
+          const isLast = idx === experiences.length - 1;
           return (
             <div key={item.period} className="relative text-left">
-              {/* Timeline Node Dot */}
-              <div className="absolute -left-[31px] sm:-left-[39px] top-1.5 flex items-center justify-center">
+              {/* Connecting vertical line to next item (seamlessly joins Node 1 to Node 2) */}
+              {!isLast && (
+                <div className="absolute -left-[15px] sm:-left-[17px] top-[35px] sm:top-[39px] -bottom-[67px] sm:-bottom-[79px] w-[2px] bg-gradient-to-b from-teal-400 via-teal-400/80 to-teal-500/50 pointer-events-none" />
+              )}
+
+              {/* Timeline Node (Centered precisely on the timeline axis) */}
+              <div className="absolute -left-[21px] sm:-left-[23px] top-[28px] sm:top-[32px] flex items-center justify-center pointer-events-none z-10">
                 {isWork ? (
-                  <span className="relative flex h-4 w-4">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-4 w-4 bg-teal-400 border-2 border-[#080d1a]"></span>
+                  <span className="relative flex h-3.5 w-3.5 items-center justify-center">
+                    <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-teal-400 border-2 border-[#080d1a] shadow-[0_0_10px_rgba(45,212,191,0.95)]"></span>
                   </span>
                 ) : (
-                  <div className="h-4 w-4 rounded-full border-2 border-indigo-400 bg-[#080d1a]" />
+                  <div className="h-3.5 w-3.5 rounded-full border-2 border-teal-400 bg-[#080d1a] shadow-[0_0_6px_rgba(45,212,191,0.4)]" />
                 )}
               </div>
 
@@ -121,7 +126,7 @@ export default function ExperienceSection() {
                 <ul className="space-y-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
                   {item.highlights.map((h, i) => (
                     <li key={i} className="flex items-start gap-2.5">
-                      <span className="text-teal-400 mt-0.5 font-bold shrink-0">•</span>
+                      <span className="text-teal-400 mt-0.5 font-bold shrink-0 text-xs">✓</span>
                       <div>
                         <span>{h.text}</span>
                         {h.badges && h.badges.map((b, bIdx) => (

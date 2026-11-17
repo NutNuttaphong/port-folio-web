@@ -17,12 +17,12 @@ export default function SkillsSection() {
       icon: Code2,
       accent: "text-teal-400 bg-teal-500/10 border-teal-500/30",
       description:
-        "Building progressive web applications with reusable components, clean state management and lazy loading.",
+        "Building responsive web applications with reusable components, clean state management and lazy loading.",
       skills: [
         { name: "Angular", icon: angIcon, highlight: true },
-        { name: "React", icon: reactIcon },
-        { name: "TypeScript", icon: tsIcon },
-        { name: "Tailwind CSS", icon: tailwindIcon },
+        { name: "React", icon: reactIcon, highlight: true  },
+        { name: "TypeScript", icon: tsIcon, highlight: true  },
+        { name: "Tailwind CSS", icon: tailwindIcon, highlight: true  },
         { name: "JavaScript (ES6+)" },
         { name: "HTML5 & CSS3" },
         { name: "Responsive Design" },
@@ -33,10 +33,11 @@ export default function SkillsSection() {
       icon: Server,
       accent: "text-sky-400 bg-sky-500/10 border-sky-500/30",
       description:
-        "REST APIs and work with NodeJS, REST APIs, JWT authentication and CORS settings, and adjusting tools and rules to support front-end needs.",
+        "Basic back-end work with Nest.JS: REST APIs, JWT authentication and CORS settings, and adjusting back-end code to support front-end needs.",
       skills: [
-        { name: "NodeJS", highlight: true },
-        { name: "RESTful APIs" },
+        { name: "NestJS", highlight: true },
+        { name: "RESTful APIs", highlight: true },
+        { name: "NodeJS" },
         { name: "Express.js" },
         { name: "JWT Auth & Guards" },
         { name: "CORS Hardening" },
@@ -48,7 +49,7 @@ export default function SkillsSection() {
       icon: Database,
       accent: "text-emerald-400 bg-emerald-500/10 border-emerald-500/30",
       description:
-        "Manageable schemas and indexes for the portfolio API, and SQL for the FMS system.",
+        "MongoDB schemas and indexes for the portfolio API, and SQL for the FMS system.",
       skills: [
         { name: "MongoDB", highlight: true },
         { name: "SQL" },
@@ -62,10 +63,10 @@ export default function SkillsSection() {
       icon: Wrench,
       accent: "text-indigo-400 bg-indigo-500/10 border-indigo-500/30",
       description:
-        "Version control, CI/CD testing and deployment on Vercel and Railway.",
+        "Version control, API testing and deployment on Vercel and Railway.",
       skills: [
         { name: "GitHub & Actions", icon: githubIcon, highlight: true },
-        { name: "Vercel & Railway" },
+        { name: "Vercel & Railway", highlight: true },
         { name: "GitLab", icon: gitlabIcon },
         { name: "Bitbucket", icon: bitbucketIcon },
         { name: "Postman", icon: postmanIcon },
@@ -76,7 +77,10 @@ export default function SkillsSection() {
   ];
 
   return (
-    <section id="skills" className="relative z-10 w-full max-w-5xl mx-auto px-6 py-12">
+    <section
+      id="skills"
+      className="relative z-10 w-full max-w-5xl mx-auto px-6 py-12"
+    >
       {/* Left-Aligned Heading */}
       <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-8 text-left">
         Skills

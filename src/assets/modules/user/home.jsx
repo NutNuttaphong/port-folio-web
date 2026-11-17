@@ -205,7 +205,7 @@ export default function Home() {
 
         {/* Profile Image & Name Heading */}
         <div className="flex items-center gap-5 sm:gap-6 mb-5">
-          <div className="relative shrink-0">
+          <div className="relative shrink-0 h-24 w-24 sm:h-44 sm:w-44 rounded-full border-2 border-teal-400 overflow-hidden shadow-lg shadow-teal-500/20">
             <img
               src={adminAvatar}
               alt="Nuttaphong Samipak"
@@ -213,7 +213,7 @@ export default function Home() {
                 e.currentTarget.onerror = null;
                 e.currentTarget.src = avatarImg;
               }}
-              className="h-16 w-16 sm:h-20 sm:w-20 rounded-full border-2 border-teal-400 object-cover shadow-lg shadow-teal-500/20"
+              className="h-full w-full object-cover scale-[1.8] origin-[58%_49%]"
             />
           </div>
           <div>
@@ -228,7 +228,7 @@ export default function Home() {
 
         {/* Bio Paragraph */}
         <p className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-300/90 leading-relaxed max-w-2xl text-left">
-          3+ years building responsive web applications with Angular, React and
+          3+ years building responsive web applications with Angular and
           TypeScript for government and enterprise clients.
         </p>
 
@@ -292,9 +292,8 @@ export default function Home() {
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-1.5">
               Projects
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl">
-              Front-end and full-stack work. Each card shows what the project is
-              and the tech used. Swipe or use the arrow to browse.
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl">
+              Front-end work first. Each card shows what the project is and the stack used. Swipe or use the arrow to browse.
             </p>
           </div>
 
@@ -324,17 +323,17 @@ export default function Home() {
               1024: { slidesPerView: 3, spaceBetween: 20 },
             }}
             onSlideChange={(swiper) => setActiveSlideIndex(swiper.realIndex)}
-            className="w-full pb-8"
+            className="w-full pb-8 projects-swiper"
           >
             {slides.map((item) => (
-              <SwiperSlide key={item.id} className="h-auto">
+              <SwiperSlide key={item.id} className="!h-auto !flex flex-col">
                 <div
                   onClick={() => handleCardClick(item)}
-                  className="group h-full rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white/80 dark:bg-[#0c1326]/90 p-5 backdrop-blur-md shadow-sm transition-all duration-300 hover:border-teal-500/40 hover:-translate-y-1 hover:shadow-xl hover:shadow-teal-500/5 cursor-pointer flex flex-col justify-between"
+                  className="group flex-1 w-full rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white/80 dark:bg-[#0c1326]/90 p-5 backdrop-blur-md shadow-sm transition-all duration-300 hover:border-teal-500/40 hover:-translate-y-1 hover:shadow-xl hover:shadow-teal-500/5 cursor-pointer flex flex-col justify-between"
                 >
-                  <div>
+                  <div className="flex-1 flex flex-col">
                     {/* Top Screenshot Area / Graphic */}
-                    <div className="relative h-40 w-full rounded-xl overflow-hidden bg-slate-900/90 border border-slate-200/80 dark:border-white/5 flex items-center justify-center p-4 text-center">
+                    <div className="relative h-40 w-full rounded-xl overflow-hidden bg-slate-900/90 border border-slate-200/80 dark:border-white/5 flex items-center justify-center p-4 text-center shrink-0">
                       {item.imageUrl ? (
                         <img
                           src={getImageUrl(item.imageUrl)}
@@ -351,31 +350,31 @@ export default function Home() {
                     </div>
 
                     {/* Dashed Separator Line */}
-                    <div className="border-t border-dashed border-slate-200 dark:border-white/10 my-4" />
+                    <div className="border-t border-dashed border-slate-200 dark:border-white/10 my-4 shrink-0" />
 
                     {/* Category Tag */}
-                    <span className="text-[11px] font-mono font-bold text-teal-600 dark:text-teal-400 block mb-1">
+                    <span className="text-[11px] font-mono font-bold text-teal-600 dark:text-teal-400 block mb-1 shrink-0">
                       {item.tag || "Web App"}
                     </span>
 
                     {/* Title */}
-                    <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-wide mb-2">
+                    <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-wide mb-2 line-clamp-1 shrink-0">
                       {item.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-4">
+                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4 flex-1 line-clamp-3">
                       {item.description}
                     </p>
 
                     {/* Tech Text */}
-                    <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400 leading-normal mb-4">
+                    <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400 leading-normal mb-4 shrink-0 line-clamp-1">
                       {item.techText}
                     </p>
                   </div>
 
                   {/* Action Link at Bottom */}
-                  <div className="pt-2 border-t border-slate-200/50 dark:border-white/5 flex items-center justify-between">
+                  <div className="pt-3 border-t border-slate-200/50 dark:border-white/5 flex items-center justify-between shrink-0 mt-auto">
                     <span className="text-xs font-bold text-teal-600 dark:text-teal-400 flex items-center gap-1 group-hover:underline">
                       <span>{item.urlProject ? "Live Demo ↗" : "1 Auto Builder's"}</span>
                     </span>

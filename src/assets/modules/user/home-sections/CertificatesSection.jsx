@@ -62,7 +62,7 @@ export default function CertificatesSection() {
       {/* Top Tag & Header */}
       <div className="text-left mb-6">
         <span className="text-[11px] font-mono font-bold tracking-wider text-teal-400 uppercase block mb-1.5">
-          CONTINUOUS LEARNING
+          CERTIFIED KNOWLEDGE
         </span>
         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
           Certificates &amp; Credentials

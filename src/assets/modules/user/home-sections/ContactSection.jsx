@@ -17,7 +17,7 @@ export default function ContactSection() {
           Get in touch
         </h2>
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
-          Available for remote / hybrid roles. Email is the fastest way to reach me.
+          Available for Remote / Hybrid Front-end roles. Email is the fastest way to reach me.
         </p>
 
         {/* 3 Contact Columns */}
@@ -67,7 +67,8 @@ export default function ContactSection() {
         {/* Dual Action Buttons */}
         <div className="flex flex-wrap items-center gap-3.5 pt-2">
           <a
-            href="/Nuttaphong-Resume.pdf"
+            href="/Nuttaphong_Samipak_CV.pdf"
+            download="Nuttaphong_Samipak_CV.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-xl bg-teal-400 hover:bg-teal-300 px-5 py-2.5 text-xs sm:text-sm font-bold text-slate-950 transition shadow-sm shadow-teal-500/20 active:scale-95 cursor-pointer"
