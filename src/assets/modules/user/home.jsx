@@ -10,6 +10,7 @@ import "swiper/css/pagination";
 
 import StarField from "./start-field";
 import HomeService from "../../services/project.service";
+import { getUser } from "../../services/user.service";
 import avatarImg from "../../images/profile-avatar.png";
 import slideImage1 from "../../images/ahmetyuksek-autumn-bend-10069119_1920.jpg";
 import { getImageUrl } from "../../../utils/imageUrl";
@@ -86,6 +87,34 @@ export default function Home() {
   const [slides, setSlides] = useState(baseSlides);
   const [isLoading, setIsLoading] = useState(false);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const [adminAvatar, setAdminAvatar] = useState(avatarImg);
+
+  useEffect(() => {
+    const fetchAdminAvatar = async () => {
+      try {
+        const users = await getUser();
+        if (Array.isArray(users) && users.length > 0) {
+          const adminUser =
+            users.find(
+              (u) =>
+                u.imageUrl &&
+                (u.role?.toLowerCase().includes("admin") ||
+                  u.username?.toLowerCase().includes("admin")),
+            ) ||
+            users.find((u) => u.imageUrl) ||
+            users[0];
+
+          if (adminUser?.imageUrl) {
+            setAdminAvatar(getImageUrl(adminUser.imageUrl));
+          }
+        }
+      } catch (err) {
+        console.warn("Could not load user admin avatar, using fallback:", err);
+      }
+    };
+
+    fetchAdminAvatar();
+  }, []);
 
   useEffect(() => {
     const fetchSlides = async () => {
@@ -178,8 +207,12 @@ export default function Home() {
         <div className="flex items-center gap-5 sm:gap-6 mb-5">
           <div className="relative shrink-0">
             <img
-              src={avatarImg}
+              src={adminAvatar}
               alt="Nuttaphong Samipak"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = avatarImg;
+              }}
               className="h-16 w-16 sm:h-20 sm:w-20 rounded-full border-2 border-teal-400 object-cover shadow-lg shadow-teal-500/20"
             />
           </div>
