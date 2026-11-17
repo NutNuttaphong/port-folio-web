@@ -1,7 +1,24 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer({ isDark }) {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
+  if (isHomePage) {
+    return (
+      <footer className={`w-full transition-colors duration-500 border-t ${
+        isDark
+          ? "bg-[#080d1a] text-slate-400 border-white/10"
+          : "bg-slate-100 text-slate-600 border-slate-200"
+      }`}>
+        <div className="max-w-5xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-medium">
+          <span className="text-slate-400">Nuttaphong Samipak • Front-End Developer</span>
+          <span className="text-slate-500">© 2026 Nuttaphong Samipak</span>
+        </div>
+      </footer>
+    );
+  }
   return (
     <footer className={`transition-colors duration-500 border-t ${
       isDark

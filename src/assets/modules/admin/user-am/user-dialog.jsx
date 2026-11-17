@@ -38,7 +38,9 @@ const AddUserDialog = ({ isOpen, onClose, onUserSaved, user }) => {
       const formData = new FormData();
       formData.append("title", title);
       formData.append("username", username);
-      formData.append("password", password);
+      if (password && password.trim() !== "") {
+        formData.append("password", password);
+      }
       formData.append("role", role);
 
       if (image) {
