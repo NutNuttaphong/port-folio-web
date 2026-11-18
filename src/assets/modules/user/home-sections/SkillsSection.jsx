@@ -107,12 +107,12 @@ export default function SkillsSection() {
                 </div>
 
                 {/* Description */}
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300/90 leading-relaxed mb-5 text-left">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300/90 leading-relaxed mb-5 pb-4 text-left">
                   {cat.description}
                 </p>
 
                 {/* Skill Pills */}
-                <div className="flex flex-wrap gap-2 mt-2">
+                <div className="flex flex-wrap gap-2">
                   {cat.skills.map((s) => (
                     <span
                       key={s.name}

@@ -235,7 +235,7 @@ export default function Home() {
         {/* 4-Column Meta / Stats Bar */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-5 pb-2 text-left border-t border-slate-200 dark:border-white/10 mt-6">
           <div>
-            <span className="text-[11px] font-mono text-slate-400 block mb-1">
+            <span className="text-[14px] font-mono text-slate-400 block mb-1">
               Experience
             </span>
             <span className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
@@ -243,7 +243,7 @@ export default function Home() {
             </span>
           </div>
           <div>
-            <span className="text-[11px] font-mono text-slate-400 block mb-1">
+            <span className="text-[14px] font-mono text-slate-400 block mb-1">
               Main Stack
             </span>
             <span className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
@@ -251,7 +251,7 @@ export default function Home() {
             </span>
           </div>
           <div>
-            <span className="text-[11px] font-mono text-slate-400 block mb-1">
+            <span className="text-[14px] font-mono text-slate-400 block mb-1">
               Work style
             </span>
             <span className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
@@ -259,7 +259,7 @@ export default function Home() {
             </span>
           </div>
           <div>
-            <span className="text-[11px] font-mono text-slate-400 block mb-1">
+            <span className="text-[14px] font-mono text-slate-400 block mb-1">
               Location
             </span>
             <span className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
