@@ -1,4 +1,5 @@
-import { Mail, Phone, MessageSquare } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Mail, Phone, MessageSquare, FileText } from "lucide-react";
 import githubIcon from "../../../images/icon/github.svg";
 
 export default function ContactSection() {
@@ -66,15 +67,13 @@ export default function ContactSection() {
 
         {/* Dual Action Buttons */}
         <div className="flex flex-wrap items-center gap-3.5 pt-2">
-          <a
-            href="/Nuttaphong_Samipak_CV.pdf"
-            download="Nuttaphong_Samipak_CV.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/cv-preview"
             className="inline-flex items-center gap-2 rounded-xl bg-teal-400 hover:bg-teal-300 px-5 py-2.5 text-xs sm:text-sm font-bold text-slate-950 transition shadow-sm shadow-teal-500/20 active:scale-95 cursor-pointer"
           >
+            <FileText size={16} />
             <span>Download CV (PDF)</span>
-          </a>
+          </Link>
 
           <button
             type="button"

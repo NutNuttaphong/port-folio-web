@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { Lock } from 'lucide-react';
+import { Lock, FileText } from 'lucide-react';
 import DayNightToggle from './day-night-toggle';
 
 function NavBar({ isDark, setIsDark }) {
@@ -24,14 +24,14 @@ function NavBar({ isDark, setIsDark }) {
         ? "border-white/10 bg-[#080d1a]/85 text-white"
         : "border-slate-200/80 bg-white/85 text-slate-900 shadow-sm"
     }`}>
-      {/* โลโก้ Nuttaphong Samipak */}
+      {/* โลโก้ Nuttaphong Samiphak */}
       <div 
         onClick={() => scrollToSection('overview')} 
         className={`cursor-pointer text-lg sm:text-xl font-bold tracking-tight transition select-none ${
           isDark ? "text-white hover:text-teal-400" : "text-slate-900 hover:text-teal-600"
         }`}
       >
-        Nuttaphong Samipak
+        Nuttaphong Samiphak
       </div>
 
       {/* เมนูนำทาง: overview, projects, contact */}
@@ -67,15 +67,13 @@ function NavBar({ isDark, setIsDark }) {
 
       {/* Action Buttons: Download CV, Login, DayNightToggle */}
       <div className="flex items-center gap-2.5 sm:gap-3">
-        <a
-          href="/Nuttaphong_Samipak_CV.pdf"
-          download="Nuttaphong_Samipak_CV.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
+        <NavLink
+          to="/cv-preview"
           className="inline-flex items-center gap-1.5 rounded-lg bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold px-3 sm:px-4 py-2 text-xs sm:text-sm transition shadow-sm shadow-teal-500/20 active:scale-95 cursor-pointer"
         >
-          <span>Download CV</span>
-        </a>
+          <FileText size={14} />
+          <span>Download CV (PDF)</span>
+        </NavLink>
 
         <button
           onClick={() => navigate('/login')}

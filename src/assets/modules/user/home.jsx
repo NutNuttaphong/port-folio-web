@@ -208,7 +208,7 @@ export default function Home() {
           <div className="relative shrink-0 h-24 w-24 sm:h-44 sm:w-44 rounded-full border-2 border-teal-400 overflow-hidden shadow-lg shadow-teal-500/20">
             <img
               src={adminAvatar}
-              alt="Nuttaphong Samipak"
+              alt="Nuttaphong Samiphak"
               onError={(e) => {
                 e.currentTarget.onerror = null;
                 e.currentTarget.src = avatarImg;
@@ -218,7 +218,7 @@ export default function Home() {
           </div>
           <div>
             <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-              Nuttaphong Samipak
+              Nuttaphong Samiphak
             </h1>
             <p className="text-teal-600 dark:text-teal-400 font-semibold text-base sm:text-lg tracking-wide mt-0.5">
               Front-End Developer
@@ -255,7 +255,7 @@ export default function Home() {
               Work style
             </span>
             <span className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
-              Remote / Hybrid
+              Remote / Hybrid / On-site
             </span>
           </div>
           <div>

@@ -13,8 +13,8 @@ export default function Footer({ isDark }) {
           : "bg-slate-100 text-slate-600 border-slate-200"
       }`}>
         <div className="max-w-5xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-medium">
-          <span className="text-slate-400">Nuttaphong Samipak • Front-End Developer</span>
-          <span className="text-slate-500">© 2026 Nuttaphong Samipak</span>
+          <span className="text-slate-400">Nuttaphong Samiphak • Front-End Developer</span>
+          <span className="text-slate-500">© 2026 Nuttaphong Samiphak</span>
         </div>
       </footer>
     );

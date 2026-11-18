@@ -3,8 +3,12 @@ import {
   RouterProvider,
   Outlet,
   useLocation,
+  useRouteError,
+  isRouteErrorResponse,
+  useNavigate,
 } from "react-router-dom";
 import { useState, useEffect, lazy, Suspense } from "react";
+import { FileText } from "lucide-react";
 import NavBar from "./assets/menu-bar/nav-bar";
 import Sidebar from "./assets/menu-bar/sidebar";
 import MenuBar from "./assets/menu-bar/menu-bar";
@@ -25,6 +29,8 @@ const Services = lazy(() => import("./assets/modules/user/services-page"));
 const PortfolioPage = lazy(() => import("./assets/modules/user/portfolio-page"));
 const Inspiration = lazy(() => import("./assets/modules/user/inspiration-page"));
 const BookingPage = lazy(() => import("./assets/modules/user/booking-page"));
+const CvPreviewPage = lazy(() => import("./assets/modules/user/cv-preview-page"));
+const PdfViewerPage = lazy(() => import("./assets/modules/user/pdf-viewer-page"));
 
 // Admin Routes (Completely detached from visitor entry bundle)
 const TableHome = lazy(() => import("./assets/modules/admin/home-am/table-home"));
@@ -44,6 +50,43 @@ function PageLoader({ isDark }) {
       <div className="flex flex-col items-center gap-3">
         <div className="h-8 w-8 animate-spin rounded-full border-2 border-current border-t-transparent" />
         <span className="text-xs font-mono tracking-widest opacity-75">LOADING...</span>
+      </div>
+    </div>
+  );
+}
+
+function RouteErrorBoundary() {
+  const error = useRouteError();
+  const navigate = useNavigate();
+
+  return (
+    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-[#0B101D] text-white p-6 text-center">
+      <div className="max-w-md w-full rounded-2xl border border-white/10 bg-slate-900/90 p-8 shadow-2xl backdrop-blur-md">
+        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-teal-500/15 text-teal-400">
+          <FileText size={28} />
+        </div>
+        <h2 className="text-xl font-bold mb-2">
+          {isRouteErrorResponse(error) ? `${error.status} ${error.statusText}` : "เกิดข้อผิดพลาดในการโหลดหน้า"}
+        </h2>
+        <p className="text-sm text-slate-400 mb-6 leading-relaxed">
+          {isRouteErrorResponse(error) && error.status === 404
+            ? "ไม่พบหน้าที่คุณต้องการ หรือเส้นทางถูกย้ายแล้ว"
+            : (error?.message || "ไม่สามารถแสดงผลหน้านี้ได้ในขณะนี้")}
+        </p>
+        <div className="flex gap-3 justify-center">
+          <button
+            onClick={() => navigate("/")}
+            className="rounded-xl bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold px-5 py-2.5 text-sm transition active:scale-95 cursor-pointer"
+          >
+            กลับหน้าหลัก
+          </button>
+          <button
+            onClick={() => navigate("/cv-preview")}
+            className="rounded-xl border border-white/20 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-5 py-2.5 text-sm transition active:scale-95 cursor-pointer"
+          >
+            ไปหน้า CV Preview
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -111,8 +154,41 @@ function RootLayout() {
 // ไม่ต้อง export ตัวแปร router ออกไป
 const router = createBrowserRouter([
   {
+    path: "/cv-pdf",
+    element: (
+      <Suspense fallback={<PageLoader isDark={true} />}>
+        <PdfViewerPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/view-cv",
+    element: (
+      <Suspense fallback={<PageLoader isDark={true} />}>
+        <PdfViewerPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/Nuttaphong_Samiphak_CV.pdf",
+    element: (
+      <Suspense fallback={<PageLoader isDark={true} />}>
+        <PdfViewerPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/Nuttaphong_Samipak_CV.pdf",
+    element: (
+      <Suspense fallback={<PageLoader isDark={true} />}>
+        <PdfViewerPage />
+      </Suspense>
+    ),
+  },
+  {
     path: "/",
     element: <RootLayout />,
+    errorElement: <RouteErrorBoundary />,
     children: [
       { path: "/", element: <EventCarousel /> },
       { path: "/event-detail", element: <EventDetailPage /> },
@@ -123,6 +199,8 @@ const router = createBrowserRouter([
       { path: "/inspiration", element: <Inspiration /> },
       { path: "/event/contacts", element: <ContactsPage /> },
       { path: "/booking", element: <BookingPage /> },
+      { path: "/cv-preview", element: <CvPreviewPage /> },
+      { path: "/preview-cv", element: <CvPreviewPage /> },
       { path: "/login", element: <BookingPage /> },
       {
         element: <ProtectedRoute />,
@@ -135,6 +213,7 @@ const router = createBrowserRouter([
           { path: "/table-user", element: <TableUser /> },
         ],
       },
+      { path: "*", element: <RouteErrorBoundary /> },
     ],
   },
 ]);

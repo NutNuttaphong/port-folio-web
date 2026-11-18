@@ -1,4 +1,4 @@
-import { Briefcase, GraduationCap, Calendar, MapPin } from "lucide-react";
+// import { Briefcase, GraduationCap, Calendar, MapPin } from "lucide-react";
 
 export default function ExperienceSection() {
   const experiences = [
@@ -104,7 +104,7 @@ export default function ExperienceSection() {
                 <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight mb-1">
                   {item.role}
                 </h3>
-                <p className="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 mb-4">
+                <p className="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 mb-4 pb-4">
                   {item.company}
                 </p>
 

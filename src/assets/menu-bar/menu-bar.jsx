@@ -70,6 +70,18 @@ function MenuBar({ isDark, setIsDark }) {
           >
             CONTACTS
           </NavLink>
+          <NavLink
+            to="/cv-preview"
+            className={({ isActive }) =>
+              `transition ${
+                isActive
+                  ? (isDark ? "text-emerald-400 font-bold" : "text-teal-600 font-bold")
+                  : (isDark ? "text-white/80 hover:text-emerald-400" : "text-slate-600 hover:text-teal-600")
+              }`
+            }
+          >
+            CV (PDF)
+          </NavLink>
         </div>
 
         <div className="flex items-center gap-3">
