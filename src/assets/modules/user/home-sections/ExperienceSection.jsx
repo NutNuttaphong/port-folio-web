@@ -10,43 +10,43 @@ export default function ExperienceSection() {
       skills: ["Angular", "TypeScript", "Tailwind CSS", "REST API"],
       highlights: [
         {
-          text: "Developed web applications for government organizations and private sector clients using Angular and TypeScript.",
+          text: "Developed enterprise-grade web applications for government agencies and private-sector clients using Angular and TypeScript, supporting a large number of concurrent users.",
         },
         {
-          text: "Integrated REST APIs into front-end applications, with an understanding of the system's business analysis (BA) and business logic.",
+          text: "Designed and built responsive, mobile-first pages with Tailwind CSS, combined with lazy loading to improve performance and load speed.",
         },
         {
-          text: "Built responsive interfaces with Tailwind CSS in web applications used across mobile devices.",
+          text: "Integrated RESTful APIs, structured reusable modular UI components, and managed application state systematically.",
         },
         {
-          text: "Improved web performance with lazy loading and shared reusable components, reducing duplication code and the amount loaded up front.",
+          text: "Worked with Business Analysts (BA) and the Back-end team to turn complex business logic into easy-to-use screens and workflows.",
           badges: ["[ADD result if known]"],
         },
         {
-          text: "Edited back-end code when needed to support front-end requirements. ",
+          text: "Collaborated with UX/UI designers and QA in an Agile/Scrum process, delivering work on time every sprint. Education",
           badges: ["[SPECIFY what, e.g. API response fields]"],
         },
-        {
-          text: "Collaborated with UI/UX designers, QA engineers and Back-end developers.",
-        },
+        // {
+        //   text: "Collaborated with UI/UX designers, QA engineers and Back-end developers.",
+        // },
       ],
       type: "work",
     },
     {
       period: "2018 - 2023",
       duration: "Education",
-      role: "Bachelor of Engineering (B.Eng.) in Computer Engineering",
-      company: "Mae Fah Luang University • Chiang Rai, Thailand",
+      role: "Bachelor of Engineering (B.Eng.) in Computer Engineering — 2018 – 2023",
+      company: "Mae Fah Luang University · Chiang Rai, Thailand",
       skills: [],
       highlights: [
         {
           text: "School of Information Technology — Computer Engineering Curriculum.",
         },
         {
-          text: "Core Foundations: Computer Architecture, Algorithms, Distributed Networks, Database Systems, and Object-Oriented Software Design.",
+          text: "Core Foundations: Computer Architecture, Algorithms, Distributed Networks, Database Systems, and Object-Oriented Programming (OOP).",
         },
         {
-          text: "Senior Capstone: Applied Machine Learning and IoT integrated projects.",
+          text: "Senior Capstone: Applied Machine Learning and IoT integration projects.",
         },
       ],
       type: "education",
