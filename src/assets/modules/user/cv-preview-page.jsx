@@ -113,9 +113,6 @@ export default function CvPreviewPage() {
                   English Edition
                 </span>
               </div>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                Nuttaphong Samiphak (Front-End Developer)
-              </p>
             </div>
           </div>
 
@@ -166,9 +163,7 @@ export default function CvPreviewPage() {
 
         {/* Bottom helper bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-400 gap-2 mt-4 px-2">
-          <p>
-            ขนาดเอกสาร A4 (Single-page) • แปลภาษาอังกฤษฉบับสมบูรณ์ พร้อมดาวน์โหลดแนบสมัครงาน
-          </p>
+     
           <button
             type="button"
             onClick={handleDownloadPdf}

@@ -125,15 +125,20 @@ export default function Home() {
           const mapped = response.map((item, idx) => ({
             ...item,
             id: item._id || item.id || idx + 1,
-            tag: item.tag || (item.category === "Full-stack" ? "Full-stack" : "Web App"),
+            tag:
+              item.tag ||
+              (item.category === "Full-stack" ? "Full-stack" : "Web App"),
             title: item.title || "Project",
             description: item.description || "",
             techText:
               item.subtitle ||
               (item.techPills
-                ? item.techPills.map((p) => (typeof p === "string" ? p : p.name)).join(" • ")
+                ? item.techPills
+                    .map((p) => (typeof p === "string" ? p : p.name))
+                    .join(" • ")
                 : "React • TypeScript"),
-            screenshotPlaceholder: item.screenshotPlaceholder || `[ADD SCREENSHOT of ${item.title}]`,
+            screenshotPlaceholder:
+              item.screenshotPlaceholder || `[ADD SCREENSHOT of ${item.title}]`,
           }));
           setSlides(mapped);
         } else {
@@ -193,14 +198,12 @@ export default function Home() {
         className="relative z-10 w-full max-w-5xl mx-auto px-6 pt-10 sm:pt-14 pb-8 text-left"
       >
         {/* Top Status Badge */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-950/40 px-3.5 py-1 text-xs font-medium text-teal-300 backdrop-blur-md mb-6">
+        <div className="inline-flex flex items-center gap-2 rounded-full border border-teal-300 dark:border-teal-500/30 bg-teal-50 dark:bg-teal-500/10 px-4 py-1.5 text-xs font-semibold text-teal-800 dark:text-teal-300 backdrop-blur-md mb-4 shadow-sm">
           <span className="flex h-2 w-2 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-400"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
           </span>
-          <span className="font-mono text-[11px] sm:text-xs">
-            Open to Full-time &amp; Remote / Bangkok, Thailand
-          </span>
+          <p>Open to Full-time &amp; Remote / Bangkok, Thailand</p>
         </div>
 
         {/* Profile Image & Name Heading */}
@@ -293,7 +296,8 @@ export default function Home() {
               Projects
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl">
-              Front-end work first. Each card shows what the project is and the stack used. Swipe or use the arrow to browse.
+              Front-end work first. Each card shows what the project is and the
+              stack used. Swipe or use the arrow to browse.
             </p>
           </div>
 
@@ -343,7 +347,8 @@ export default function Home() {
                       ) : (
                         <div className="flex flex-col items-center justify-center gap-2">
                           <span className="text-xs font-mono text-amber-500 dark:text-amber-400/90 font-medium">
-                            {item.screenshotPlaceholder || `[ADD SCREENSHOT of ${item.title}]`}
+                            {item.screenshotPlaceholder ||
+                              `[ADD SCREENSHOT of ${item.title}]`}
                           </span>
                         </div>
                       )}
@@ -376,7 +381,9 @@ export default function Home() {
                   {/* Action Link at Bottom */}
                   <div className="pt-3 border-t border-slate-200/50 dark:border-white/5 flex items-center justify-between shrink-0 mt-auto">
                     <span className="text-xs font-bold text-teal-600 dark:text-teal-400 flex items-center gap-1 group-hover:underline">
-                      <span>{item.urlProject ? "Live Demo ↗" : "1 Auto Builder's"}</span>
+                      <span>
+                        {item.urlProject ? "Live Demo ↗" : "1 Auto Builder's"}
+                      </span>
                     </span>
                     {item.githubFrontend && (
                       <a

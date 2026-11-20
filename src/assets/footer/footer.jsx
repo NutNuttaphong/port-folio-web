@@ -68,10 +68,10 @@ export default function Footer({ isDark }) {
         <div>
           <h4 className={`font-semibold mb-4 tracking-wider text-start text-sm ${isDark ? "text-white" : "text-slate-900"}`}>Expertise</h4>
           <ul className={`space-y-2 text-start text-sm ${isDark ? "text-slate-400" : "text-slate-600"}`}>
-            <li className="hover:text-teal-500 transition">Full-Stack Web Architecture</li>
-            <li className="hover:text-teal-500 transition">React 18 &amp; Modern UI/UX</li>
-            <li className="hover:text-teal-500 transition">NestJS &amp; RESTful APIs</li>
-            <li className="hover:text-teal-500 transition">MongoDB &amp; NoSQL Database</li>
+            <li className="transition">Front-end Web Architecture</li>
+            <li className="transition">React 18 &amp; Modern UI/UX</li>
+            <li className="transition">NestJS &amp; RESTful APIs</li>
+            <li className="transition">MongoDB &amp; NoSQL Database</li>
           </ul>
         </div>
 
