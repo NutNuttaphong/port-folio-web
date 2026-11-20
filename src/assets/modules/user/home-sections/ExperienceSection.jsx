@@ -20,11 +20,11 @@ export default function ExperienceSection() {
         },
         {
           text: "Worked with Business Analysts (BA) and the Back-end team to turn complex business logic into easy-to-use screens and workflows.",
-          badges: ["[ADD result if known]"],
+          // badges: ["[ADD result if known]"],
         },
         {
-          text: "Collaborated with UX/UI designers and QA in an Agile/Scrum process, delivering work on time every sprint. Education",
-          badges: ["[SPECIFY what, e.g. API response fields]"],
+          text: "Collaborated with UX/UI designers and QA in an Agile/Scrum process, delivering work on time every sprint.",
+          // badges: ["[SPECIFY what, e.g. API response fields]"],
         },
         // {
         //   text: "Collaborated with UI/UX designers, QA engineers and Back-end developers.",

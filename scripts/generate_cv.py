@@ -348,11 +348,11 @@ html_content = f"""<!DOCTYPE html>
           </div>
           <p class="exp-company">Be1 Digital Company Limited • Bangkok, Thailand</p>
           <ul class="bullet-list">
-            <li>Developed enterprise-grade web applications for government and private sector clients using Angular and TypeScript, accommodating high user concurrency.</li>
-            <li>Engineered responsive, mobile-first web interfaces with Tailwind CSS and lazy loading to optimize rendering performance and load speeds.</li>
-            <li>Integrated RESTful APIs, architected reusable modular UI components, and managed application state systematically.</li>
-            <li>Collaborated with Business Analysts (BA) and backend engineers to translate complex business logic into intuitive user interfaces and workflows.</li>
-            <li>Partnered with UX/UI designers and QA teams following Agile/Scrum methodologies to deliver sprint milestones on schedule.</li>
+            <li>Developed enterprise-grade web applications for government agencies and private-sector clients using Angular and TypeScript, supporting a large number of concurrent users.</li>
+            <li>Designed and built responsive, mobile-first pages with Tailwind CSS, combined with lazy loading to improve performance and load speed.</li>
+            <li>Integrated RESTful APIs, structured reusable modular UI components, and managed application state systematically.</li>
+            <li>Worked with Business Analysts (BA) and the Back-end team to turn complex business logic into easy-to-use screens and workflows.</li>
+            <li>Collaborated with UX/UI designers and QA in an Agile/Scrum process, delivering work on time every sprint.</li>
           </ul>
         </div>
       </section>
